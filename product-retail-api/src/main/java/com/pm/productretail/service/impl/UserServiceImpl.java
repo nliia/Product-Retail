@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(SignUpDto signUpDto) {
         User user = new User();
-        user.setUsename(signUpDto.getUsername());
+        user.setUsername(signUpDto.getUsername());
         user.setPassword(signUpDto.getPassword());
         userRepository.save(user);
     }
@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     public String findUserAndGetUsername(SignInDto signInDto) {
         User user = userRepository.findOneByUsername(signInDto.getUsername());
         if(user !=null)
-            return user.getUsename();
+            return user.getUsername();
         else
             return "NET USERA TAKOGO";
     }
