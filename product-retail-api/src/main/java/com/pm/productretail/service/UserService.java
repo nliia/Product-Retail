@@ -1,10 +1,12 @@
 package com.pm.productretail.service;
 
-import com.pm.productretail.SignInJson;
-import com.pm.productretail.SignUpJson;
+import com.pm.productretail.dto.SignInDto;
+import com.pm.productretail.dto.SignUpDto;
+import com.pm.productretail.entity.User;
 
 public interface UserService {
-    void createUser(SignUpJson signUpJson);
+    void createUser(SignUpDto signUpDto);
 
-    String findUserAndGetUsername(SignInJson signInJson);
+    String findUserAndGetUsername(SignInDto signInDto);
+    User findOneByEmail(String email);
 }

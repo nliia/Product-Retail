@@ -1,5 +1,8 @@
 package com.pm.productretail.config;
 
+import com.pm.productretail.security.JWTAuthenticationProvider;
+import com.pm.productretail.security.JWTFilter;
+import com.pm.productretail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
@@ -17,7 +20,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final UserService userService;
 
     @Autowired
-    public WebSecurityConfig(UserService userService) {
+    public SecurityConfig(UserService userService) {
         this.userService = userService;
     }
 

@@ -1,6 +1,6 @@
-package com.pm.productretail;
+package com.pm.productretail.dto;
 
-public class SignInJson {
+public class SignUpDto {
     private String username;
     private String password;
 

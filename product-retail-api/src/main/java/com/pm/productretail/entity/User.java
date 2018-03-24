@@ -3,7 +3,7 @@ package com.pm.productretail.entity;
 import javax.persistence.Entity;
 
 @Entity
-public class UserEntity extends AbstractEntity {
+public class User extends AbstractEntity {
 
     private String usename;
     private String password;

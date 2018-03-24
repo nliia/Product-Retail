@@ -1,8 +1,8 @@
 package com.pm.productretail.controller;
 
 
-import com.pm.productretail.SignInJson;
-import com.pm.productretail.SignUpJson;
+import com.pm.productretail.dto.SignInDto;
+import com.pm.productretail.dto.SignUpDto;
 import com.pm.productretail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,14 +16,14 @@ public class AuthController {
     UserService userService;
 
     @RequestMapping("/sign_up")
-    public String signUp(@RequestBody SignUpJson signUpJson){
-        userService.createUser(signUpJson);
+    public String signUp(@RequestBody SignUpDto signUpDto){
+        userService.createUser(signUpDto);
         return "Success";
     }
 
     @RequestMapping("/sign_in")
-    public String signIn(@RequestBody SignInJson signInJson){
-        return userService.findUserAndGetUsername(signInJson);
+    public String signIn(@RequestBody SignInDto signInDto){
+        return userService.findUserAndGetUsername(signInDto);
     }
 
 }
