@@ -4,17 +4,20 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueMaterial from 'vue-material'
 import VeeValidate from 'vee-validate'
+import VueResource from 'vue-resource'
 import App from './App'
 import router from './router'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 Vue.use(VeeValidate)
+Vue.use(VueResource)
 
 /* eslint-disable no-new */
 new Vue({
