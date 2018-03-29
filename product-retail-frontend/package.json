@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "bootstrap-vue": "^2.0.0-rc.2",
-    "roboto-fontface": "^0.9.0",
+    "pt-sans-cyrillic": "0.0.4",
+    "typeface-pt-sans-narrow": "0.0.54",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.2",
     "vue-material": "^1.0.0-beta-8",
