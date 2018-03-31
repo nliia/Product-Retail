@@ -6,6 +6,8 @@ import VueMaterial from 'vue-material'
 import VeeValidate from 'vee-validate'
 import App from './App'
 import router from './router'
+import { sync } from 'vuex-router-sync'
+import store from './store/store'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'vue-material/dist/vue-material.min.css'
@@ -17,10 +19,13 @@ Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 Vue.use(VeeValidate)
 
+sync(store, router)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -6375,7 +6375,8 @@ vue-loader@^13.3.0:
     resolve "^1.4.0"
     source-map "^0.6.1"
     vue-hot-reload-api "^2.2.0"
-    vue-style-loader "^3.0.0"
+    vue-style-loade
+    r "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
 vue-material@^1.0.0-beta-8:

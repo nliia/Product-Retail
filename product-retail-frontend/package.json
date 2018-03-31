@@ -11,14 +11,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.2",
-    "pt-sans-cyrillic": "0.0.4",
-    "typeface-pt-sans-narrow": "0.0.54",
     "vee-validate": "^2.0.6",
     "vue": "^2.5.2",
     "vue-material": "^1.0.0-beta-8",
-    "vue-resource": "^1.5.0",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1",
+    "vuex-router-sync": "^5.0.0"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -61,6 +61,7 @@
     "url-loader": "^0.5.8",
     "vue-loader": "^13.3.0",
     "vue-style-loader": "^3.0.1",
+    "vue-svg-loader": "^0.5.0",
     "vue-template-compiler": "^2.5.2",
     "webpack": "^3.6.0",
     "webpack-bundle-analyzer": "^2.9.0",
