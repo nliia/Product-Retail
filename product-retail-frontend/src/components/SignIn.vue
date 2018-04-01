@@ -14,7 +14,7 @@
                 <md-input name="password" type="password" v-model="user.password" v-validate="'required'"></md-input>
               </md-field>
               <md-button class="md-raised md-yellow" @click="signIn" :disabled="errors.any()">Войти</md-button>
-              <router-link to="signUp">
+              <router-link to="register">
                 <div class="link">Создать аккаунт</div>
               </router-link>
           </div>
@@ -28,7 +28,6 @@
 import authService from '../services/authService'
 
 export default {
-  name: 'SignIn',
   data: () => ({
     user: {
       email: '',
@@ -38,21 +37,22 @@ export default {
   methods: {
     async signIn () {
       try {
-        const response = await authService.signIn({
-          email: this.email,
-          password: this.password
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
+        var credentials = {
+          username: this.user.email,
+          password: this.user.password
+        }
+        const response = await authService.signIn(credentials)
+        localStorage.token = response.data.token
+        this.$router.push({ name: 'hello' })
       } catch (error) {
-        console.error(error.response.data.error)
+        console.log(error.response.data.message)
       }
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
   .md-button {
     font-size: 18px;
   }
@@ -61,9 +61,9 @@ export default {
     font-size: 18px;
     color: black;
     margin-top: 20px;
-  }
 
-  .link:hover {
-    text-decoration: underline #F7D354;
+    &:hover {
+      text-decoration: underline #F7D354;
+    }
   }
 </style>

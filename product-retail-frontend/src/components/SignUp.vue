@@ -15,10 +15,10 @@
                         </md-field>
                         <md-field :class="{'md-invalid': errors.has('passwordConfirmation')}">
                             <label>Повторите пароль</label>
-                            <md-input name="passwordConfirmation" type="password" v-model="user.passwordConfirmation" v-validate="'required|confirmed:password'"></md-input>
+                            <md-input name="passwordConfirmation" type="password" v-model="user.password_confirmation" v-validate="'required|confirmed:password'"></md-input>
                         </md-field>
                         <md-button class="md-raised md-yellow" @click="signUp" :disabled="errors.any()">Создать аккаунт</md-button>
-                        <router-link to="signIn">
+                        <router-link to="login">
                             <div class="link">Войти</div>
                         </router-link>
                     </div>
@@ -32,43 +32,43 @@
 import authService from '../services/authService'
 
 export default {
-  name: 'SignUp',
   data: () => ({
     user: {
       email: '',
       password: '',
-      passwordConfirmation: ''
+      password_confirmation: ''
     }
   }),
   methods: {
     async signUp () {
       try {
-        const response = await authService.signUp({
-          email: this.email,
-          password: this.password
-        })
-        this.$store.dispatch('setToken', response.data.token)
-        this.$store.dispatch('setUser', response.data.user)
+        var credentials = {
+          username: this.user.email,
+          password: this.user.password
+        }
+        const response = await authService.signUp(credentials)
+        localStorage.token = response.data.token
+        this.$router.push({ name: 'hello' })
       } catch (error) {
-        console.error(error.response.data.error)
+        console.log(error.response.data.message)
       }
     }
   }
 }
 </script>
 
-<style scoped>
-    .md-button {
-        font-size: 18px;
-    }
+<style lang='scss' scoped>
+  .md-button {
+    font-size: 18px;
+  }
 
-    .link {
-        font-size: 18px;
-        color: black;
-        margin-top: 20px;
-    }
+  .link {
+    font-size: 18px;
+    color: black;
+    margin-top: 20px;
 
-    .link:hover {
-        text-decoration: underline #F7D354;
+    &:hover {
+      text-decoration: underline #F7D354;
     }
+  }
 </style>

@@ -1,7 +1,11 @@
 import axios from 'axios'
 
-export default () => {
-  axios.create({
-    baseUrl: 'https://productretaill.herokuapp.com'
+export default() => {
+  return axios.create({
+    baseURL: 'https://productretaill.herokuapp.com/',
+    headers: {
+      'Content-Type': 'application/json',
+      'token': localStorage.token
+    }
   })
 }

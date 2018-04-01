@@ -8,10 +8,6 @@ import App from './App'
 import router from './router'
 import { sync } from 'vuex-router-sync'
 import store from './store/store'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-import 'vue-material/dist/vue-material.min.css'
-import 'vue-material/dist/theme/default.css'
 
 Vue.config.productionTip = false
 
