@@ -12,7 +12,7 @@ public class ShiftLinkUsers extends AbstractEntity {
 
     @OneToOne
     @JoinColumn
-    private User user;
+    private AppUser appUser;
 
     public Shift getShift() {
         return shift;
@@ -22,11 +22,11 @@ public class ShiftLinkUsers extends AbstractEntity {
         this.shift = shift;
     }
 
-    public User getUser() {
-        return user;
+    public AppUser getAppUser() {
+        return appUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
     }
 }

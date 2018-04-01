@@ -10,14 +10,14 @@ public class Task extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn
-    private User taskCreator;
+    private AppUser taskCreator;
     private String description;
 
-    public User getTaskCreator() {
+    public AppUser getTaskCreator() {
         return taskCreator;
     }
 
-    public void setTaskCreator(User taskCreator) {
+    public void setTaskCreator(AppUser taskCreator) {
         this.taskCreator = taskCreator;
     }
 

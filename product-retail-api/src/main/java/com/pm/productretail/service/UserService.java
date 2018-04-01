@@ -1,12 +1,10 @@
 package com.pm.productretail.service;
 
-import com.pm.productretail.dto.SignInDto;
 import com.pm.productretail.dto.SignUpDto;
-import com.pm.productretail.entity.User;
+import com.pm.productretail.entity.AppUser;
 
 public interface UserService {
-    void createUser(SignUpDto signUpDto);
+    void createUser(SignUpDto signUpDto) throws Exception;
 
-    String findUserAndGetUsername(SignInDto signInDto);
-    User findOneByEmail(String email);
+    AppUser findOneByEmail(String email);
 }

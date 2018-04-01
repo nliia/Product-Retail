@@ -9,27 +9,27 @@ public class Message extends AbstractEntity {
 
     @OneToOne
     @JoinColumn
-    private User sender;
+    private AppUser sender;
 
     @OneToOne
     @JoinColumn
-    private User recipient;
+    private AppUser recipient;
 
     private String text;
 
-    public User getSender() {
+    public AppUser getSender() {
         return sender;
     }
 
-    public void setSender(User sender) {
+    public void setSender(AppUser sender) {
         this.sender = sender;
     }
 
-    public User getRecipient() {
+    public AppUser getRecipient() {
         return recipient;
     }
 
-    public void setRecipient(User recipient) {
+    public void setRecipient(AppUser recipient) {
         this.recipient = recipient;
     }
 
