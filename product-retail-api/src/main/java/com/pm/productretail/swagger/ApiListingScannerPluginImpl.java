@@ -1,4 +1,4 @@
-package com.pm.productretail;
+package com.pm.productretail.swagger;
 
 import com.fasterxml.classmate.TypeResolver;
 import com.pm.productretail.dto.SignInDto;

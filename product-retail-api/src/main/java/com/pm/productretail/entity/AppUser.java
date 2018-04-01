@@ -11,12 +11,14 @@ public class AppUser extends AbstractEntity {
 
     private String username;
     private String password;
-    private String fullName;
+    private String name;
+    private String surname;
     private String phoneNumber;
 
     @ManyToOne
     @JoinColumn
     private Department department;
+
     private String role;
     private Boolean isSuperuser;
 
@@ -36,12 +38,20 @@ public class AppUser extends AbstractEntity {
         this.password = password;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getPhoneNumber() {

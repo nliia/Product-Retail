@@ -6,5 +6,5 @@ import com.pm.productretail.entity.AppUser;
 public interface UserService {
     void createUser(SignUpDto signUpDto) throws Exception;
 
-    AppUser findOneByEmail(String email);
+    AppUser findOneByPhoneNumber(String phone);
 }
