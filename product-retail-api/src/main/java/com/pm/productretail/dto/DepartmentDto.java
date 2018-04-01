@@ -1,18 +1,17 @@
-package com.pm.productretail.entity;
+package com.pm.productretail.dto;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-@Entity
-public class Department extends AbstractEntity {
+import com.pm.productretail.entity.Department;
 
+public class DepartmentDto {
     private String address;
     private String name;
     private Boolean isWarehouse;
 
-    @ManyToOne
-    @JoinColumn
-    private Department parent;
+    public DepartmentDto(Department department) {
+        setAddress(department.getAddress());
+        setName(department.getName());
+        setWarehouse(department.getWarehouse());
+    }
 
     public String getAddress() {
         return address;
@@ -20,14 +19,6 @@ public class Department extends AbstractEntity {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public Department getParent() {
-        return parent;
-    }
-
-    public void setParent(Department parent) {
-        this.parent = parent;
     }
 
     public String getName() {
