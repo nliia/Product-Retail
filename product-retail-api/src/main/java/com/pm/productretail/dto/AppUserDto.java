@@ -1,6 +1,6 @@
 package com.pm.productretail.dto;
 
-public class SignUpDto {
+public class AppUserDto {
 
     private String username;
     private String password;
@@ -9,7 +9,7 @@ public class SignUpDto {
     private String phoneNumber;
     private Long department_id;
     private String role;
-    private Boolean isSuperuser;
+    private Boolean is_superuser;
 
     public String getUsername() {
         return username;
@@ -68,10 +68,10 @@ public class SignUpDto {
     }
 
     public Boolean getSuperuser() {
-        return isSuperuser;
+        return is_superuser;
     }
 
     public void setSuperuser(Boolean superuser) {
-        isSuperuser = superuser;
+        is_superuser = superuser;
     }
 }

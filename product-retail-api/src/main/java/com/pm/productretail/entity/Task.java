@@ -18,6 +18,9 @@ public class Task extends AbstractEntity {
     private AppUser taskMaker;
     private String description;
     private TaskStatus status;
+    @ManyToOne
+    @JoinColumn
+    private Department department;
 
     public AppUser getTaskCreator() {
         return taskCreator;
@@ -49,5 +52,13 @@ public class Task extends AbstractEntity {
 
     public void setTaskMaker(AppUser taskMaker) {
         this.taskMaker = taskMaker;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 }

@@ -1,6 +1,5 @@
 package com.pm.productretail.service.impl;
 
-import com.pm.productretail.dto.SignInDto;
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.service.SecurityService;
 import com.pm.productretail.service.UserService;
@@ -17,12 +16,11 @@ public class SecurityServiceImpl implements SecurityService {
 
     @Override
     public AppUser getCurrentUser() {
-        return userService.findOneByUsername(getCurentUserUsername());
+        return userService.findOneByUsername(getCurrentUserUsername());
     }
 
-    public String getCurentUserUsername(){
+    private String getCurrentUserUsername() {
         UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-
         return (String) token.getPrincipal();
     }
 }

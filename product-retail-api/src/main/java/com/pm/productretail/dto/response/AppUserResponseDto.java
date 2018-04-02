@@ -1,33 +1,17 @@
-package com.pm.productretail.entity;
+package com.pm.productretail.dto.response;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
-
-@Entity
-@Table(name = "users")
-public class AppUser extends AbstractEntity {
+/**
+ * @author lnurullina
+ */
+public class AppUserResponseDto {
 
     private String username;
-    private String password;
     private String name;
     private String surname;
     private String phoneNumber;
-
-    @ManyToOne
-    @JoinColumn
-    private Department department;
-
+    private Long department_id;
     private String role;
-    private Boolean isSuperuser;
-
-    @PrePersist
-    void preInsert() {
-        if (this.isSuperuser == null)
-            this.isSuperuser = false;
-    }
+    private Boolean is_superuser;
 
     public String getUsername() {
         return username;
@@ -35,14 +19,6 @@ public class AppUser extends AbstractEntity {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getName() {
@@ -69,12 +45,12 @@ public class AppUser extends AbstractEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Long getDepartment_id() {
+        return department_id;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartment_id(Long department_id) {
+        this.department_id = department_id;
     }
 
     public String getRole() {
@@ -86,10 +62,10 @@ public class AppUser extends AbstractEntity {
     }
 
     public Boolean getSuperuser() {
-        return isSuperuser;
+        return is_superuser;
     }
 
     public void setSuperuser(Boolean superuser) {
-        isSuperuser = superuser;
+        is_superuser = superuser;
     }
 }

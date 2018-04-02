@@ -6,25 +6,25 @@ import com.pm.productretail.util.TaskStatus;
  * @author lnurullina
  */
 public class TaskDto {
-    private Long taskCreatorId;
-    private Long taskMakerId;
+    private Long task_creator_id;
+    private Long task_maker_id;
     private String description;
     private TaskStatus taskStatus;
 
     public Long getTaskCreatorId() {
-        return taskCreatorId;
+        return task_creator_id;
     }
 
     public void setTaskCreatorId(Long taskCreatorId) {
-        this.taskCreatorId = taskCreatorId;
+        this.task_creator_id = taskCreatorId;
     }
 
     public Long getTaskMakerId() {
-        return taskMakerId;
+        return task_maker_id;
     }
 
     public void setTaskMakerId(Long taskMakerId) {
-        this.taskMakerId = taskMakerId;
+        this.task_maker_id = taskMakerId;
     }
 
     public String getDescription() {

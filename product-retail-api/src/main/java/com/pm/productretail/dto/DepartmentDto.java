@@ -5,7 +5,7 @@ import com.pm.productretail.entity.Department;
 public class DepartmentDto {
     private String address;
     private String name;
-    private Boolean isWarehouse;
+    private Boolean is_warehouse;
 
     public DepartmentDto(Department department) {
         setAddress(department.getAddress());
@@ -30,10 +30,10 @@ public class DepartmentDto {
     }
 
     public Boolean getWarehouse() {
-        return isWarehouse;
+        return is_warehouse;
     }
 
     public void setWarehouse(Boolean warehouse) {
-        isWarehouse = warehouse;
+        is_warehouse = warehouse;
     }
 }

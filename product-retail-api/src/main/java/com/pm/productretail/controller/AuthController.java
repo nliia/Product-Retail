@@ -1,6 +1,6 @@
 package com.pm.productretail.controller;
 
-import com.pm.productretail.dto.SignUpDto;
+import com.pm.productretail.dto.AppUserDto;
 import com.pm.productretail.service.UserService;
 import com.pm.productretail.util.ApiResponse;
 import com.pm.productretail.util.ResponseCreator;
@@ -18,9 +18,9 @@ public class AuthController extends ResponseCreator {
     UserService userService;
 
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
-    public ResponseEntity<ApiResponse<String>> signUp(@RequestBody SignUpDto signUpDto) {
+    public ResponseEntity<ApiResponse<String>> signUp(@RequestBody AppUserDto appUserDto) {
         try {
-            userService.createUser(signUpDto);
+            userService.createUser(appUserDto);
         } catch (Exception e) {
             return createBadResponse(e.getMessage());
         }

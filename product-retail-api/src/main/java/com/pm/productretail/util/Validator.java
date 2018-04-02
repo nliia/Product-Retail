@@ -1,6 +1,6 @@
 package com.pm.productretail.util;
 
-import com.pm.productretail.dto.SignUpDto;
+import com.pm.productretail.dto.AppUserDto;
 import com.pm.productretail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -36,29 +36,29 @@ public class Validator extends ResponseCreator {
     }
 
 
-    public boolean isValidSignUpData(SignUpDto signUpDto
+    public boolean isValidSignUpData(AppUserDto appUserDto
     ) throws Exception {
-        if (signUpDto.getPassword() == null || !this.isPasswordCorrect(signUpDto.getPassword())) {
+        if (appUserDto.getPassword() == null || !this.isPasswordCorrect(appUserDto.getPassword())) {
             throw new Exception(Errors.INCORRECT_PASSWORD);
         }
-        if (signUpDto.getUsername() == null || !this.isNameCorrect(signUpDto.getName())) {
+        if (appUserDto.getUsername() == null || !this.isNameCorrect(appUserDto.getName())) {
             throw new Exception(Errors.INVALID_USERNAME);
         }
-        if (signUpDto.getName() != null)
-            if (!this.isNameCorrect(signUpDto.getName())) {
+        if (appUserDto.getName() != null)
+            if (!this.isNameCorrect(appUserDto.getName())) {
                 throw new Exception(Errors.INVALID_FIRSTNAME);
             }
-        if (signUpDto.getSurname() != null)
-            if (!this.isNameCorrect(signUpDto.getSurname())) {
+        if (appUserDto.getSurname() != null)
+            if (!this.isNameCorrect(appUserDto.getSurname())) {
                 throw new Exception(Errors.INVALID_SURNAME);
             }
 
-        if (signUpDto.getPhoneNumber() != null)
-            if (!this.isPhoneCorrect(signUpDto.getPhoneNumber())) {
+        if (appUserDto.getPhoneNumber() != null)
+            if (!this.isPhoneCorrect(appUserDto.getPhoneNumber())) {
                 throw new Exception(Errors.INVALID_PHONENUMBER);
             }
-        if (signUpDto.getPhoneNumber() != null)
-            if (this.isPhoneAlreadyRegistered(signUpDto.getPhoneNumber())) {
+        if (appUserDto.getPhoneNumber() != null)
+            if (this.isPhoneAlreadyRegistered(appUserDto.getPhoneNumber())) {
                 throw new Exception(Errors.REGISTERED_PHONE);
             }
         return true;
