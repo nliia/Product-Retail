@@ -46,9 +46,7 @@ export default {
           username: this.user.email,
           password: this.user.password
         }
-        const response = await authService.signUp(credentials)
-        localStorage.token = response.data.token
-        this.$router.push({ name: 'hello' })
+        await authService.signUp(credentials)
       } catch (error) {
         console.log(error.response.data.message)
       }

@@ -42,9 +42,10 @@ export default {
           password: this.user.password
         }
         const response = await authService.signIn(credentials)
-        localStorage.token = response.data.token
+        localStorage.token = response.data
         this.$router.push({ name: 'hello' })
       } catch (error) {
+        // @todo: alert
         console.log(error.response.data.message)
       }
     }
