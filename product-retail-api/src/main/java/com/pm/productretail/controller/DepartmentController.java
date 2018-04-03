@@ -13,10 +13,7 @@ import com.pm.productretail.util.ResponseCreator;
 import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,7 +32,7 @@ public class DepartmentController extends ResponseCreator {
     @Autowired
     TaskService taskService;
 
-
+    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<DepartmentDto>>> getUserDepartments() {
@@ -43,12 +40,14 @@ public class DepartmentController extends ResponseCreator {
         return createGoodResponse(userService.findUserDepartments(currentUser));
     }
 
+    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/{id}/tasks", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<TaskResponseDto>>> getDepartmentTasks(@PathVariable Long id) {
         return createGoodResponse(taskService.findAllByDepartment(id));
     }
 
+    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/{id}/workers", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<AppUserResponseDto>>> getDepartmentWorkers(@PathVariable Long id) {
