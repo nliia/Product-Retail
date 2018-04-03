@@ -21,7 +21,6 @@ public class TaskController extends ResponseCreator {
     @Autowired
     TaskService taskService;
 
-    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/task", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> createTask(@RequestBody TaskDto taskDto) {
@@ -29,7 +28,6 @@ public class TaskController extends ResponseCreator {
         return createGoodResponse();
     }
 
-    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/tasks{id}", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<TaskResponseDto>>> getWorkerTasks(@PathVariable Long id) {

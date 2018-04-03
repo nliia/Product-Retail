@@ -17,7 +17,6 @@ public class OrderController extends ResponseCreator {
 	@Autowired
 	private OrderService orderService;
 
-	@CrossOrigin
 	@ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
 	@RequestMapping(value = "/order", method = RequestMethod.POST)
 	public ResponseEntity<ApiResponse<String>> createOrder(@RequestBody List<OrderedItemDto> orderedItemDtoList) {

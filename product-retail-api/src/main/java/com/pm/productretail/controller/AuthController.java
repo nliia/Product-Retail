@@ -14,7 +14,6 @@ public class AuthController extends ResponseCreator {
     @Autowired
     UserService userService;
 
-    @CrossOrigin
     @RequestMapping(value = "/sign_up", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> signUp(@RequestBody AppUserDto appUserDto) {
         try {

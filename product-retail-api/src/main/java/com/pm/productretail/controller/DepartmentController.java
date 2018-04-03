@@ -32,7 +32,6 @@ public class DepartmentController extends ResponseCreator {
     @Autowired
     TaskService taskService;
 
-    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<DepartmentDto>>> getUserDepartments() {
@@ -40,14 +39,12 @@ public class DepartmentController extends ResponseCreator {
         return createGoodResponse(userService.findUserDepartments(currentUser));
     }
 
-    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/{id}/tasks", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<TaskResponseDto>>> getDepartmentTasks(@PathVariable Long id) {
         return createGoodResponse(taskService.findAllByDepartment(id));
     }
 
-    @CrossOrigin
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/{id}/workers", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<AppUserResponseDto>>> getDepartmentWorkers(@PathVariable Long id) {
