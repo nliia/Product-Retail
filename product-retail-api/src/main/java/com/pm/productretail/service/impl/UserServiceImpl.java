@@ -5,6 +5,7 @@ import com.pm.productretail.dto.DepartmentDto;
 import com.pm.productretail.dto.response.AppUserResponseDto;
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.repository.AppUserRepository;
+import com.pm.productretail.repository.DepartmentRepository;
 import com.pm.productretail.service.DepartmentService;
 import com.pm.productretail.service.UserService;
 import com.pm.productretail.util.Errors;
@@ -34,6 +35,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     private Validator validator;
     @Autowired
     private DepartmentService departmentService;
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Override
     public void createUser(AppUserDto appUserDto) throws Exception {
@@ -71,7 +74,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     public List<AppUserResponseDto> findAllByDepartment(Long depId) {
-        return appUserRepository.findAllByDepartment(depId)
+        return appUserRepository.findAllByDepartment(departmentRepository.getOne(depId))
                 .stream()
                 .map(this::toAppUserResponseDto)
                 .collect(Collectors.toList());
