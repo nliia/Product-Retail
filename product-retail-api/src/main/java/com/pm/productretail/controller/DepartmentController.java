@@ -2,6 +2,7 @@ package com.pm.productretail.controller;
 
 import com.pm.productretail.dto.DepartmentDto;
 import com.pm.productretail.dto.response.AppUserResponseDto;
+import com.pm.productretail.dto.response.ItemResponseDto;
 import com.pm.productretail.dto.response.TaskResponseDto;
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.service.DepartmentService;
@@ -49,5 +50,11 @@ public class DepartmentController extends ResponseCreator {
     @RequestMapping(value = "/department/{id}/workers", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<AppUserResponseDto>>> getDepartmentWorkers(@PathVariable Long id) {
         return createGoodResponse(userService.findAllByDepartment(id));
+    }
+
+    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+    @RequestMapping(value = "/department/{id}/items", method = RequestMethod.GET)
+    public ResponseEntity<ApiResponse<List<ItemResponseDto>>> getItemsByDepartment(@PathVariable Long id) {
+        return createGoodResponse(departmentService.getItemsByDepartment((id)));
     }
 }
