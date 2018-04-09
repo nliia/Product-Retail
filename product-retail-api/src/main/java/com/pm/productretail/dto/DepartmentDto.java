@@ -3,6 +3,7 @@ package com.pm.productretail.dto;
 import com.pm.productretail.entity.Department;
 
 public class DepartmentDto {
+    private Long id;
     private String address;
     private String name;
     private Boolean is_warehouse;
@@ -11,6 +12,15 @@ public class DepartmentDto {
         setAddress(department.getAddress());
         setName(department.getName());
         setWarehouse(department.getWarehouse());
+        setId(department.getId());
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAddress() {

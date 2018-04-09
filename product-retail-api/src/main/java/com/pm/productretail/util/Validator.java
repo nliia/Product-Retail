@@ -1,6 +1,7 @@
 package com.pm.productretail.util;
 
 import com.pm.productretail.dto.AppUserDto;
+import com.pm.productretail.repository.AppUserRepository;
 import com.pm.productretail.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,12 +29,8 @@ public class Validator extends ResponseCreator {
     private Pattern pattern;
     private Matcher matcher;
 
-    private UserService userService;
-
     @Autowired
-    public Validator(UserService userService) {
-        this.userService = userService;
-    }
+    AppUserRepository appUserRepository;
 
 
     public boolean isValidSignUpData(AppUserDto appUserDto
@@ -121,7 +118,7 @@ public class Validator extends ResponseCreator {
     }
 
     private boolean isPhoneAlreadyRegistered(String phone) {
-        return userService.findOneByPhoneNumber(phone) != null;
+        return appUserRepository.findOneByPhoneNumber(phone) != null;
     }
 
     private boolean isHouseNumberCorrect(String houseNumber) {

@@ -1,6 +1,7 @@
 package com.pm.productretail.repository;
 
 import com.pm.productretail.entity.AppUser;
+import com.pm.productretail.entity.Department;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -12,5 +13,5 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     AppUser findOneByPhoneNumber(String phoneNumber);
 
-    List<AppUser> findAllByDepartment(Long depId);
+    List<AppUser> findAllByDepartment(Department department);
 }
