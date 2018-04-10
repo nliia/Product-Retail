@@ -24,7 +24,7 @@ body {
 }
 
 .md-yellow {
-    background: $colorYellow !important;
+    background: $primaryColor !important;
 }
 
 .md-headline {
@@ -32,7 +32,7 @@ body {
 }
 
 .md-field.md-theme-default:before {
-    background: $colorYellow;
+    background: $primaryColor;
 }
 
 .md-field.md-theme-default.md-focused label {
@@ -40,5 +40,5 @@ body {
 }
 
 .md-field.md-theme-default.md-focused .md-input {
-    color: $colorYellow;
+    color: $primaryColor;
 }
