@@ -20,7 +20,8 @@ public class AppUserResponseDto {
         this.name = appUser.getName();
         this.surname = appUser.getSurname();
         this.phone_number = appUser.getPhoneNumber();
-        this.department_id = appUser.getDepartment().getId();
+        if (appUser.getDepartment() != null)
+            this.department_id = appUser.getDepartment().getId();
         this.role = appUser.getRole();
         this.is_superuser = appUser.getSuperuser();
 

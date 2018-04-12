@@ -81,6 +81,14 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
+    public List<AppUserResponseDto> findAllByName(String name) {
+        return appUserRepository.findByName(name)
+                .stream()
+                .map(AppUserResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AppUser user = appUserRepository.findOneByUsername(username);
         if (user == null)

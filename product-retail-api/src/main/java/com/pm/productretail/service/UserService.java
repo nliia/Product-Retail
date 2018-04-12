@@ -17,4 +17,6 @@ public interface UserService {
     List<DepartmentDto> findUserDepartments(AppUser currentUser);
 
     List<AppUserResponseDto> findAllByDepartment(Long depId);
+
+    List<AppUserResponseDto> findAllByName(String name);
 }
