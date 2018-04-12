@@ -1,5 +1,7 @@
 package com.pm.productretail.dto.response;
 
+import com.pm.productretail.entity.AppUser;
+
 /**
  * @author lnurullina
  */
@@ -8,10 +10,21 @@ public class AppUserResponseDto {
     private String username;
     private String name;
     private String surname;
-    private String phoneNumber;
+    private String phone_number;
     private Long department_id;
     private String role;
     private Boolean is_superuser;
+
+    public AppUserResponseDto(AppUser appUser) {
+        this.username = appUser.getUsername();
+        this.name = appUser.getName();
+        this.surname = appUser.getSurname();
+        this.phone_number = appUser.getPhoneNumber();
+        this.department_id = appUser.getDepartment().getId();
+        this.role = appUser.getRole();
+        this.is_superuser = appUser.getSuperuser();
+
+    }
 
     public String getUsername() {
         return username;
@@ -38,18 +51,18 @@ public class AppUserResponseDto {
     }
 
     public String getPhoneNumber() {
-        return phoneNumber;
+        return phone_number;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumber(String phone_number) {
+        this.phone_number = phone_number;
     }
 
-    public Long getDepartment_id() {
+    public Long getDepartmentId() {
         return department_id;
     }
 
-    public void setDepartment_id(Long department_id) {
+    public void setDepartmentId(Long department_id) {
         this.department_id = department_id;
     }
 

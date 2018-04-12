@@ -76,7 +76,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<AppUserResponseDto> findAllByDepartment(Long depId) {
         return appUserRepository.findAllByDepartment(departmentRepository.getOne(depId))
                 .stream()
-                .map(this::toAppUserResponseDto)
+                .map(AppUserResponseDto::new)
                 .collect(Collectors.toList());
     }
 
@@ -88,15 +88,4 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new User(user.getUsername(), user.getPassword(), emptyList());
     }
 
-    private AppUserResponseDto toAppUserResponseDto(AppUser appUser) {
-        AppUserResponseDto dto = new AppUserResponseDto();
-        dto.setName(appUser.getName());
-        dto.setSurname(appUser.getSurname());
-        dto.setDepartment_id(appUser.getDepartment().getId());
-        dto.setPhoneNumber(appUser.getPhoneNumber());
-        dto.setRole(appUser.getRole());
-        dto.setSuperuser(appUser.getSuperuser());
-        dto.setUsername(appUser.getUsername());
-        return dto;
-    }
 }

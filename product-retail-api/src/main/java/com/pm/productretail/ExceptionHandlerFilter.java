@@ -29,15 +29,8 @@ public class ExceptionHandlerFilter extends OncePerRequestFilter {
         } catch (RuntimeException e) {
             response.setContentType("application/json");
             response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
-            response.getWriter().write(convertObjectToJson(new ApiResponse<>(null, e.getMessage())));
+            ObjectMapper mapper = new ObjectMapper();
+            response.getWriter().write(mapper.writeValueAsString(new ApiResponse<>(null, e.getMessage())));
         }
-    }
-
-    public String convertObjectToJson(Object object) throws JsonProcessingException {
-        if (object == null) {
-            return null;
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsString(object);
     }
 }
