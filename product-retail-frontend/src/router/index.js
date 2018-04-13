@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
-import HelloUser from '@/components/HelloUser'
+import Departments from '@/components/Departments'
 
 Vue.use(Router)
 
@@ -10,8 +10,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'hello',
-      component: HelloUser,
+      name: 'departments',
+      component: Departments,
       beforeEnter (to, from, next) {
         if (localStorage.token === undefined) {
           next('/login')
@@ -28,7 +28,7 @@ export default new Router({
         if (localStorage.token === undefined) {
           next()
         } else {
-          next('/hello')
+          next('/')
         }
       }
     },
@@ -40,7 +40,7 @@ export default new Router({
         if (localStorage.token === undefined) {
           next()
         } else {
-          next('/hello')
+          next('/')
         }
       }
     }

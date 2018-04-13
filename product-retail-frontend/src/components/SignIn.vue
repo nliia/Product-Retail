@@ -7,7 +7,7 @@
             <div class="md-headline">ВХОД</div>
               <md-field :class="{'md-invalid': errors.has('email')}">
                 <label>Email</label>
-                <md-input name="email" v-model="user.email" v-validate="'required|email'" data-vv-name="email"></md-input>
+                <md-input name="email" v-model="user.email" v-validate="'required'" data-vv-name="email"></md-input>
               </md-field>
               <md-field :class="{'md-invalid': errors.has('password')}">
                 <label>Пароль</label>
@@ -42,8 +42,8 @@ export default {
           password: this.user.password
         }
         const response = await authService.signIn(credentials)
-        localStorage.token = response.data
-        this.$router.push({ name: 'hello' })
+        localStorage.token = response.data.token
+        this.$router.push({ name: 'departments' })
       } catch (error) {
         // @todo: alert
         console.log(error.response.data.message)
