@@ -13,10 +13,7 @@
                 <label>Пароль</label>
                 <md-input name="password" type="password" v-model="user.password" v-validate="'required'"></md-input>
               </md-field>
-              <md-button class="md-raised md-yellow" @click="signIn" :disabled="errors.any()">Войти</md-button>
-              <router-link to="register">
-                <div class="link">Создать аккаунт</div>
-              </router-link>
+              <md-button class="md-raised md-green" @click="signIn" :disabled="errors.any()">Войти</md-button>
           </div>
         </div>
       </div>

@@ -23,8 +23,12 @@ body {
     opacity: 0;
 }
 
-.md-yellow {
+.md-green {
     background: $primaryColor !important;
+}
+
+.md-primary {
+    color: $primaryColor !important;
 }
 
 .md-headline {
@@ -41,4 +45,8 @@ body {
 
 .md-field.md-theme-default.md-focused .md-input {
     color: $primaryColor;
+}
+
+.md-table.md-theme-default .md-table-row:hover:not(.md-header-row) .md-table-cell {
+    background: none;
 }

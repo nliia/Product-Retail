@@ -1,22 +1,23 @@
 <template>
   <transition name="slide">
-    <div class="container">
-      <div class="row">
-        <div v-for="dep in departments" :key="dep.id" class="col-xs-12 col-sm-3">
-          <md-card md-with-hover>
-            <md-ripple>
-              <md-card-header>
-                <div class="md-title">{{ dep.name }}</div>
-                <div class="md-subhead">{{ dep.address }}</div>
-              </md-card-header>
-              <md-card-content>
-                <span v-if="dep.warehouse">Склад</span>
-                <span v-else>Магазин</span>
-              </md-card-content>
-            </md-ripple>
-          </md-card>
-        </div>
-      </div>
+    <div>
+      <md-table md-card>
+        <md-table-row v-for="dep in departments" :key="dep.id">
+          <md-table-cell>
+            <md-icon v-if="dep.warehouse">local_shipping</md-icon>
+            <md-icon v-else>shopping_cart</md-icon>
+            </md-table-cell>
+          <md-table-cell class="text-left">
+            <span class="md-body-1">{{ dep.name }}</span><br/>
+            <span class="md-caption">{{ dep.address }}</span>
+            </md-table-cell>
+          <md-table-cell>
+            <md-button class="md-primary">Сотрудники</md-button>
+            <md-button class="md-primary">График работы</md-button>
+            <md-button class="md-primary">Товары</md-button>
+          </md-table-cell>
+        </md-table-row>
+      </md-table>
     </div>
   </transition>
 </template>
@@ -40,5 +41,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
+  .text-left {
+    text-align: left
+  }
 </style>
