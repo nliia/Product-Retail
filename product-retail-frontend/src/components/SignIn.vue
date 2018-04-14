@@ -49,9 +49,3 @@ export default {
   }
 }
 </script>
-
-<style lang='scss' scoped>
-  .md-button {
-    font-size: 18px;
-  }
-</style>

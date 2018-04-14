@@ -3,7 +3,7 @@ body {
 }
 
 #app {
-    font-family: 'PT Sans', sans-serif !important;
+    font-family: 'Roboto Regular', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-align: center;
@@ -29,10 +29,6 @@ body {
 
 .md-primary {
     color: $primaryColor !important;
-}
-
-.md-headline {
-    font-family: 'PT Sans Narrow', sans-serif !important;
 }
 
 .md-field.md-theme-default:before {
