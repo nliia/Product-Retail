@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.2",
+    "material-icons": "^0.2.1",
     "node-sass": "^4.8.3",
     "sass-loader": "^6.0.7",
     "vee-validate": "^2.0.6",
