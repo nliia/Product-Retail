@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import SignIn from '@/components/SignIn'
 import SignUp from '@/components/SignUp'
 import Departments from '@/components/Departments'
+import store from '../store/store'
 
 Vue.use(Router)
 
@@ -13,7 +14,7 @@ export default new Router({
       name: 'departments',
       component: Departments,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next('/login')
         } else {
           next()
@@ -25,7 +26,7 @@ export default new Router({
       name: 'login',
       component: SignIn,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next()
         } else {
           next('/')
@@ -37,7 +38,7 @@ export default new Router({
       name: 'register',
       component: SignUp,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next()
         } else {
           next('/')

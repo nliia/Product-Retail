@@ -39,7 +39,7 @@ export default {
           password: this.user.password
         }
         const response = await authService.signIn(credentials)
-        localStorage.token = response.data.token
+        this.$store.dispatch('signIn', { type: 'user', item: response.data })
         this.$router.push({ name: 'departments' })
       } catch (error) {
         // @todo: alert
@@ -53,15 +53,5 @@ export default {
 <style lang='scss' scoped>
   .md-button {
     font-size: 18px;
-  }
-
-  .link {
-    font-size: 18px;
-    color: black;
-    margin-top: 20px;
-
-    &:hover {
-      text-decoration: underline #F7D354;
-    }
   }
 </style>
