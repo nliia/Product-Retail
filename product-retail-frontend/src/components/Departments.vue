@@ -23,19 +23,12 @@
 </template>
 
 <script>
-import departmentsService from '../services/departmentsService.js'
+import store from '../store/store'
 
 export default {
-  data: () => ({
-    departments: []
-  }),
-  mounted: async function () {
-    try {
-      const response = await departmentsService.getUserDepartments()
-      this.departments = response.data.responseData
-    } catch (error) {
-      // @todo: alert
-      console.log(error.response.data.message)
+  computed: {
+    departments: () => {
+      return store.getters.departments
     }
   }
 }

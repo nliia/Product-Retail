@@ -22,6 +22,9 @@ export default new Vuex.Store({
   getters: {
     token: state => {
       return state.user.token
+    },
+    departments: state => {
+      return state.user.accessible_departments
     }
   }
 })
