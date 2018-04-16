@@ -21,6 +21,7 @@
     "vue": "^2.5.2",
     "vue-material": "^1.0.0-beta-8",
     "vue-router": "^3.0.1",
+    "vue-simple-calendar": "^2.2.0",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.2",
     "vuex-router-sync": "^5.0.0"
