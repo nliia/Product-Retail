@@ -41,9 +41,9 @@ export default new Router({
       component: Workers,
       beforeEnter (to, from, next) {
         if (store.getters.token === undefined) {
-          next()
+          next('/login')
         } else {
-          next('/')
+          next()
         }
       }
     },
@@ -53,9 +53,9 @@ export default new Router({
       component: Schedule,
       beforeEnter (to, from, next) {
         if (store.getters.token === undefined) {
-          next()
+          next('/login')
         } else {
-          next('/')
+          next()
         }
       }
     },
@@ -65,9 +65,9 @@ export default new Router({
       component: Goods,
       beforeEnter (to, from, next) {
         if (store.getters.token === undefined) {
-          next()
+          next('/login')
         } else {
-          next('/')
+          next()
         }
       }
     }

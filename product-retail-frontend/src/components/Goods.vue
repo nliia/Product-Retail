@@ -10,11 +10,11 @@
                 </select>
                 <div class="container">
                     <ul id="menu">
-                        <li id="stores" class="menu_item" @click="menu">
+                        <li id="stores" class="menu_item">
                             <a href="#">Магазины <md-icon>keyboard_arrow_left</md-icon></a>
                             <div class="menu_wrapper">
                                 <ul id="sub_menu">
-                                    <li class="sub_menu_item" @click="submenu">
+                                    <li class="sub_menu_item">
                                         <a href="#">Магазин 1 <md-icon>keyboard_arrow_left</md-icon></a>
                                         <div class="sub_menu_wrapper">
                                             <ul class="sub_sub_menu">
@@ -31,7 +31,7 @@
 
                                         </div>
                                     </li>
-                                    <li class="sub_menu_item" @click="submenu">
+                                    <li class="sub_menu_item">
                                         <a href="#">Магазин 2 <md-icon>keyboard_arrow_left</md-icon></a>
                                         <div class="sub_menu_wrapper">
                                             <ul class="sub_sub_menu">
@@ -51,7 +51,7 @@
                                 </ul>
                             </div>
                         </li>
-                        <li id="storages" class="menu_item" @click="menu">
+                        <li id="storages" class="menu_item">
                             <a href="#">Склады <md-icon>keyboard_arrow_left</md-icon></a>
                         </li>
                     </ul>
