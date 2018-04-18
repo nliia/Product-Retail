@@ -40,7 +40,7 @@ export default new Router({
       name: 'workers',
       component: Workers,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next()
         } else {
           next('/')
@@ -52,7 +52,7 @@ export default new Router({
       name: 'schedule',
       component: Schedule,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next()
         } else {
           next('/')
@@ -64,7 +64,7 @@ export default new Router({
       name: 'goods',
       component: Goods,
       beforeEnter (to, from, next) {
-        if (localStorage.token === undefined) {
+        if (store.getters.token === undefined) {
           next()
         } else {
           next('/')

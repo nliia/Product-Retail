@@ -192,60 +192,57 @@
                   </div>
               </div>
           </section>
-
-
       </md-app-content>
     </md-app>
   </div>
 </template>
 
 <script>
-  export default {
-      name: 'Normal',
-      methods: {
-//          menu() {
-//              var menu = document.getElementById('menu');
-//              var currentOpenMenu = null;
-//              menu.onclick = function (event) {
-//                  var subMenu = event.target.closest('.menu_item').querySelector('.menu_wrapper');
-//                  if (this.open) {
-//                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_left';
-//                      subMenu.style.height = '0';
-//                      currentOpenMenu = null;
-//                  } else {
-//                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_down';
-//                      subMenu.style.height = subMenu.firstElementChild.clientHeight + 'px';
-//                      subMenu.firstElementChild.onclick = (event) => event.stopPropagation();
-//                      if (currentOpenMenu){
-//                          currentOpenMenu.style.height = '0';
-//                      }
-//                      currentOpenMenu = subMenu;
-//                  }
-//              this.open = !this.open;
-//              }
-//          },
-//          submenu() {
-//              var menu = document.getElementById('sub_menu');
-//              var currentOpenMenu = null;
-//              menu.onclick = function (event) {
-//                  var subMenu = event.target.closest('.sub_menu_item').querySelector('.sub_menu_wrapper');
-//                  if (this.open) {
-//                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_left';
-//                      subMenu.style.height = '0';
-//                      currentOpenMenu = null;
-//                  } else {
-//                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_down';
-//                      subMenu.style.height = subMenu.firstElementChild.clientHeight + 'px';
-//                      subMenu.firstElementChild.onclick = (event) => event.stopPropagation();
-//                      if (currentOpenMenu){
-//                          currentOpenMenu.style.height = '0';
-//                      }
-//                      currentOpenMenu = subMenu;
-//                  }
-//                  this.open = !this.open;
-//              }
-//          }
-      }
+export default {
+  name: 'Normal',
+  methods: {
+    //          menu() {
+    //              var menu = document.getElementById('menu');
+    //              var currentOpenMenu = null;
+    //              menu.onclick = function (event) {
+    //                  var subMenu = event.target.closest('.menu_item').querySelector('.menu_wrapper');
+    //                  if (this.open) {
+    //                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_left';
+    //                      subMenu.style.height = '0';
+    //                      currentOpenMenu = null;
+    //                  } else {
+    //                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_down';
+    //                      subMenu.style.height = subMenu.firstElementChild.clientHeight + 'px';
+    //                      subMenu.firstElementChild.onclick = (event) => event.stopPropagation();
+    //                      if (currentOpenMenu){
+    //                          currentOpenMenu.style.height = '0';
+    //                      }
+    //                      currentOpenMenu = subMenu;
+    //                  }
+    //              this.open = !this.open;
+    //              }
+    //          },
+    //          submenu() {
+    //              var menu = document.getElementById('sub_menu');
+    //              var currentOpenMenu = null;
+    //              menu.onclick = function (event) {
+    //                  var subMenu = event.target.closest('.sub_menu_item').querySelector('.sub_menu_wrapper');
+    //                  if (this.open) {
+    //                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_left';
+    //                      subMenu.style.height = '0';
+    //                      currentOpenMenu = null;
+    //                  } else {
+    //                      event.target.querySelector('i').innerHTML = 'keyboard_arrow_down';
+    //                      subMenu.style.height = subMenu.firstElementChild.clientHeight + 'px';
+    //                      subMenu.firstElementChild.onclick = (event) => event.stopPropagation();
+    //                      if (currentOpenMenu){
+    //                          currentOpenMenu.style.height = '0';
+    //                      }
+    //                      currentOpenMenu = subMenu;
+    //                  }
+    //                  this.open = !this.open;
+    //              }
+    //          }
   }
-
+}
 </script>

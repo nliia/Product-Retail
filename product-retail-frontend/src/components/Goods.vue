@@ -56,9 +56,7 @@
                         </li>
                     </ul>
                 </div>
-
             </md-app-drawer>
-
             <md-app-content>
                 <div class="toolbar">
                     <md-icon class="md-inactive">email</md-icon>
@@ -180,15 +178,13 @@
                         </div>
                     </div>
                 </section>
-
-
             </md-app-content>
         </md-app>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'Normal'
-    }
+export default {
+  name: 'Normal'
+}
 </script>

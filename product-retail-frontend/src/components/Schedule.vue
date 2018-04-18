@@ -82,22 +82,27 @@
 </template>
 
 <script>
-    import CalendarView from "vue-simple-calendar"
-    require("vue-simple-calendar/dist/static/css/default.css")
-    require("vue-simple-calendar/dist/static/css/holidays-us.css")
+import CalendarView from 'vue-simple-calendar'
 
-    export default {
-        name: 'Normal',
-        data: function() {
-            return { showDate: new Date() }
-        },
-        components: {
-            CalendarView
-        },
-        methods: {
-            setShowDate(d) {
-                this.showDate = d;
-            },
-        }
+export default {
+  name: 'Normal',
+  data: () => {
+    return {
+      showDate: new Date()
     }
+  },
+  components: {
+    CalendarView
+  },
+  methods: {
+    setShowDate (d) {
+      this.showDate = d
+    }
+  }
+}
 </script>
+
+<style lang='scss' scoped>
+    @import url('vue-simple-calendar/dist/static/css/default.css');
+    @import url('vue-simple-calendar/dist/static/css/holidays-us.css');
+</style>
