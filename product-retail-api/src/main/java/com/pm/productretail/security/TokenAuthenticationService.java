@@ -48,6 +48,7 @@ class TokenAuthenticationService {
         SignInResponseDto signInResponseDto = new SignInResponseDto(appUser, departments, JWT);
         try {
             res.setContentType("application/json");
+            res.setCharacterEncoding("UTF-8");
             ObjectMapper objectMapper = new ObjectMapper();
             res.getWriter().write(objectMapper.writeValueAsString(signInResponseDto));
         } catch (IOException e) {
