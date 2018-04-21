@@ -25,6 +25,9 @@ export default new Vuex.Store({
     },
     departments: state => {
       return state.user.accessible_departments
+    },
+    user: state => {
+      return state.user
     }
   }
 })
