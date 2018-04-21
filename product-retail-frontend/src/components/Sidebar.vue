@@ -6,53 +6,44 @@
             <option selected>Владелец</option>
             <option>Сотрудник</option>
         </select>
-        <div class="container">
-            <ul id="menu">
-                <li id="stores" class="menu_item" @click="menu">
-                    <a href="#">Магазины <md-icon>keyboard_arrow_left</md-icon></a>
-                    <div class="menu_wrapper">
-                        <ul id="sub_menu">
-                            <li class="sub_menu_item" @click="submenu">
-                                <a href="#">Магазин 1 <md-icon>keyboard_arrow_left</md-icon></a>
-                                <div class="sub_menu_wrapper">
-                                    <ul class="sub_sub_menu">
-                                        <li class="sub_sub_menu_item">
-                                            <a href="#">Сотрудники</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">График работы</a>
-                                        </li>
-                                        <li class="sub_sub_menu_item">
-                                            <a href="#">Товары</a>
-                                        </li>
-                                    </ul>
+        <div class="container full-control">
+            <md-list>
+                <md-list-item md-expand :md-expanded.sync="expandNews">
+                    <span class="md-list-item-text">Магазины</span>
 
-                                </div>
-                            </li>
-                            <li class="sub_menu_item" @click="submenu">
-                                <a href="#">Магазин 2 <md-icon>keyboard_arrow_left</md-icon></a>
-                                <div class="sub_menu_wrapper">
-                                    <ul class="sub_sub_menu">
-                                        <li class="sub_sub_menu_item">
-                                            Сотрудники
-                                        </li>
-                                        <li>
-                                            График работы
-                                        </li>
-                                        <li class="sub_sub_menu_item">
-                                            Товары
-                                        </li>
-                                    </ul>
+                    <md-list slot="md-expand">
+                        <md-list-item md-expand>
+                            <span class="md-list-item-text md-secondary">Магазин 1</span>
 
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li id="storages" class="menu_item" @click="menu">
-                    <a href="#">Склады <md-icon>keyboard_arrow_left</md-icon></a>
-                </li>
-            </ul>
+                            <md-list slot="md-expand">
+                                <md-list-item class="md-inset">Сотрудники</md-list-item>
+                                <md-list-item class="md-inset">График работы</md-list-item>
+                                <md-list-item class="md-inset">Товары</md-list-item>
+                            </md-list>
+                        </md-list-item>
+
+                        <md-list-item md-expand>
+                            <span class="md-list-item-text md-secondary">Магазин 2</span>
+
+                            <md-list slot="md-expand">
+                                <md-list-item class="md-inset">Сотрудники</md-list-item>
+                                <md-list-item class="md-inset">График работы</md-list-item>
+                                <md-list-item class="md-inset">Товары</md-list-item>
+                            </md-list>
+                        </md-list-item>
+                    </md-list>
+                </md-list-item>
+
+                <md-list-item md-expand>
+                    <span class="md-list-item-text">Склады</span>
+
+                    <md-list slot="md-expand">
+                        <md-list-item class="md-inset">Склад 1</md-list-item>
+                        <md-list-item class="md-inset">Склад 2</md-list-item>
+                    </md-list>
+                </md-list-item>
+
+            </md-list>
         </div>
     </div>
 </template>
@@ -66,6 +57,11 @@ export default {
     user: () => {
       return store.getters.user
     }
+  },
+  data () {
+        return {
+            expandNews: false
+        }
   }
 }
 </script>

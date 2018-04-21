@@ -38,14 +38,14 @@ export default new Router({
     {
       path: '/workers',
       name: 'workers',
-      component: Workers,
-      beforeEnter (to, from, next) {
-        if (store.getters.token === undefined) {
-          next('/login')
-        } else {
-          next()
-        }
-      }
+      component: Workers
+      // beforeEnter (to, from, next) {
+      //   if (store.getters.token === undefined) {
+      //     next('/login')
+      //   } else {
+      //     next()
+      //   }
+      // }
     },
     {
       path: '/schedule',
