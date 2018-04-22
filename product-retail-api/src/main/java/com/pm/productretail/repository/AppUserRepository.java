@@ -17,6 +17,6 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     List<AppUser> findAllByDepartment(Department department);
 
-    @Query(value = "SELECT * FROM users WHERE UPPER(concat(name, ' ', surname)) LIKE UPPER(concat('%', :name, '%'))", nativeQuery = true)
+    @Query(value = "SELECT * FROM users WHERE UPPER(concat(name, ' ', surname)) LIKE UPPER(concat('%', :name, '%')) ORDER BY ID", nativeQuery = true)
     List<AppUser> findByName(@Param("name") String name);
 }

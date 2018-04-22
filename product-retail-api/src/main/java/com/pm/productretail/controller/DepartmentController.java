@@ -1,10 +1,12 @@
 package com.pm.productretail.controller;
 
 import com.pm.productretail.dto.DepartmentDto;
+import com.pm.productretail.dto.DepartmentItemDto;
 import com.pm.productretail.dto.response.AppUserResponseDto;
-import com.pm.productretail.dto.response.ItemResponseDto;
+import com.pm.productretail.dto.response.DepartmentItemResponseDto;
 import com.pm.productretail.dto.response.TaskResponseDto;
 import com.pm.productretail.entity.AppUser;
+import com.pm.productretail.entity.DepartmentLinkItem;
 import com.pm.productretail.service.DepartmentService;
 import com.pm.productretail.service.SecurityService;
 import com.pm.productretail.service.TaskService;
@@ -54,7 +56,14 @@ public class DepartmentController extends ResponseCreator {
 
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/{id}/items", method = RequestMethod.GET)
-    public ResponseEntity<ApiResponse<List<ItemResponseDto>>> getItemsByDepartment(@PathVariable Long id) {
+    public ResponseEntity<ApiResponse<List<DepartmentItemResponseDto>>> getItemsByDepartment(@PathVariable Long id) {
         return createGoodResponse(departmentService.getItemsByDepartment((id)));
+    }
+
+    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+    @RequestMapping(value = "/department/{depId}/item/{itemId}", method = RequestMethod.POST)
+    public ResponseEntity<ApiResponse<String>> addItemToDepartment(@RequestBody DepartmentItemDto departmentItem) {
+        departmentService.addItemToDepartment(departmentItem);
+        return createGoodResponse();
     }
 }

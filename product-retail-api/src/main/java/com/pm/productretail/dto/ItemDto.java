@@ -1,15 +1,8 @@
-package com.pm.productretail.entity;
+package com.pm.productretail.dto;
 
-import com.pm.productretail.dto.ItemDto;
-
-import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-@Entity
-public class Item extends AbstractEntity {
-
+public class ItemDto {
     private String name;
+
     private Double price;
 
     public String getName() {

@@ -2,8 +2,11 @@ package com.pm.productretail.dto.response;
 
 import com.pm.productretail.dto.DepartmentDto;
 import com.pm.productretail.entity.AppUser;
+import com.pm.productretail.util.Role;
 
 import java.util.List;
+
+import static com.pm.productretail.util.Role.findByValue;
 
 /**
  * @author lnurullina
@@ -28,7 +31,10 @@ public class SignInResponseDto {
         surname = appUser.getSurname();
         is_superuser = appUser.getSuperuser();
         phone_number = appUser.getPhoneNumber();
-        role = appUser.getRole();
+        Role role = findByValue(appUser.getRole());
+        if(role!=null) {
+            this.role = role.getName();
+        }
     }
 
     public String getToken() {
