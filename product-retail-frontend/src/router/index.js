@@ -36,7 +36,7 @@ export default new Router({
       }
     },
     {
-      path: '/workers',
+      path: '/:id/workers',
       name: 'workers',
       component: Workers,
       beforeEnter (to, from, next) {
@@ -60,7 +60,7 @@ export default new Router({
       }
     },
     {
-      path: '/goods',
+      path: '/:id/goods',
       name: 'goods',
       component: Goods,
       beforeEnter (to, from, next) {

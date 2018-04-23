@@ -7,118 +7,18 @@
             <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
           </div>
           <section class="blocks">
-              <div class="block">
+              <div v-for="worker in workers" :key="worker.id" class="block">
                   <div class="worker-info">
                       <div class="worker">
                           <img src="../../static/photo.png">
-                          <p>Продавец</p>
+                          <p>{{ worker.role }}</p>
                       </div>
                       <div class="info">
-                          <p class="name">Николай Петров</p>
+                          <p class="name">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</p>
                           <br>
                           <p>Магазин 1</p>
                           <p>Адрес магазина</p>
-                          <p>89887889676</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-              <div class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>Продавец</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">Николай Петров</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>89887889676</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-              <div class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>Продавец</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">Николай Петров</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>89887889676</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-              <div class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>Продавец</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">Николай Петров</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>89887889676</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-              <div class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>Продавец</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">Николай Петров</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>89887889676</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-              <div class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>Продавец</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">Николай Петров</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>89887889676</p>
+                          <p>{{ worker.phoneNumber }}</p>
                       </div>
                   </div>
                   <md-divider></md-divider>
@@ -133,7 +33,23 @@
 </template>
 
 <script>
+import departmentsService from '../services/departmentsService'
+
 export default {
-  name: 'Normal'
+  data: () => ({
+    workers: {}
+  }),
+  created () {
+    this.fetchData()
+  },
+  watch: {
+    '$route': 'fetchData'
+  },
+  methods: {
+    async fetchData () {
+      const response = await departmentsService.getDepartmentWorkers(this.$route.params.id)
+      this.workers = response.data.responseData
+    }
+  }
 }
 </script>
