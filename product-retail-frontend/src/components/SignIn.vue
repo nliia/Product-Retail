@@ -39,7 +39,7 @@ export default {
           password: this.user.password
         }
         const response = await authService.signIn(credentials)
-        this.$store.dispatch('signIn', { type: 'user', item: response.data })
+        this.$store.dispatch('setUser', { type: 'user', item: response.data })
         this.$router.push({ name: 'departments' })
       } catch (error) {
         // @todo: alert

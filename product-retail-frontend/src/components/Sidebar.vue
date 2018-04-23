@@ -59,9 +59,9 @@ export default {
     }
   },
   data () {
-        return {
-            expandNews: false
-        }
+    return {
+      expandNews: false
+    }
   }
 }
 </script>

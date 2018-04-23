@@ -15,7 +15,7 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    signIn (context, payload) {
+    setUser (context, payload) {
       context.commit('set', payload)
     }
   },

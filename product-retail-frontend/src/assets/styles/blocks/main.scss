@@ -1,29 +1,5 @@
-@font-face {
-  font-family: 'Roboto';
-  src: url('https://fonts.googleapis.com/css?family=Roboto:500');
-}
-
 .md-app, .page-container {
   height: 100%;
-}
-
-.toolbar {
-
-  position: absolute;
-  right: 25px;
-
-  i {
-	margin-left: 10px;
-	margin-top: -3px;
-  }
-
-  a {
-	text-decoration: none !important;
-	color: #000 !important;
-	font-size: 18px !important;
-	margin-top: 3px !important;
-	margin-left: 20px !important;
-  }
 }
 
 .menu {
@@ -136,13 +112,11 @@
 }
 
 .md-content {
-  background-color: #F3F3F4 !important;
-  padding-left: 0;
-  padding-right: 0;
+  background-color: #F5F5F5 !important;
+  padding: 0;
 }
 
 .titles {
-  margin-top: 50px;
   background-color: #fff;
   text-align: left;
   padding: 10px 40px;
@@ -162,7 +136,7 @@
 .add-btn {
   float: right;
   top: -60px;
-  background-color: $partColor !important;
+  background-color: $primaryColor !important;
   color: #fff !important;
   width: 150px;
 }
@@ -226,7 +200,7 @@
 	button {
 	  text-align: end;
 	  float: right;
-	  color: $partColor;
+	  color: $primaryColor;
 	}
 
 	p {
@@ -250,4 +224,3 @@
   width: 90%;
   margin: 0 auto;
 }
-

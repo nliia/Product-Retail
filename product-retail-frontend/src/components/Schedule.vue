@@ -1,11 +1,6 @@
 <template>
     <div>
         <md-app-content>
-            <div class="toolbar">
-                <md-icon class="md-inactive">email</md-icon>
-                <md-icon>notifications</md-icon>
-                <a><md-icon>forward</md-icon>Войти</a>
-            </div>
             <div class="titles">
                 <p>График работы</p>
                 <p>Главная / Магазины / Магазин 1 / График работы</p>

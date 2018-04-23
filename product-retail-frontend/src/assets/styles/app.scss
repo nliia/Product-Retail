@@ -2,10 +2,12 @@
 @import 'bootstrap-vue/dist/bootstrap-vue.css';
 @import 'vue-material/dist/vue-material.min.css';
 @import 'vue-material/dist/theme/default.css';
-@import 'material-icons/iconfont/material-icons.css';
+@import 'font-awesome/css/font-awesome.min.css';
+@import 'roboto-fontface/css/roboto/roboto-fontface.css';
 
 @import '_variables';
 @import '_globals';
 
 @import 'blocks/sign';
 @import 'blocks/main';
+@import 'blocks/toolbar';

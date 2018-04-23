@@ -4,8 +4,8 @@
       <md-table md-card>
         <md-table-row v-for="dep in departments" :key="dep.id">
           <md-table-cell>
-            <md-icon v-if="dep.warehouse">local_shipping</md-icon>
-            <md-icon v-else>shopping_cart</md-icon>
+            <md-icon class="fa fa-truck" v-if="dep.warehouse"></md-icon>
+            <md-icon class="fa fa-shopping-cart" v-else></md-icon>
             </md-table-cell>
           <md-table-cell class="text-left">
             <span class="md-body-1">{{ dep.name }}</span><br/>

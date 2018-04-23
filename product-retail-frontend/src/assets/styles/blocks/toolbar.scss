@@ -1,0 +1,22 @@
+.toolbar {
+  color: #999999 !important;
+  display: flex;
+  justify-content: flex-end;
+  box-shadow: none;
+
+  &__item {
+    margin: 0;
+    margin-left: 30px;
+    cursor: pointer;
+  }
+
+  &__icon {
+    color: #999999 !important;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 6px;
+  }
+}
