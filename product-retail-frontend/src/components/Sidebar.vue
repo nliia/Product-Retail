@@ -1,6 +1,6 @@
 <template id="sidebar-template">
     <div>
-        <img class="user-info__photo" src="../../static/photo.png">
+        <img class="user-info__photo" src="../assets/images/person.svg">
         <p id="username">{{ user.name }} {{ user.surname }}</p>
         <select class="role">
             <option selected>Владелец</option>

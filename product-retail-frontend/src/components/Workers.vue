@@ -1,34 +1,34 @@
 <template>
-    <div>
-      <md-app-content>
-          <div class="titles">
-            <p>Сотрудники</p>
-            <p>Главная / Магазины / Магазин 1 / Сотрудники</p>
-            <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
-          </div>
-          <section class="blocks">
-              <div v-for="worker in workers" :key="worker.id" class="block">
-                  <div class="worker-info">
-                      <div class="worker">
-                          <img src="../../static/photo.png">
-                          <p>{{ worker.role }}</p>
-                      </div>
-                      <div class="info">
-                          <p class="name">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</p>
-                          <br>
-                          <p>Магазин 1</p>
-                          <p>Адрес магазина</p>
-                          <p>{{ worker.phoneNumber }}</p>
-                      </div>
-                  </div>
-                  <md-divider></md-divider>
-                  <div class="btns">
-                      <md-button>Редактировать</md-button>
-                      <md-button>Удалить</md-button>
-                  </div>
-              </div>
-          </section>
-      </md-app-content>
+  <div>
+    <md-app-content>
+      <div class="titles">
+        <p>Сотрудники</p>
+        <p>Главная / Магазины / Магазин 1 / Сотрудники</p>
+        <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
+      </div>
+      <section class="cards">
+        <md-card v-for="worker in workers" :key="worker.id" class="card">
+          <md-card-header>
+            <md-card-media>
+              <img src="../assets/images/person.svg" class="card__photo">
+              <span class="md-body-1">{{ worker.role }}</span>
+            </md-card-media>
+            <md-card-header-text class="card__header">
+              <div class="md-body-2">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</div>
+              <br/>
+              <div class="md-body-1">Магазин 1</div>
+              <div class="md-body-1">Адрес магазина</div>
+              <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
+            </md-card-header-text>
+          </md-card-header>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <md-button class="card__button">Удалить</md-button>
+            <md-button class="card__button">Редактировать</md-button>
+          </md-card-actions>
+        </md-card>
+      </section>
+    </md-app-content>
   </div>
 </template>
 

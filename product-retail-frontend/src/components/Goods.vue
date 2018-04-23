@@ -1,33 +1,33 @@
 <template>
-    <div>
-        <md-app-content>
-            <div class="titles">
-                <p>Товары</p>
-                <p>Главная / Магазины / Магазин 1 / Товары</p>
-                <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
-            </div>
-            <section class="blocks">
-                <div v-for="item in items" :key="item.id" class="block">
-                    <div class="product-info">
-                        <div class="product">
-                            <img src="../../static/product.png">
-                        </div>
-                        <div class="info">
-                            <p class="name">{{ item.name }}</p>
-                            <br>
-                            <p>Количество: <span>{{ item.count }}</span></p>
-                            <p>Цена: <span>150</span> руб.</p>
-                        </div>
-                    </div>
-                    <md-divider></md-divider>
-                    <div class="btns">
-                        <md-button>Редактировать</md-button>
-                        <md-button>Удалить</md-button>
-                    </div>
-                </div>
-            </section>
-        </md-app-content>
-    </div>
+  <div>
+    <md-app-content>
+      <div class="titles">
+        <p>Товары</p>
+        <p>Главная / Магазины / Магазин 1 / Товары</p>
+        <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
+      </div>
+      <section class="cards">
+        <md-card v-for="item in items" :key="item.id" class="card">
+          <md-card-header>
+            <md-card-media>
+              <img src="../assets/images/item.svg" class="card__photo">
+            </md-card-media>
+            <md-card-header-text class="card__header">
+              <div class="md-body-2">{{ item.name }}</div>
+              <br/>
+              <div class="md-body-1">Количество: {{ item.count }}</div>
+              <div class="md-body-1">Цена: 150 руб.</div>
+            </md-card-header-text>
+          </md-card-header>
+          <md-divider></md-divider>
+          <md-card-actions>
+            <md-button class="card__button">Удалить</md-button>
+            <md-button class="card__button">Редактировать</md-button>
+          </md-card-actions>
+        </md-card>
+      </section>
+    </md-app-content>
+  </div>
 </template>
 
 <script>
@@ -47,7 +47,6 @@ export default {
     async fetchData () {
       const response = await departmentsService.getItemsByDepartment(this.$route.params.id)
       this.items = response.data.responseData
-      console.log(this.items)
     }
   }
 }

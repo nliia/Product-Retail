@@ -22,8 +22,7 @@
   width: 75px;
   height: 75px;
   border-radius: 50%;
-  background: #ffffff;
-
+  border: 1px solid white;
 }
 
 #username {
@@ -139,75 +138,6 @@
   background-color: $primaryColor !important;
   color: #fff !important;
   width: 150px;
-}
-
-.blocks {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  align-content: center;
-  width: 100%;
-  padding: 0 20px 0 20px;
-
-
-  .worker-info, .product-info {
-	width: 100%;
-	display: flex;
-  }
-
-  .product-info {
-	height: 78%;
-
-
-	img {
-	  width: 85px;
-	  height: 90px;
-	}
-  }
-
-  .block {
-	background-color: #fff;
-	width: 300px;
-	margin-top: 50px;
-	text-align: left;
-
-	.worker, .product {
-	  text-align: center;
-	  width: 50%;
-	}
-
-	.info {
-	  width: 50%;
-	  line-height: .5;
-
-	  p:first-child {
-		margin-top: 35px;
-		margin-bottom: 40px;
-		font-weight: bolder;
-		font-size: 16px;
-	  }
-
-	}
-
-	img {
-	  margin: 20px;
-	  height: 100px;
-	  width: 100px;
-	}
-
-	button {
-	  text-align: end;
-	  float: right;
-	  color: $primaryColor;
-	}
-
-	p {
-	  //margin-left: 30px;
-	}
-
-  }
-
 }
 
 .calendar-container {
