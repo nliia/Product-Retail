@@ -48,7 +48,7 @@ export default new Router({
       }
     },
     {
-      path: '/schedule',
+      path: '/:id/schedule',
       name: 'schedule',
       component: Schedule,
       beforeEnter (to, from, next) {
