@@ -1,0 +1,29 @@
+.breadcrumbs {
+    background-color: white;
+    color: #676A6C;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    justify-content: space-between;
+
+    &__item {
+        text-align: left;
+
+        .breadcrumb {
+            background: none;
+            padding: 0;
+        }
+
+        &-large {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+    }
+
+    .button {
+        background-color: $primaryColor !important;
+        color: white !important;
+        padding: 0 24px;
+    }
+}

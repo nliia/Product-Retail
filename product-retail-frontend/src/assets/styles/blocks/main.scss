@@ -11,31 +11,6 @@
   padding: 0;
 }
 
-.titles {
-  background-color: #fff;
-  text-align: left;
-  padding: 10px 40px;
-  color: #676A6C;
-
-  p:first-child {
-	font-size: 24px;
-  }
-
-  p {
-	font-size: 14px;
-	margin: 10px 0 8px 0;
-  }
-
-}
-
-.add-btn {
-  float: right;
-  top: -60px;
-  background-color: $primaryColor !important;
-  color: #fff !important;
-  width: 150px;
-}
-
 .calendar-container {
   width: 100%;
 

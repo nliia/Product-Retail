@@ -4,6 +4,7 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import VueMaterial from 'vue-material'
 import VeeValidate from 'vee-validate'
+import VueBreadcrumbs from 'vue-2-breadcrumbs'
 import App from './App'
 import router from './router'
 import { sync } from 'vuex-router-sync'
@@ -14,6 +15,7 @@ Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 Vue.use(VeeValidate)
+Vue.use(VueBreadcrumbs)
 
 sync(store, router)
 
