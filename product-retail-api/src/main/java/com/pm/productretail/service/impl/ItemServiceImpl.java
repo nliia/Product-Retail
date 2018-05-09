@@ -9,14 +9,19 @@ import com.pm.productretail.repository.ItemRepository;
 import com.pm.productretail.service.DepartmentService;
 import com.pm.productretail.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ItemServiceImpl implements ItemService {
 
+    private static final int PAGE_SIZE = 10;
     @Autowired
     ItemRepository itemRepository;
 
@@ -40,8 +45,8 @@ public class ItemServiceImpl implements ItemService {
     public List<ItemResponseDto> getAllItemsByName(String name, Integer page) {
         List<ItemResponseDto> departmentItemResponseDtoList = new ArrayList<>();
         List<Item> itemList = itemRepository.findAllByNameLikeIgnoreCaseOrderByName(name);
-        Integer number = (page-1)*10;
-        for(int i=number;i<number+10;i++){
+        Integer number = (page - 1) * 10;
+        for (int i = number; i < number + 10; i++) {
             departmentItemResponseDtoList.add(new ItemResponseDto(itemList.get(i)));
         }
         return departmentItemResponseDtoList;
@@ -51,10 +56,19 @@ public class ItemServiceImpl implements ItemService {
     public ItemInfoResponseDto getItemInfo(Long id, Department department) {
         Item item = itemRepository.getOne(id);
         ItemInfoResponseDto itemInfoResponseDto = new ItemInfoResponseDto(item);
-        itemInfoResponseDto.setCurrentDepartmentCount(departmentService.getItemCountByDepartment(item,department));
-        if(department.getParent()!=null){
-            itemInfoResponseDto.setWarehouseCount(departmentService.getItemCountByDepartment(item,department.getParent()));
+        itemInfoResponseDto.setCurrentDepartmentCount(departmentService.getItemCountByDepartment(item, department));
+        if (department.getParent() != null) {
+            itemInfoResponseDto.setWarehouseCount(departmentService.getItemCountByDepartment(item, department.getParent()));
         }
         return itemInfoResponseDto;
+    }
+
+    @Override
+    public List<ItemResponseDto> getPage(int page) {
+        Page<Item> items = itemRepository.findAll(PageRequest.of(page, PAGE_SIZE, Sort.Direction.ASC, "name"));
+        return items.getContent()
+                .stream()
+                .map(ItemResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

@@ -15,4 +15,6 @@ public interface ItemService {
     List<ItemResponseDto> getAllItemsByName(String name, Integer page);
 
     ItemInfoResponseDto getItemInfo(Long id, Department department);
+
+    List<ItemResponseDto> getPage(int page);
 }

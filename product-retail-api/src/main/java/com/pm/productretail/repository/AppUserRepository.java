@@ -2,6 +2,8 @@ package com.pm.productretail.repository;
 
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.entity.Department;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -19,4 +21,7 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     @Query(value = "SELECT * FROM users WHERE UPPER(concat(name, ' ', surname)) LIKE UPPER(concat('%', :name, '%')) ORDER BY ID", nativeQuery = true)
     List<AppUser> findByName(@Param("name") String name);
+
+    @Override
+    Page<AppUser> findAll(Pageable pageable);
 }

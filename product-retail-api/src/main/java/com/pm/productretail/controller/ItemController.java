@@ -51,4 +51,11 @@ public class ItemController extends ResponseCreator {
         AppUser currentUser = securityService.getCurrentUser();
         return createGoodResponse(itemService.getItemInfo(id, currentUser.getDepartment()));
     }
+
+    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+    @RequestMapping(value = "/items/{page}", method = RequestMethod.GET)
+    public ResponseEntity<ApiResponse<List<ItemResponseDto>>> getItemsPage(@PathVariable int page) {
+        return createGoodResponse(itemService.getPage(page));
+    }
+
 }

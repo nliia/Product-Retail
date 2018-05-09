@@ -19,4 +19,6 @@ public interface UserService {
     List<AppUserResponseDto> findAllByDepartment(Long depId);
 
     List<AppUserResponseDto> findAllByName(String name);
+
+    List<AppUserResponseDto> getPage(int page);
 }

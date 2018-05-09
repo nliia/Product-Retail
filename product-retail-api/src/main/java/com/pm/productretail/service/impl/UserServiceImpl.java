@@ -11,6 +11,8 @@ import com.pm.productretail.service.UserService;
 import com.pm.productretail.util.Errors;
 import com.pm.productretail.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -27,6 +29,7 @@ import static java.util.Collections.emptyList;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private static final int PAGE_SIZE = 10;
     @Autowired
     private AppUserRepository appUserRepository;
     @Autowired
@@ -83,6 +86,15 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public List<AppUserResponseDto> findAllByName(String name) {
         return appUserRepository.findByName(name)
+                .stream()
+                .map(AppUserResponseDto::new)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<AppUserResponseDto> getPage(int page) {
+        Page<AppUser> users = appUserRepository.findAll(PageRequest.of(page, PAGE_SIZE));
+        return users.getContent()
                 .stream()
                 .map(AppUserResponseDto::new)
                 .collect(Collectors.toList());
