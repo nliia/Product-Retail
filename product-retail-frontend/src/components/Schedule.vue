@@ -7,7 +7,7 @@
             <breadcrumbs/>
           </div>
         </div>
-          <section class="calendar-container">
+          <section class="calendar">
             <calendar-view
                 :show-date="showDate"
                 @show-date-change="setShowDate"
@@ -22,12 +22,9 @@
 import CalendarView from 'vue-simple-calendar'
 
 export default {
-  name: 'Normal',
-  data: () => {
-    return {
-      showDate: new Date()
-    }
-  },
+  data: () => ({
+    showDate: new Date()
+  }),
   components: {
     CalendarView
   },

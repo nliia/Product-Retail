@@ -23,6 +23,15 @@ body {
     opacity: 0;
 }
 
+.md-app, .page-container {
+    height: 100%;
+  }
+  
+.md-content {
+    background-color: #F5F5F5 !important;
+    padding: 0;
+}
+
 .md-green {
     background: $primaryColor !important;
 }
