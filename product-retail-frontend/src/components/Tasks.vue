@@ -1,41 +1,41 @@
 <template>
     <div>
-        <div>
-            <md-app-content>
-                <div class="titles">
-                    <p>График работы</p>
-                    <p>Главная / Магазины / Магазин 1 / График работы</p>
+        <md-app-content>
+            <div class="breadcrumbs">
+                <div class="breadcrumbs__item">
+                    <p class="breadcrumbs__item-large">Задачи</p>
+                    <breadcrumbs/>
                 </div>
-            </md-app-content>
-        </div>
-        <div class="card-scene">
-            <Container
-                    orientation="horizontal"
-                    @drop="onColumnDrop($event)"
-                    drag-handle-selector=".column-drag-handle"
-                    @drag-start="dragStart">
-                <Draggable v-for="column in scene.children" :key="column.id">
-                    <div :class="column.props.className">
-                        <div class="card-column-header">
-                            {{column.name}}
+            </div>
+            <div class="card-scene">
+                <Container
+                        orientation="horizontal"
+                        @drop="onColumnDrop($event)"
+                        drag-handle-selector=".column-drag-handle"
+                        @drag-start="dragStart">
+                    <Draggable v-for="column in scene.children" :key="column.id">
+                        <div :class="column.props.className">
+                            <div class="card-column-header">
+                                {{column.name}}
+                            </div>
+                            <Container class="card-container"
+                                    group-name="col"
+                                    @drop="(e) => onCardDrop(column.id, e)"
+                                    :get-child-payload="getCardPayload(column.id)"
+                                    drag-class="card-ghost"
+                                    drop-class="card-ghost-drop">
+                                <Draggable v-for="card in column.children" :key="card.id">
+                                    <div :class="card.props.className" :style="card.props.style">
+                                        <p class="task-data">{{card.data['text']}}
+                                            <div class="photo" data-title="Марья Ивановна"><img src="../assets/images/person.svg"></div>
+                                    </div>
+                                </Draggable>
+                            </Container>
                         </div>
-                        <Container class="card-container"
-                                group-name="col"
-                                @drop="(e) => onCardDrop(column.id, e)"
-                                :get-child-payload="getCardPayload(column.id)"
-                                drag-class="card-ghost"
-                                drop-class="card-ghost-drop">
-                            <Draggable v-for="card in column.children" :key="card.id">
-                                <div :class="card.props.className" :style="card.props.style">
-                                    <p class="task-data">{{card.data['text']}}
-                                        <div class="photo" data-title="Марья Ивановна"><img src="../assets/images/person.svg"></div>
-                                </div>
-                            </Draggable>
-                        </Container>
-                    </div>
-                </Draggable>
-            </Container>
-        </div>
+                    </Draggable>
+                </Container>
+            </div>
+        </md-app-content>
     </div>
 </template>
 

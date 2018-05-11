@@ -82,9 +82,19 @@ export default new Router({
       }
     },
     {
-      path: '/tasks',
+      path: '/:id/tasks',
       name: 'tasks',
-      component: Tasks
+      component: Tasks,
+      beforeEnter (to, from, next) {
+        if (store.getters.token === undefined) {
+          next('/login')
+        } else {
+          next()
+        }
+      },
+      meta: {
+        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Задачи`
+      }
     }
   ]
 })

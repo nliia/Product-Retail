@@ -7,35 +7,35 @@
     width: 100%;
     padding: 0 20px 0 20px;
     margin-top: 40px;
-}
 
-.card {
-    width: 300px;
-    border: none;
-    box-shadow: none;
+    .card {
+        width: 300px;
+        border: none;
+        box-shadow: none;
 
-    &__header {
-        text-align: left;
-        margin-left: 16px;
+        &__header {
+            text-align: left;
+            margin-left: 16px;
 
-        .md-body-2 {
-            font-size: 18px;
+            .md-body-2 {
+                font-size: 18px;
+            }
         }
-    }
 
-    &__button {
-        color: $primaryColor !important;
-    }
+        &__button {
+            color: $primaryColor !important;
+        }
 
-    &__photo {
-        margin-bottom: 10px;
-    }
+        &__photo {
+            margin-bottom: 10px;
+        }
 
-    .md-card-header .md-card-media {
-        margin-left: 0;
-    }
+        .md-card-header .md-card-media {
+            margin-left: 0;
+        }
 
-    .md-body-1 {
-        line-height: 1.6;
+        .md-body-1 {
+            line-height: 1.6;
+        }
     }
 }
