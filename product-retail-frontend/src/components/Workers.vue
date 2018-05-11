@@ -1,33 +1,38 @@
 <template>
   <div>
     <md-app-content>
-      <div class="titles">
-        <p>Сотрудники</p>
-        <p>Главная / Магазины / Магазин 1 / Сотрудники</p>
-        <md-button class="md-raised add-btn">ДОБАВИТЬ</md-button>
+        <div class="breadcrumbs">
+        <div class="breadcrumbs__item">
+          <p class="breadcrumbs__item-large">Сотрудники</p>
+          <breadcrumbs/>
+        </div>
+        <md-button class="md-raised button">ДОБАВИТЬ</md-button>
       </div>
-      <section class="cards">
-        <md-card v-for="worker in workers" :key="worker.id" class="card">
-          <md-card-header>
-            <md-card-media>
-              <img src="../assets/images/person.svg" class="card__photo">
-              <span class="md-body-1">{{ worker.role }}</span>
-            </md-card-media>
-            <md-card-header-text class="card__header">
-              <div class="md-body-2">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</div>
-              <br/>
-              <div class="md-body-1">Магазин 1</div>
-              <div class="md-body-1">Адрес магазина</div>
-              <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
-            </md-card-header-text>
-          </md-card-header>
-          <md-divider></md-divider>
-          <md-card-actions>
-            <md-button class="card__button">Удалить</md-button>
-            <md-button class="card__button">Редактировать</md-button>
-          </md-card-actions>
-        </md-card>
-      </section>
+      <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
+      <div v-else>
+        <section class="cards">
+          <md-card v-for="worker in workers" :key="worker.id" class="card">
+            <md-card-header>
+              <md-card-media>
+                <img src="../assets/images/person.svg" class="card__photo">
+                <span class="md-body-1">{{ worker.role }}</span>
+              </md-card-media>
+              <md-card-header-text class="card__header">
+                <div class="md-body-2">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</div>
+                <br/>
+                <div class="md-body-1">Магазин 1</div>
+                <div class="md-body-1">Адрес магазина</div>
+                <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
+              </md-card-header-text>
+            </md-card-header>
+            <md-divider></md-divider>
+            <md-card-actions>
+              <md-button class="card__button">Удалить</md-button>
+              <md-button class="card__button">Редактировать</md-button>
+            </md-card-actions>
+          </md-card>
+        </section>
+      </div>
     </md-app-content>
   </div>
 </template>
@@ -37,7 +42,8 @@ import departmentsService from '../services/departmentsService'
 
 export default {
   data: () => ({
-    workers: {}
+    workers: {},
+    loading: false
   }),
   created () {
     this.fetchData()
@@ -47,7 +53,9 @@ export default {
   },
   methods: {
     async fetchData () {
+      this.loading = true
       const response = await departmentsService.getDepartmentWorkers(this.$route.params.id)
+      this.loading = false
       this.workers = response.data.responseData
     }
   }

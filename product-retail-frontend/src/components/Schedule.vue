@@ -1,18 +1,20 @@
 <template>
     <div>
-        <md-app-content>
-            <div class="titles">
-                <p>График работы</p>
-                <p>Главная / Магазины / Магазин 1 / График работы</p>
-            </div>
-            <section class="calendar-container">
-                <calendar-view
-                        :show-date="showDate"
-                        @show-date-change="setShowDate"
-                        class="holiday-us-traditional holiday-us-official"
-                ></calendar-view>
-            </section>
-        </md-app-content>
+      <md-app-content>
+        <div class="breadcrumbs">
+          <div class="breadcrumbs__item">
+            <p class="breadcrumbs__item-large">График работы</p>
+            <breadcrumbs/>
+          </div>
+        </div>
+          <section class="calendar">
+            <calendar-view
+                :show-date="showDate"
+                @show-date-change="setShowDate"
+                class="holiday-us-traditional holiday-us-official">
+            </calendar-view>
+        </section>
+      </md-app-content>
     </div>
 </template>
 
@@ -20,12 +22,9 @@
 import CalendarView from 'vue-simple-calendar'
 
 export default {
-  name: 'Normal',
-  data: () => {
-    return {
-      showDate: new Date()
-    }
-  },
+  data: () => ({
+    showDate: new Date()
+  }),
   components: {
     CalendarView
   },

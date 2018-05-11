@@ -23,6 +23,15 @@ body {
     opacity: 0;
 }
 
+.md-app, .page-container {
+    height: 100%;
+  }
+  
+.md-content {
+    background-color: #F5F5F5 !important;
+    padding: 0;
+}
+
 .md-green {
     background: $primaryColor !important;
 }
@@ -45,4 +54,12 @@ body {
 
 .md-table.md-theme-default .md-table-row:hover:not(.md-header-row) .md-table-cell {
     background: none;
+}
+
+.md-progress-spinner.md-theme-default .md-progress-spinner-circle {
+    stroke: $primaryColor;
+}
+
+.spinner {
+    margin-top: 100px;
 }

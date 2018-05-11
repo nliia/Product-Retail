@@ -4,13 +4,12 @@
       <md-app>
         <md-app-toolbar class="toolbar" v-if="$route.path != '/login'">
           <md-icon class="toolbar__item toolbar__icon fa fa-envelope"></md-icon>
-          <md-icon class="toolbar__item toolbar__icon fa fa-bell"></md-icon>
           <div class="toolbar__item" @click="logout()">
             <md-icon class="toolbar__icon fa fa-sign-out"></md-icon>
             <span class="toolbar__text">Выйти</span>
           </div>
         </md-app-toolbar>
-        <md-app-drawer md-permanent="full" class="menu" v-if="$route.path != '/login'">
+        <md-app-drawer md-permanent="full" class="sidebar" v-if="$route.path != '/login'">
           <sidebar/>
         </md-app-drawer>
         <md-app-content>
@@ -39,5 +38,5 @@ export default {
 </script>
 
 <style lang='scss'>
-@import './assets/styles/app.scss';
+@import "./assets/styles/app.scss";
 </style>

@@ -46,10 +46,13 @@ export default new Router({
         } else {
           next()
         }
+      },
+      meta: {
+        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Сотрудники`
       }
     },
     {
-      path: '/schedule',
+      path: '/:id/schedule',
       name: 'schedule',
       component: Schedule,
       beforeEnter (to, from, next) {
@@ -58,6 +61,9 @@ export default new Router({
         } else {
           next()
         }
+      },
+      meta: {
+        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} График работы`
       }
     },
     {
@@ -70,6 +76,9 @@ export default new Router({
         } else {
           next()
         }
+      },
+      meta: {
+        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Товары`
       }
     },
     {

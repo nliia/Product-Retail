@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="14" height="8" viewBox="0 0 14 8" xml:space="preserve">
+<defs>
+    <style>
+      .cls-1 {
+        fill: #A7B1C2;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <path id="arrow_down" class="cls-1" d="M539,322l6-6-1-1-6,6-6-6-1,1,6,6,1,1Z" transform="translate(-531 -315)"/>
+</svg>

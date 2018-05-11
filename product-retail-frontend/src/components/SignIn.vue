@@ -13,7 +13,7 @@
                 <label>Пароль</label>
                 <md-input name="password" type="password" v-model="user.password" v-validate="'required'"></md-input>
               </md-field>
-              <md-button class="md-raised md-green" @click="signIn" :disabled="errors.any()">Войти</md-button>
+              <md-button class="md-raised md-green" @click="signIn" :disabled="errors.any() || loading">Войти</md-button>
           </div>
         </div>
       </div>
@@ -29,16 +29,19 @@ export default {
     user: {
       email: '',
       password: ''
-    }
+    },
+    loading: false
   }),
   methods: {
     async signIn () {
       try {
+        this.loading = true
         var credentials = {
           username: this.user.email,
           password: this.user.password
         }
         const response = await authService.signIn(credentials)
+        this.loading = false
         this.$store.dispatch('setUser', { type: 'user', item: response.data })
         this.$router.push({ name: 'departments' })
       } catch (error) {
