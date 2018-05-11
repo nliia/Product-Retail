@@ -5,6 +5,7 @@ import Departments from '@/components/Departments'
 import Workers from '@/components/Workers'
 import Schedule from '@/components/Schedule'
 import Goods from '@/components/Goods'
+import Tasks from '@/components/Tasks'
 import store from '../store/store'
 
 Vue.use(Router)
@@ -70,6 +71,11 @@ export default new Router({
           next()
         }
       }
+    },
+    {
+      path: '/tasks',
+      name: 'tasks',
+      component: Tasks
     }
   ]
 })

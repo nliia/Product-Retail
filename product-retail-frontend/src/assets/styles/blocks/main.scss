@@ -12,6 +12,15 @@
   height: 100%;
 }
 
+.md-list-item-content {
+  color: #bddbf7 !important;
+}
+
+.md-icon.md-theme-default.md-icon-image {
+  svg {
+    fill: #bddbf7 !important;
+  }
+}
 
 .md-list {
   background: $menuColor !important;
