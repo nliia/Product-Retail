@@ -51,6 +51,10 @@ export default {
         {
           name: 'Товары',
           path: 'goods'
+        },
+        {
+          name: 'Задачи',
+          path: 'tasks'
         }
       ]
       }
