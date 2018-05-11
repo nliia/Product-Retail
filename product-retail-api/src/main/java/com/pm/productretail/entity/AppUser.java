@@ -15,6 +15,7 @@ public class AppUser extends AbstractEntity {
     private String name;
     private String surname;
     private String phoneNumber;
+    private String status;
 
     @ManyToOne
     @JoinColumn
@@ -91,5 +92,13 @@ public class AppUser extends AbstractEntity {
 
     public void setSuperuser(Boolean superuser) {
         isSuperuser = superuser;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

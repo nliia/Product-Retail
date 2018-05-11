@@ -24,4 +24,6 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
 
     @Override
     Page<AppUser> findAll(Pageable pageable);
+
+    List<AppUser> findAllByRole(String role);
 }
