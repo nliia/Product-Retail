@@ -4,7 +4,6 @@
   .smooth-dnd-draggable-wrapper {
     padding: 10px;
   }
-
 }
 
 .horizontal {
@@ -41,34 +40,4 @@
     text-align: left;
     padding: 15px 0 0 10px;
   }
-
-}
-
-.photo {
-  display: inline-block;
-  width: auto;
-  position: absolute;
-  float: right;
-  right: 0;
-
-  img {
-    height: 30px;
-    width: 30px;
-    float: right;
-    margin-right: 15px;
-  }
-}
-.photo:hover::after {
-  content: attr(data-title);
-  position: absolute;
-  padding: 4px;
-  left: -70px;
-  top: -10px;
-  z-index: 1;
-  background: #000000;
-  opacity: .7;
-  color: #ffffff;
-  font-size: 13px; /* Размер текста подсказки */
-  border-radius: 3px;
-  width: auto;
 }

@@ -26,11 +26,11 @@
             <md-divider></md-divider>
             <md-card-actions>
               <md-button class="card__button">Удалить</md-button>
-              <md-button class="card__button">Редактировать</md-button>
             </md-card-actions>
           </md-card>
         </section>
       </div>
+      <item-dialog/>
     </md-app-content>
   </div>
 </template>

@@ -25,9 +25,12 @@
                                     drag-class="card-ghost"
                                     drop-class="card-ghost-drop">
                                 <Draggable v-for="card in column.children" :key="card.id">
-                                    <div :class="card.props.className" :style="card.props.style">
-                                        <p class="task-data">{{card.data['text']}}
-                                            <div class="photo" data-title="Марья Ивановна"><img src="../assets/images/person.svg"></div>
+                                    <div class="card" :style="card.props.style">
+                                        <div class="task-data">{{card.data['text']}}</div>
+                                          <md-avatar>
+                                            <img src="../assets/images/person.svg" alt="Avatar">
+                                            <md-tooltip md-direction="top">Мария Иванова</md-tooltip>
+                                          </md-avatar>
                                     </div>
                                 </Draggable>
                             </Container>
@@ -66,14 +69,15 @@ const scene = {
       type: 'draggable',
       id: `${i}${j}`,
       props: {
-        className: 'card',
-        style: { backgroundColor: '#eee' }
+        style: {
+          backgroundColor: '#F3F3F4',
+          border: 'none',
+          borderLeft: '5px solid #bcc0c3',
+          borderRight: '5px solid #bcc0c3'
+        }
       },
       data: {
-        text: 'Что-то сделать' + i + j,
-        worker: {
-          name: 'Марья Ивановна'
-        }
+        text: 'Что-то сделать' + i + j
       }
     }))
   }))
@@ -88,13 +92,13 @@ export default {
     }
   },
   methods: {
-    onColumnDrop: function (dropResult) {
+    onColumnDrop (dropResult) {
       const scene = Object.assign({}, this.scene)
       scene.children = applyDrag(scene.children, dropResult)
       this.scene = scene
     },
 
-    onCardDrop: function (columnId, dropResult) {
+    onCardDrop (columnId, dropResult) {
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
         const scene = Object.assign({}, this.scene)
         const column = scene.children.filter(p => p.id === columnId)[0]
@@ -108,11 +112,21 @@ export default {
       }
     },
 
-    getCardPayload: function (columnId) {
+    getCardPayload (columnId) {
       return index => {
         return this.scene.children.filter(p => p.id === columnId)[0].children[index]
       }
+    },
+
+    dragStart () {
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.md-tooltip {
+  font-size: 12px !important;
+  background: rgba(0, 0, 0, .8);
+}
+</style>
