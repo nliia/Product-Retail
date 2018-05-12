@@ -50,3 +50,48 @@ INSERT INTO users (id, name, surname, is_superuser, password, phone_number, role
 VALUES
   (6, 'Федор', 'Тютчев', FALSE, '$2a$10$ELUROh8MX9106LuZW26ujOPVf78oxonIuu0vZqSQln3MnUto48e9e', '88005553535',
    'SELLER', 'seller3', 'working');
+
+INSERT INTO item (id, name, price)
+VALUES (1, 'Баклажан', 40);
+
+INSERT INTO item (id, name, price)
+VALUES (2, 'Огурец', 30);
+
+INSERT INTO item (id, name, price)
+VALUES (3, 'Хлеб', 20);
+
+INSERT INTO item (id, name, price)
+VALUES (4, 'Печенье', 35);
+
+INSERT INTO item (id, name, price)
+VALUES (5, 'Арбуз', 25);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (1, 24, 1, 2);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (2, 27, 1, 3);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (3, 50, 2, 1);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (4, 50, 2, 2);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (5, 1, 2, 3);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (6, 15, 3, 4);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (7, 5, 3, 5);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (8, 50, 4, 5);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (9, 65, 5, 1);
+
+INSERT INTO department_link_item (id, count, department_id, item_id)
+VALUES (10, 46, 6, 2);
