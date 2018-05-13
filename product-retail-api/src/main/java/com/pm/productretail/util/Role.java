@@ -9,7 +9,6 @@ public enum Role {
     WAREHOUSE_WORKER("Работник склада"),
     SHOP_HEAD("Директор магазина"),
     STUFF_MANAGER("Менеджер магазина"),
-    CLIENT_MANAGER("Менеджер магазина"),
     SELLER("Продавец");
 
     private String name;

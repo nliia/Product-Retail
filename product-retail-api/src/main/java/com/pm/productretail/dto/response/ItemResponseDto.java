@@ -1,15 +1,28 @@
 package com.pm.productretail.dto.response;
 
+import com.pm.productretail.entity.DepartmentLinkItem;
 import com.pm.productretail.entity.Item;
 
 public class ItemResponseDto {
 
     private Long id;
     private String name;
+    private Long count;
+    private Double price;
 
     public ItemResponseDto(Item item) {
-        setId(item.getId());
-        setName(item.getName());
+        this.id = item.getId();
+        this.name = item.getName();
+        this.count = 0L;
+        this.price = item.getPrice();
+    }
+
+    public ItemResponseDto(DepartmentLinkItem departmentLinkItem) {
+        Item item = departmentLinkItem.getItem();
+        this.id = item.getId();
+        this.name = item.getName();
+        this.count = departmentLinkItem.getCount();
+        this.price = item.getPrice();
     }
 
     public Long getId() {
@@ -26,5 +39,21 @@ public class ItemResponseDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
