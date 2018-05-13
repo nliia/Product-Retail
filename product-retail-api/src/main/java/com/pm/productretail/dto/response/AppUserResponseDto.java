@@ -9,7 +9,7 @@ import static com.pm.productretail.util.Role.findByValue;
  * @author lnurullina
  */
 public class AppUserResponseDto {
-
+    private Long id;
     private String username;
     private String name;
     private String surname;
@@ -19,6 +19,7 @@ public class AppUserResponseDto {
     private Boolean is_superuser;
 
     public AppUserResponseDto(AppUser appUser) {
+        this.id = appUser.getId();
         this.username = appUser.getUsername();
         this.name = appUser.getName();
         this.surname = appUser.getSurname();
@@ -26,7 +27,7 @@ public class AppUserResponseDto {
         if (appUser.getDepartment() != null)
             this.department_id = appUser.getDepartment().getId();
         Role role = findByValue(appUser.getRole());
-        if(role!=null) {
+        if (role != null) {
             this.role = role.getName();
         }
         this.is_superuser = appUser.getSuperuser();
@@ -87,5 +88,13 @@ public class AppUserResponseDto {
 
     public void setSuperuser(Boolean superuser) {
         is_superuser = superuser;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

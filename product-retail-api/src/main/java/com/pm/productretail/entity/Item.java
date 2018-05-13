@@ -1,14 +1,17 @@
 package com.pm.productretail.entity;
 
-import com.pm.productretail.dto.ItemDto;
-
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Item extends AbstractEntity {
-
+@SequenceGenerator(name = "itemSeq", sequenceName = "itemSeq", initialValue = 10)
+public class Item {
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSeq")
+    private Long id;
     private String name;
     private Double price;
 
@@ -26,5 +29,13 @@ public class Item extends AbstractEntity {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentServiceImpl implements DepartmentService {
@@ -47,11 +48,25 @@ public class DepartmentServiceImpl implements DepartmentService {
 
     @Override
     public List<ItemResponseDto> getItemsByDepartment(Long depId) {
+        List<Item> allItems = itemRepository.findAll();
+        List<DepartmentLinkItem> departmentLinkItems = departmentLinkItemRepository.findAllByDepartment(departmentRepository.getOne(depId));
+        List<Item> departmentItems = departmentLinkItems
+                .stream()
+                .map(departmentLinkItem -> departmentLinkItem.getItem())
+                .collect(Collectors.toList());
+
         List<ItemResponseDto> items = new ArrayList<>();
-        List<DepartmentLinkItem> tempItems = departmentLinkItemRepository.findAllByDepartment(departmentRepository.getOne(depId));
-        for (DepartmentLinkItem item : tempItems) {
-            items.add(new ItemResponseDto(item));
+        for (DepartmentLinkItem departmentLinkItem : departmentLinkItems) {
+            items.add(new ItemResponseDto(departmentLinkItem));
         }
+
+
+        for (Item item : allItems) {
+            if (!departmentItems.contains(item)) {
+                items.add(new ItemResponseDto(item));
+            }
+        }
+
         return items;
     }
 
