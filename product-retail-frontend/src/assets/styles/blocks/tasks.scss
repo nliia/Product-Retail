@@ -39,5 +39,19 @@
     border-right: 5px solid #bcc0c3;
     text-align: left;
     padding: 15px 0 0 10px;
+    display: flex;
+    width: 100%;
+    height: auto;
+
+    .task-data {
+      min-height: 50px;
+    }
+
+    .md-avatar {
+      position: absolute;
+      right: 15px;
+    }
+
   }
 }
+
