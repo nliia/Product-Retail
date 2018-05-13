@@ -1,51 +1,50 @@
 <template>
-    <div>
-        <md-app-content>
-            <div class="breadcrumbs">
-                <div class="breadcrumbs__item">
-                    <p class="breadcrumbs__item-large">Задачи</p>
-                    <div>
-                        Главная /
-                        <span v-if="currentDepartment.warehouse">Склады</span>
-                        <span v-else>Магазины</span>
-                        / {{ currentDepartment.name }} /
-                        <span class="breadcrumbs__item-bold">Задачи</span>
-                    </div>
-                </div>
+  <div>
+    <md-app-content>
+      <div class="breadcrumbs">
+        <div class="breadcrumbs__item">
+          <p class="breadcrumbs__item-large">Задачи</p>
+          <div>
+            <router-link to="/" class="breadcrumbs__link">Главная</router-link> /
+            <span v-if="currentDepartment.warehouse">Склады</span>
+            <span v-else>Магазины</span>
+            / {{ currentDepartment.name }} /
+            <span class="breadcrumbs__item-bold">Задачи</span>
+          </div>
+        </div>
+      </div>
+      <div class="card-scene">
+        <Container orientation="horizontal"
+                   @drop="onColumnDrop($event)"
+                   drag-handle-selector=".column-drag-handle"
+                   @drag-start="dragStart">
+          <Draggable v-for="column in scene.children" :key="column.id">
+            <div :class="column.props.className">
+              <div class="card-column-header">
+                {{column.name}}
+              </div>
+              <Container class="card-container"
+                         group-name="col"
+                         @drop="(e) => onCardDrop(column.id, e)"
+                         :get-child-payload="getCardPayload(column.id)"
+                         drag-class="card-ghost"
+                         drop-class="card-ghost-drop">
+                <Draggable v-for="card in column.children" :key="card.id">
+                  <div class="card" :style="card.props.style">
+                    <div class="task-data">{{card.data['text']}}</div>
+                    <md-avatar id="avatar">
+                      <img src="../assets/images/person.svg" alt="Avatar">
+                      <md-tooltip md-direction="top">Мария Иванова</md-tooltip>
+                    </md-avatar>
+                  </div>
+                </Draggable>
+              </Container>
             </div>
-            <div class="card-scene">
-                <Container
-                        orientation="horizontal"
-                        @drop="onColumnDrop($event)"
-                        drag-handle-selector=".column-drag-handle"
-                        @drag-start="dragStart">
-                    <Draggable v-for="column in scene.children" :key="column.id">
-                        <div :class="column.props.className">
-                            <div class="card-column-header">
-                                {{column.name}}
-                            </div>
-                            <Container class="card-container"
-                                    group-name="col"
-                                    @drop="(e) => onCardDrop(column.id, e)"
-                                    :get-child-payload="getCardPayload(column.id)"
-                                    drag-class="card-ghost"
-                                    drop-class="card-ghost-drop">
-                                <Draggable v-for="card in column.children" :key="card.id">
-                                    <div class="card" :style="card.props.style">
-                                        <div class="task-data">{{card.data['text']}}</div>
-                                          <md-avatar id="avatar">
-                                            <img src="../assets/images/person.svg" alt="Avatar">
-                                            <md-tooltip md-direction="top">Мария Иванова</md-tooltip>
-                                          </md-avatar>
-                                    </div>
-                                </Draggable>
-                            </Container>
-                        </div>
-                    </Draggable>
-                </Container>
-            </div>
-        </md-app-content>
-    </div>
+          </Draggable>
+        </Container>
+      </div>
+    </md-app-content>
+  </div>
 </template>
 
 <script>

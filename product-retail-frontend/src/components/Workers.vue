@@ -5,7 +5,7 @@
         <div class="breadcrumbs__item">
           <p class="breadcrumbs__item-large">Сотрудники</p>
           <div>
-            Главная /
+            <router-link to="/" class="breadcrumbs__link">Главная</router-link> /
             <span v-if="currentDepartment.warehouse">Склады</span>
             <span v-else>Магазины</span>
             / {{ currentDepartment.name }} /

@@ -26,6 +26,14 @@
         }
     }
 
+    &__link {
+        color: #676A6C !important;
+
+        &:hover {
+            text-decoration: none !important;
+        }
+    }
+
     .button {
         background-color: $primaryColor !important;
         color: white !important;
