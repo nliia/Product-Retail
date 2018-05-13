@@ -26,13 +26,16 @@
         </div>
       </div>
       <md-dialog-actions>
-        <md-button class="md-raised md-green" @click="showDialog=false">Сохранить</md-button>
+        <md-button class="md-raised md-green" @click="addItem">Сохранить</md-button>
       </md-dialog-actions>
     </md-dialog>
   </div>
 </template>
 
 <script>
+import itemsService from '../services/itemsService'
+import { eventBus } from '../main'
+
 export default {
   data: () => ({
     showDialog: false,
@@ -42,6 +45,11 @@ export default {
       image: ''
     }
   }),
+  created () {
+    eventBus.$on('showDialog', (showDialog) => {
+      this.showDialog = showDialog
+    })
+  },
   methods: {
     imagePreview (event) {
       let input = event.target
@@ -51,6 +59,20 @@ export default {
           this.item.image = e.target.result
         }
         reader.readAsDataURL(input.files[0])
+      }
+    },
+    // @todo: доделать, когда бд заработает
+    async addItem () {
+      try {
+        var credentials = {
+          name: this.item.name,
+          price: this.item.price
+        }
+        const response = await itemsService.addItem(credentials)
+        console.log(response)
+      } catch (error) {
+        // @todo: alert
+        console.log(error.response.data.message)
       }
     }
   }

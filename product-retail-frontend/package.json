@@ -21,8 +21,6 @@
     "sass-loader": "^6.0.7",
     "vee-validate": "^2.0.9",
     "vue": "^2.5.2",
-    "vue-2-breadcrumbs": "^0.3.0",
-    "vue-drag-and-drop-list": "^1.0.0",
     "vue-material": "^1.0.0-beta-8",
     "vue-router": "^3.0.1",
     "vue-simple-calendar": "^2.2.0",

@@ -4,7 +4,13 @@
         <div class="breadcrumbs">
           <div class="breadcrumbs__item">
             <p class="breadcrumbs__item-large">График работы</p>
-            <breadcrumbs/>
+            <div>
+              Главная /
+              <span v-if="currentDepartment.warehouse">Склады</span>
+              <span v-else>Магазины</span>
+              / {{ currentDepartment.name }} /
+              <span class="breadcrumbs__item-bold">График работы</span>
+            </div>
           </div>
         </div>
           <section class="calendar">
@@ -20,6 +26,7 @@
 
 <script>
 import CalendarView from 'vue-simple-calendar'
+import store from '../store/store'
 
 export default {
   data: () => ({
@@ -27,6 +34,11 @@ export default {
   }),
   components: {
     CalendarView
+  },
+  computed: {
+    currentDepartment: () => {
+      return store.getters.currentDepartment
+    }
   },
   methods: {
     setShowDate (d) {

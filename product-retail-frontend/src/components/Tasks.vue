@@ -4,7 +4,13 @@
             <div class="breadcrumbs">
                 <div class="breadcrumbs__item">
                     <p class="breadcrumbs__item-large">Задачи</p>
-                    <breadcrumbs/>
+                    <div>
+                        Главная /
+                        <span v-if="currentDepartment.warehouse">Склады</span>
+                        <span v-else>Магазины</span>
+                        / {{ currentDepartment.name }} /
+                        <span class="breadcrumbs__item-bold">Задачи</span>
+                    </div>
                 </div>
             </div>
             <div class="card-scene">
@@ -45,6 +51,7 @@
 <script>
 import { Container, Draggable } from 'vue-smooth-dnd'
 import { applyDrag, generateItems } from '../services/tasksService'
+import store from '../store/store'
 
 const columnNames = [
   'To Do',
@@ -91,13 +98,17 @@ export default {
       scene
     }
   },
+  computed: {
+    currentDepartment: () => {
+      return store.getters.currentDepartment
+    }
+  },
   methods: {
     onColumnDrop (dropResult) {
       const scene = Object.assign({}, this.scene)
       scene.children = applyDrag(scene.children, dropResult)
       this.scene = scene
     },
-
     onCardDrop (columnId, dropResult) {
       if (dropResult.removedIndex !== null || dropResult.addedIndex !== null) {
         const scene = Object.assign({}, this.scene)
@@ -111,13 +122,11 @@ export default {
         this.scene = scene
       }
     },
-
     getCardPayload (columnId) {
       return index => {
         return this.scene.children.filter(p => p.id === columnId)[0].children[index]
       }
     },
-
     dragStart () {
     }
   }

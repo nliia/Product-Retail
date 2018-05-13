@@ -24,18 +24,25 @@
 </template>
 
 <script>
+import { eventBus } from '../main'
+
 export default {
   data: () => ({
     showDialog: false,
     item: {
       name: '',
-      count: '',
+      count: ''
     },
     items: [
-        'Огурец',
-        'Помидор'
+      'Огурец',
+      'Помидор'
     ]
   }),
+  created () {
+    eventBus.$on('showDialog', (showDialog) => {
+      this.showDialog = showDialog
+    })
+  }
 }
 </script>
 
