@@ -1,10 +1,7 @@
 package com.pm.productretail.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @SequenceGenerator(name = "itemSeq", sequenceName = "itemSeq", initialValue = 10)
@@ -14,6 +11,17 @@ public class Item {
     private Long id;
     private String name;
     private Double price;
+
+    @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "item")
+    private List<DepartmentLinkItem> departmentLinkItems;
+
+    public List<DepartmentLinkItem> getDepartmentLinkItems() {
+        return departmentLinkItems;
+    }
+
+    public void setDepartmentLinkItems(List<DepartmentLinkItem> departmentLinkItems) {
+        this.departmentLinkItems = departmentLinkItems;
+    }
 
     public String getName() {
         return name;

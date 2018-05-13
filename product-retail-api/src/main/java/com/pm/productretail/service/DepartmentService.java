@@ -17,4 +17,6 @@ public interface DepartmentService {
     Long getItemCountByDepartment(Item item, Department department);
 
     void addItemToDepartment(DepartmentItemDto departmentLinkItem);
+
+    Department getDepartment(Long id);
 }

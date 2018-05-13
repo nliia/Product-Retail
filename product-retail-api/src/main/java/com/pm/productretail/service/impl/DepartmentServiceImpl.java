@@ -89,4 +89,9 @@ public class DepartmentServiceImpl implements DepartmentService {
         departmentLinkItem.setCount(departmentItem.getCount());
         departmentLinkItemRepository.save(departmentLinkItem);
     }
+
+    @Override
+    public Department getDepartment(Long l) {
+        return departmentRepository.getOne(l);
+    }
 }

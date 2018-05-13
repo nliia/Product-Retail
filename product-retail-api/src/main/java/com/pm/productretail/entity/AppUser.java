@@ -1,15 +1,15 @@
 package com.pm.productretail.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.PrePersist;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "users")
-public class AppUser extends AbstractEntity {
+@SequenceGenerator(name = "userSeq", sequenceName = "userSeq", initialValue = 50)
+public class AppUser {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "userSeq")
+    private Long id;
     private String username;
     private String password;
     private String name;
@@ -28,6 +28,14 @@ public class AppUser extends AbstractEntity {
     void preInsert() {
         if (this.isSuperuser == null)
             this.isSuperuser = false;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getUsername() {

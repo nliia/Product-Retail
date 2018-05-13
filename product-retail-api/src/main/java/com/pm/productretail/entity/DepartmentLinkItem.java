@@ -1,11 +1,14 @@
 package com.pm.productretail.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
-public class DepartmentLinkItem extends AbstractEntity {
+@SequenceGenerator(name = "departmentLinkItemSeq", sequenceName = "departmentLinkItemSeq", initialValue = 50)
+public class DepartmentLinkItem {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "departmentLinkItemSeq")
+    private Long id;
 
     @OneToOne
     @JoinColumn
@@ -15,6 +18,14 @@ public class DepartmentLinkItem extends AbstractEntity {
     @JoinColumn
     private Item item;
     private Long count;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Department getDepartment() {
         return department;

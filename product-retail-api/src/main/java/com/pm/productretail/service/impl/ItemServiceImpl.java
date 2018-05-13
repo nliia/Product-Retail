@@ -4,7 +4,9 @@ import com.pm.productretail.dto.ItemDto;
 import com.pm.productretail.dto.response.ItemInfoResponseDto;
 import com.pm.productretail.dto.response.ItemResponseDto;
 import com.pm.productretail.entity.Department;
+import com.pm.productretail.entity.DepartmentLinkItem;
 import com.pm.productretail.entity.Item;
+import com.pm.productretail.repository.DepartmentLinkItemRepository;
 import com.pm.productretail.repository.ItemRepository;
 import com.pm.productretail.service.DepartmentService;
 import com.pm.productretail.service.ItemService;
@@ -28,12 +30,21 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     DepartmentService departmentService;
 
+    @Autowired
+    DepartmentLinkItemRepository departmentLinkItemRepository;
+
     @Override
     public void addNewItem(ItemDto itemDto) {
         Item item = new Item();
         item.setName(itemDto.getName());
         item.setPrice(itemDto.getPrice());
         itemRepository.save(item);
+        DepartmentLinkItem departmentLinkItem = new DepartmentLinkItem();
+        Department department = departmentService.getDepartment(1L);
+        departmentLinkItem.setCount(0L);
+        departmentLinkItem.setItem(item);
+        departmentLinkItem.setDepartment(department);
+        departmentLinkItemRepository.save(departmentLinkItem);
     }
 
     @Override
