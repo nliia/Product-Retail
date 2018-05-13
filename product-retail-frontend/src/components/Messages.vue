@@ -8,7 +8,7 @@
                 </div>
             </div>
         </md-app-content>
-        <md-card>
+        <md-card class="message-page">
             <md-card-content>
                 <section class="dialogs-container">
                     <div class="dialogs-container__search">
