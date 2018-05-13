@@ -12,9 +12,10 @@
             <span class="md-caption">{{ dep.address }}</span>
             </md-table-cell>
           <md-table-cell>
-            <md-button class="md-primary">Сотрудники</md-button>
-            <md-button class="md-primary">График работы</md-button>
-            <md-button class="md-primary">Товары</md-button>
+            <router-link :to="{ name: 'workers', params: { id: dep.id }}"><md-button class="md-primary">Сотрудники</md-button></router-link>
+            <router-link :to="{ name: 'schedule', params: { id: dep.id }}"><md-button class="md-primary">График работы</md-button></router-link>
+            <router-link :to="{ name: 'goods', params: { id: dep.id }}"><md-button class="md-primary">Товары</md-button></router-link>
+            <router-link :to="{ name: 'tasks', params: { id: dep.id }}"><md-button class="md-primary">Задачи</md-button></router-link>
           </md-table-cell>
         </md-table-row>
       </md-table>

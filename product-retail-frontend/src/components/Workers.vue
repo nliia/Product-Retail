@@ -4,7 +4,13 @@
         <div class="breadcrumbs">
         <div class="breadcrumbs__item">
           <p class="breadcrumbs__item-large">Сотрудники</p>
-          <breadcrumbs/>
+          <div>
+            <router-link to="/" class="breadcrumbs__link">Главная</router-link> /
+            <span v-if="currentDepartment.warehouse">Склады</span>
+            <span v-else>Магазины</span>
+            / {{ currentDepartment.name }} /
+            <span class="breadcrumbs__item-bold">Сотрудники</span>
+          </div>
         </div>
         <md-button class="md-raised button">ДОБАВИТЬ</md-button>
       </div>
@@ -36,6 +42,7 @@
 
 <script>
 import departmentsService from '../services/departmentsService'
+import store from '../store/store'
 
 export default {
   data: () => ({
@@ -44,6 +51,11 @@ export default {
   }),
   created () {
     this.fetchData()
+  },
+  computed: {
+    currentDepartment: () => {
+      return store.getters.currentDepartment
+    }
   },
   watch: {
     '$route': 'fetchData'

@@ -47,9 +47,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Сотрудники`
       }
     },
     {
@@ -62,9 +59,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} График работы`
       }
     },
     {
@@ -77,9 +71,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Товары`
       }
     },
     {
@@ -92,9 +83,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Задачи`
       }
     },
     {
