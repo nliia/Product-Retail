@@ -4,7 +4,6 @@
             <div class="breadcrumbs">
                 <div class="breadcrumbs__item">
                     <p class="breadcrumbs__item-large">Сообщения</p>
-                    <breadcrumbs/>
                 </div>
             </div>
         </md-app-content>
@@ -12,7 +11,7 @@
             <md-card-content>
                 <section class="dialogs-container">
                     <div class="dialogs-container__search">
-                        <input type="search" placeholder="🔍    Поиск">
+                        <input type="search" placeholder="Поиск">
                     </div>
                     <div class="dialogs-container__dialog">
                         <div class="dialog__avatar">
@@ -116,7 +115,3 @@
         </md-card>
     </div>
 </template>
-
-<script></script>
-
-<style lang="scss"></style>

@@ -86,7 +86,7 @@ export default new Router({
       }
     },
     {
-      path: '/:id/im',
+      path: '/im',
       name: 'messages',
       component: Messages,
       beforeEnter (to, from, next) {
@@ -95,9 +95,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Сообщения`
       }
     }
   ]
