@@ -33,7 +33,7 @@
                                 <Draggable v-for="card in column.children" :key="card.id">
                                     <div class="card" :style="card.props.style">
                                         <div class="task-data">{{card.data['text']}}</div>
-                                          <md-avatar>
+                                          <md-avatar id="avatar">
                                             <img src="../assets/images/person.svg" alt="Avatar">
                                             <md-tooltip md-direction="top">Мария Иванова</md-tooltip>
                                           </md-avatar>
@@ -80,11 +80,24 @@ const scene = {
           backgroundColor: '#F3F3F4',
           border: 'none',
           borderLeft: '5px solid #bcc0c3',
-          borderRight: '5px solid #bcc0c3'
+          borderRight: '5px solid #bcc0c3',
+          padding: '15px 0 0 10px',
+          display: 'flex',
+          width: '100%',
+          height: 'auto'
         }
       },
       data: {
         text: 'Что-то сделать' + i + j
+      },
+      children: {
+        type: 'avatar',
+        props: {
+          style: {
+            position: 'absolute',
+            right: '15px'
+          }
+        }
       }
     }))
   }))
@@ -138,4 +151,20 @@ export default {
   font-size: 12px !important;
   background: rgba(0, 0, 0, .8);
 }
+
+.smooth-dnd-ghost * {
+    position: absolute;
+    right: 15px;
+    text-align: left;
+    width: 100%;
+    padding-left: 30px;
+    min-height: 70px;
+}
+
+.smooth-dnd-ghost img {
+    margin-top: -12px;
+    height: 75px;
+    width: 75px;
+}
+
 </style>
