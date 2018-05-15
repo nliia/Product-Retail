@@ -51,7 +51,7 @@ public class MessageServiceImpl implements MessageService {
 		messages.addAll(messageRepository.findAllBySender(currentUser));
 		return  messages
 				.stream()
-				.map(message -> new MessageResponseDto(message.getText(), message.getSender()))
+				.map(message -> new MessageResponseDto(message.getText(), message.getSender(), message.getRecipient()))
 				.collect(Collectors.toList());
 	}
 
