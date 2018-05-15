@@ -47,7 +47,10 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public List<MessageResponseDto> findMessagesForCurrentUser() {
 		AppUser currentUser = securityService.getCurrentUser();
-		return messageRepository.findAllByRecipient(currentUser).stream()
+		List<Message> messages = messageRepository.findAllByRecipient(currentUser);
+		messages.addAll(messageRepository.findAllBySender(currentUser));
+		return  messages
+				.stream()
 				.map(message -> new MessageResponseDto(message.getText(), message.getSender()))
 				.collect(Collectors.toList());
 	}
