@@ -1,0 +1,36 @@
+.dialog {
+    &__content {
+        padding: 0 24px;
+    }
+
+    &__close {
+        position: absolute;
+        right: 24px;
+        cursor: pointer;
+    }
+}
+
+.upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    &__button {
+        color: $primaryColor;
+        background-color: white;
+        padding: 0 8px;
+        background: white;
+        border: 0;
+        outline: none;
+        font-weight: 500;
+        cursor: pointer;
+    }
+}

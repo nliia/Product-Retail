@@ -4,7 +4,13 @@
         <div class="breadcrumbs">
         <div class="breadcrumbs__item">
           <p class="breadcrumbs__item-large">Сотрудники</p>
-          <breadcrumbs/>
+          <div>
+            <router-link to="/" class="breadcrumbs__link">Главная</router-link> /
+            <span v-if="currentDepartment.warehouse">Склады</span>
+            <span v-else>Магазины</span>
+            / {{ currentDepartment.name }} /
+            <span class="breadcrumbs__item-bold">Сотрудники</span>
+          </div>
         </div>
         <md-button class="md-raised button">ДОБАВИТЬ</md-button>
       </div>
@@ -15,20 +21,17 @@
             <md-card-header>
               <md-card-media>
                 <img src="../assets/images/person.svg" class="card__photo">
-                <span class="md-body-1">{{ worker.role }}</span>
               </md-card-media>
               <md-card-header-text class="card__header">
-                <div class="md-body-2">{{ worker.name }} {{ worker.surname }} {{ worker.username }}</div>
+                <div class="md-body-2">{{ worker.name }} {{ worker.surname }}</div>
                 <br/>
-                <div class="md-body-1">Магазин 1</div>
-                <div class="md-body-1">Адрес магазина</div>
+                <div class="md-body-1">{{ worker.role }}</div>
                 <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
               </md-card-header-text>
             </md-card-header>
             <md-divider></md-divider>
             <md-card-actions>
               <md-button class="card__button">Удалить</md-button>
-              <md-button class="card__button">Редактировать</md-button>
             </md-card-actions>
           </md-card>
         </section>
@@ -39,6 +42,7 @@
 
 <script>
 import departmentsService from '../services/departmentsService'
+import store from '../store/store'
 
 export default {
   data: () => ({
@@ -47,6 +51,11 @@ export default {
   }),
   created () {
     this.fetchData()
+  },
+  computed: {
+    currentDepartment: () => {
+      return store.getters.currentDepartment
+    }
   },
   watch: {
     '$route': 'fetchData'

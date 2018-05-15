@@ -6,6 +6,7 @@ import Workers from '@/components/Workers'
 import Schedule from '@/components/Schedule'
 import Goods from '@/components/Goods'
 import Tasks from '@/components/Tasks'
+import Messages from '@/components/Messages'
 import store from '../store/store'
 
 Vue.use(Router)
@@ -46,9 +47,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Сотрудники`
       }
     },
     {
@@ -61,9 +59,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} График работы`
       }
     },
     {
@@ -76,9 +71,6 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Товары`
       }
     },
     {
@@ -91,9 +83,18 @@ export default new Router({
         } else {
           next()
         }
-      },
-      meta: {
-        breadcrumb: (routeParams) => `Главная / ${routeParams.parent} Задачи`
+      }
+    },
+    {
+      path: '/im',
+      name: 'messages',
+      component: Messages,
+      beforeEnter (to, from, next) {
+        if (store.getters.token === undefined) {
+          next('/login')
+        } else {
+          next()
+        }
       }
     }
   ]

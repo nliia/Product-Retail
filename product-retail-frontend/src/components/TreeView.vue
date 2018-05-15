@@ -31,10 +31,10 @@ export default {
       if (this.isDepartment) {
         this.open = !this.open
       } else {
-        let subDepartment = this.$parent
-        let department = subDepartment.$parent.model.name
+        let department = this.$parent.model
         let path = this.model.path
-        this.$router.push({name: path, params: { id: subDepartment.model.id, parent: `${department} / ${subDepartment.model.name} /` }})
+        this.$store.dispatch('setCurrentDepartment', { type: 'department', item: department })
+        this.$router.push({name: path, params: { id: department.id }})
       }
     }
   }

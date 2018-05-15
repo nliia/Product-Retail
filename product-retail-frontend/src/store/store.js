@@ -6,7 +6,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    user: {}
+    user: {},
+    department: {}
   },
   plugins: [createPersistedState()],
   mutations: {
@@ -16,6 +17,9 @@ export default new Vuex.Store({
   },
   actions: {
     setUser (context, payload) {
+      context.commit('set', payload)
+    },
+    setCurrentDepartment (context, payload) {
       context.commit('set', payload)
     }
   },
@@ -28,6 +32,9 @@ export default new Vuex.Store({
     },
     user: state => {
       return state.user
+    },
+    currentDepartment: state => {
+      return state.department
     }
   }
 })

@@ -3,7 +3,7 @@
     <div class="page-container">
       <md-app>
         <md-app-toolbar class="toolbar" v-if="$route.path != '/login'">
-          <md-icon class="toolbar__item toolbar__icon fa fa-envelope"></md-icon>
+          <router-link to="/im"><md-icon class="toolbar__item toolbar__icon fa fa-envelope"></md-icon></router-link>
           <div class="toolbar__item" @click="logout()">
             <md-icon class="toolbar__icon fa fa-sign-out"></md-icon>
             <span class="toolbar__text">Выйти</span>
