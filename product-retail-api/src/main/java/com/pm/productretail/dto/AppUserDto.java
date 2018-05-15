@@ -1,5 +1,7 @@
 package com.pm.productretail.dto;
 
+import com.pm.productretail.util.Role;
+
 public class AppUserDto {
 
     private String username;
@@ -8,7 +10,7 @@ public class AppUserDto {
     private String surname;
     private String phoneNumber;
     private Long department_id;
-    private String role;
+    private Role role;
     private Boolean is_superuser;
 
     public String getUsername() {
@@ -59,11 +61,11 @@ public class AppUserDto {
         this.department_id = department_id;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

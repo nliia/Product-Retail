@@ -11,5 +11,5 @@ public class Errors {
     public static final String INVALID_PHONENUMBER = "Phone is incorrect";
     public static final String REGISTERED_PHONE = "User with this phone is already registered";
     public static final String INCORRECT_PASSWORD = "Password's length must be at least 6 symbols";
-    public static final String INCORRECT_RECIPIENT = "Recipient is not director or owner";
+    public static final String INCORRECT_RECIPIENT = "You can not send messages to this user";
 }

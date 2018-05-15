@@ -1,6 +1,7 @@
 package com.pm.productretail.controller;
 
 import com.pm.productretail.dto.MessageDto;
+import com.pm.productretail.dto.response.MessageResponseDto;
 import com.pm.productretail.service.MessageService;
 import com.pm.productretail.util.ApiResponse;
 import com.pm.productretail.util.ResponseCreator;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 public class MessageController extends ResponseCreator {
@@ -27,5 +30,11 @@ public class MessageController extends ResponseCreator {
 			return createBadResponse(e.getMessage());
 		}
 		return createGoodResponse();
+	}
+
+	@ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+	@RequestMapping(value = "/messages", method = RequestMethod.GET)
+	public ResponseEntity<ApiResponse<List<MessageResponseDto>>> getMessages() {
+		return createGoodResponse(messageService.findMessagesForCurrentUser());
 	}
 }

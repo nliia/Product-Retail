@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             AppUser user = new AppUser();
             user.setUsername(appUserDto.getUsername());
             user.setPassword(bCryptPasswordEncoder.encode(appUserDto.getPassword()));
+            user.setRole(appUserDto.getRole());
             appUserRepository.save(user);
         }
     }
@@ -67,7 +68,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     public List<DepartmentDto> findUserDepartments(AppUser currentUser) {
         if (currentUser.getSuperuser())
             return departmentService.findAllDepartments();
-        if (currentUser.getRole().matches(".*_HEAD")) {
+        if (currentUser.getRole().toString().matches(".*_HEAD")) {
             return departmentService.getDepartmentAndParent(currentUser.getDepartment());
         }
         List<DepartmentDto> departmentDtoList = new ArrayList<>();

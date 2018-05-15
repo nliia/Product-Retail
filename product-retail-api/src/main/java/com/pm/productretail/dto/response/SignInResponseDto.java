@@ -6,8 +6,6 @@ import com.pm.productretail.util.Role;
 
 import java.util.List;
 
-import static com.pm.productretail.util.Role.findByValue;
-
 /**
  * @author lnurullina
  */
@@ -31,8 +29,8 @@ public class SignInResponseDto {
         surname = appUser.getSurname();
         is_superuser = appUser.getSuperuser();
         phone_number = appUser.getPhoneNumber();
-        Role role = findByValue(appUser.getRole());
-        if(role!=null) {
+        Role role = appUser.getRole();
+        if(role != null) {
             this.role = role.getName();
         }
     }

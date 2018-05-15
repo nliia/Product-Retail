@@ -1,5 +1,7 @@
 package com.pm.productretail.entity;
 
+import com.pm.productretail.util.Role;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,7 +23,8 @@ public class AppUser {
     @JoinColumn
     private Department department;
 
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
     private Boolean isSuperuser;
 
     @PrePersist
@@ -86,11 +89,11 @@ public class AppUser {
         this.department = department;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

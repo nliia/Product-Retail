@@ -3,8 +3,6 @@ package com.pm.productretail.dto.response;
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.util.Role;
 
-import static com.pm.productretail.util.Role.findByValue;
-
 /**
  * @author lnurullina
  */
@@ -26,7 +24,7 @@ public class AppUserResponseDto {
         this.phone_number = appUser.getPhoneNumber();
         if (appUser.getDepartment() != null)
             this.department_id = appUser.getDepartment().getId();
-        Role role = findByValue(appUser.getRole());
+        Role role = appUser.getRole();
         if (role != null) {
             this.role = role.getName();
         }
