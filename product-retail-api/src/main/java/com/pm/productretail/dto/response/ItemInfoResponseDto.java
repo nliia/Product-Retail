@@ -9,11 +9,21 @@ public class ItemInfoResponseDto {
     private Double price;
     private Long warehouseCount;
     private Long currentDepartmentCount;
+    private Long itemImageId;
 
     public ItemInfoResponseDto(Item item) {
         setId(item.getId());
         setName(item.getName());
         setPrice(item.getPrice());
+        this.itemImageId = item.getImage().getId();
+    }
+
+    public Long getItemImageId() {
+        return itemImageId;
+    }
+
+    public void setItemImageId(Long itemImageId) {
+        this.itemImageId = itemImageId;
     }
 
     public Long getId() {

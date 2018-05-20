@@ -5,10 +5,12 @@ import com.pm.productretail.dto.response.ItemInfoResponseDto;
 import com.pm.productretail.dto.response.ItemResponseDto;
 import com.pm.productretail.entity.Department;
 import com.pm.productretail.entity.DepartmentLinkItem;
+import com.pm.productretail.entity.Image;
 import com.pm.productretail.entity.Item;
 import com.pm.productretail.repository.DepartmentLinkItemRepository;
 import com.pm.productretail.repository.ItemRepository;
 import com.pm.productretail.service.DepartmentService;
+import com.pm.productretail.service.ImageService;
 import com.pm.productretail.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -33,11 +35,16 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     DepartmentLinkItemRepository departmentLinkItemRepository;
 
+    @Autowired
+    ImageService imageService;
+
     @Override
     public void addNewItem(ItemDto itemDto) {
         Item item = new Item();
         item.setName(itemDto.getName());
         item.setPrice(itemDto.getPrice());
+        Image image = imageService.getOneById(itemDto.getItemImageId());
+        item.setImage(image);
         itemRepository.save(item);
         DepartmentLinkItem departmentLinkItem = new DepartmentLinkItem();
         Department department = departmentService.getDepartment(1L);

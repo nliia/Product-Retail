@@ -12,6 +12,9 @@ public class Item {
     private String name;
     private Double price;
 
+    @OneToOne
+    private Image image;
+
     @OneToMany(cascade = CascadeType.REMOVE, mappedBy = "item")
     private List<DepartmentLinkItem> departmentLinkItems;
 
@@ -21,6 +24,14 @@ public class Item {
 
     public void setDepartmentLinkItems(List<DepartmentLinkItem> departmentLinkItems) {
         this.departmentLinkItems = departmentLinkItems;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public String getName() {

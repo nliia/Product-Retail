@@ -9,12 +9,16 @@ public class ItemResponseDto {
     private String name;
     private Long count;
     private Double price;
+    private Long itemImageId;
 
     public ItemResponseDto(Item item) {
         this.id = item.getId();
         this.name = item.getName();
         this.count = 0L;
         this.price = item.getPrice();
+        if(item.getImage()!=null) {
+            this.itemImageId = item.getImage().getId();
+        }
     }
 
     public ItemResponseDto(DepartmentLinkItem departmentLinkItem) {
@@ -23,6 +27,15 @@ public class ItemResponseDto {
         this.name = item.getName();
         this.count = departmentLinkItem.getCount();
         this.price = item.getPrice();
+        this.itemImageId = item.getImage().getId();
+    }
+
+    public Long getItemImageId() {
+        return itemImageId;
+    }
+
+    public void setItemImageId(Long itemImageId) {
+        this.itemImageId = itemImageId;
     }
 
     public Long getId() {

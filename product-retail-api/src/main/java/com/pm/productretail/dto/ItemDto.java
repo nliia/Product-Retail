@@ -5,6 +5,16 @@ public class ItemDto {
 
     private Double price;
 
+    private Long itemImageId;
+
+    public Long getItemImageId() {
+        return itemImageId;
+    }
+
+    public void setItemImageId(Long itemImageId) {
+        this.itemImageId = itemImageId;
+    }
+
     public String getName() {
         return name;
     }
