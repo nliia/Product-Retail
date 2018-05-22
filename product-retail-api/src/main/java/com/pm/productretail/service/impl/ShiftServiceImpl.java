@@ -41,8 +41,8 @@ public class ShiftServiceImpl implements ShiftService {
         List<Shift> monthSchedule = shiftRepository.findAllByShiftDateGreaterThanEqual(today);
         int daysCount = monthSchedule.size();
 
-        List<AppUser> warehouseWorkers = appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER.toString());
-        List<AppUser> sellers = appUserRepository.findAllByRole(Role.SELLER.toString());
+        List<AppUser> warehouseWorkers = appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER);
+        List<AppUser> sellers = appUserRepository.findAllByRole(Role.SELLER);
 
         if (daysCount < 30) {
             Calendar cal = Calendar.getInstance();

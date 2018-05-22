@@ -96,7 +96,7 @@ public class AppUser {
     public void setRole(Role role) {
         this.role = role;
     }
-    
+
     public Boolean getSuperuser() {
         return isSuperuser;
     }
