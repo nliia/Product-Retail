@@ -22,5 +22,5 @@ public interface UserService {
 
     List<AppUserResponseDto> getPage(int page);
 
-    List<AppUserResponseDto> getCanWrite(Long userId);
+    List<AppUserResponseDto> getICanWrite();
 }

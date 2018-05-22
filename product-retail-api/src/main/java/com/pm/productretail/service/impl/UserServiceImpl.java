@@ -7,6 +7,7 @@ import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.repository.AppUserRepository;
 import com.pm.productretail.repository.DepartmentRepository;
 import com.pm.productretail.service.DepartmentService;
+import com.pm.productretail.service.SecurityService;
 import com.pm.productretail.service.UserService;
 import com.pm.productretail.util.Errors;
 import com.pm.productretail.util.Role;
@@ -42,6 +43,9 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Autowired
     private DepartmentRepository departmentRepository;
 
+    @Autowired
+    private SecurityService securityService;
+
     @Override
     public void createUser(AppUserDto appUserDto) throws Exception {
         if (validator.isValidSignUpData(appUserDto)) {
@@ -56,8 +60,8 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     }
 
     @Override
-    public List<AppUserResponseDto> getCanWrite(Long userId) {
-        AppUser user = appUserRepository.getOne(userId);
+    public List<AppUserResponseDto> getICanWrite() {
+        AppUser user = securityService.getCurrentUser();
 
         List<AppUser> usersCanWrite = new ArrayList<>();
 

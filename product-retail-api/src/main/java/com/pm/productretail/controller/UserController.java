@@ -41,8 +41,8 @@ public class UserController extends ResponseCreator {
     }
 
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
-    @RequestMapping(value = "/can-write/{userId}", method = RequestMethod.GET)
-    public ResponseEntity<ApiResponse<List<AppUserResponseDto>>> getUsersICanWrite(@PathVariable Long userId) {
-        return createGoodResponse(userService.getCanWrite(userId));
+    @RequestMapping(value = "/can-write", method = RequestMethod.GET)
+    public ResponseEntity<ApiResponse<List<AppUserResponseDto>>> getUsersICanWrite() {
+        return createGoodResponse(userService.getICanWrite());
     }
 }
