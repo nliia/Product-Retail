@@ -9,6 +9,7 @@ import com.pm.productretail.repository.DepartmentRepository;
 import com.pm.productretail.service.DepartmentService;
 import com.pm.productretail.service.UserService;
 import com.pm.productretail.util.Errors;
+import com.pm.productretail.util.Role;
 import com.pm.productretail.util.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -52,6 +53,35 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user.setRole(appUserDto.getRole());
             appUserRepository.save(user);
         }
+    }
+
+    @Override
+    public List<AppUserResponseDto> getCanWrite(Long userId) {
+        AppUser user = appUserRepository.getOne(userId);
+
+        List<AppUser> usersCanWrite = new ArrayList<>();
+
+        if (user.getRole() == Role.SUPERUSER) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD.toString()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD.toString()));
+        } else if (user.getRole() == Role.SHOP_HEAD) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER.toString()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER.toString()));
+        } else if (user.getRole() == Role.WAREHOUSE_HEAD) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER.toString()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER.toString()));
+        } else if (user.getRole() == Role.STUFF_MANAGER) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD.toString()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SELLER.toString()));
+        } else if (user.getRole() == Role.SELLER) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER.toString()));
+        } else if (user.getRole() == Role.WAREHOUSE_WORKER) {
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD.toString()));
+        }
+
+        return usersCanWrite.stream()
+                .map(u -> new AppUserResponseDto(u))
+                .collect(Collectors.toList());
     }
 
     @Override

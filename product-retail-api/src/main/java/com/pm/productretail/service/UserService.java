@@ -21,4 +21,6 @@ public interface UserService {
     List<AppUserResponseDto> findAllByName(String name);
 
     List<AppUserResponseDto> getPage(int page);
+
+    List<AppUserResponseDto> getCanWrite(Long userId);
 }
