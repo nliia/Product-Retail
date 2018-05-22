@@ -96,9 +96,7 @@ public class AppUser {
     public void setRole(Role role) {
         this.role = role;
     }
-
-    public void setRole(String role) { this.role = Role.findByValue(role); }
-
+    
     public Boolean getSuperuser() {
         return isSuperuser;
     }

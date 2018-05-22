@@ -66,21 +66,21 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         List<AppUser> usersCanWrite = new ArrayList<>();
 
         if (user.getRole() == Role.SUPERUSER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD.getName()));
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD));
         } else if (user.getRole() == Role.SHOP_HEAD) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER.getName()));
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER));
         } else if (user.getRole() == Role.WAREHOUSE_HEAD) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER.getName()));
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER));
         } else if (user.getRole() == Role.STUFF_MANAGER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD.getName()));
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SELLER.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SELLER));
         } else if (user.getRole() == Role.SELLER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER));
         } else if (user.getRole() == Role.WAREHOUSE_WORKER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD.getName()));
+            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD));
         }
 
         return usersCanWrite.stream()

@@ -2,6 +2,7 @@ package com.pm.productretail.repository;
 
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.entity.Department;
+import com.pm.productretail.util.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -25,5 +26,5 @@ public interface AppUserRepository extends JpaRepository<AppUser, Long> {
     @Override
     Page<AppUser> findAll(Pageable pageable);
 
-    List<AppUser> findAllByRole(String role);
+    List<AppUser> findAllByRole(Role role);
 }
