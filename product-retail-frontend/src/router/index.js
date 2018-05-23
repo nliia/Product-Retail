@@ -7,6 +7,7 @@ import Schedule from '@/components/Schedule'
 import Goods from '@/components/Goods'
 import Tasks from '@/components/Tasks'
 import Messages from '@/components/Messages'
+import AddWorker from '@/components/AddWorker'
 import store from '../store/store'
 
 Vue.use(Router)
@@ -89,6 +90,18 @@ export default new Router({
       path: '/im',
       name: 'messages',
       component: Messages,
+      beforeEnter (to, from, next) {
+        if (store.getters.token === undefined) {
+          next('/login')
+        } else {
+          next()
+        }
+      }
+    },
+    {
+      path: '/addworker',
+      name: 'addworker',
+      component: AddWorker,
       beforeEnter (to, from, next) {
         if (store.getters.token === undefined) {
           next('/login')
