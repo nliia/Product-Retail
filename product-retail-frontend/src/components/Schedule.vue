@@ -28,6 +28,10 @@
           </md-field>
           <md-button @click="addShift">Добавить</md-button>
         </md-dialog>
+        <md-dialog-alert
+                :md-active.sync="first"
+                md-content="Введите имя сотрудника!"
+                md-confirm-text="Ваще без б"></md-dialog-alert>
       </md-app-content>
     </div>
 </template>
@@ -45,7 +49,9 @@ window.onload = function () {
     current = event.target
     if (current.classList.value === 'content') {
       openDialog()
-      current.innerHTML += '<div class="empty"></div>'
+      if (!current.getElementsByClassName('empty')[0]) {
+        current.innerHTML += '<div class="empty"></div>'
+      }
     }
   }
 }
@@ -58,7 +64,8 @@ export default {
   data: () => ({
     showDate: new Date(),
     showDialog: false,
-    worker: ''
+    worker: '',
+    first: false
   }),
   components: {
     CalendarView
@@ -66,6 +73,9 @@ export default {
   created () {
     eventBus.$on('showDialog', (showDialog) => {
       this.showDialog = showDialog
+    })
+    eventBus.$on('first', (first) => {
+      this.first = first
     })
   },
   computed: {
@@ -81,7 +91,12 @@ export default {
       eventBus.$emit('showDialog', true)
     },
     addShift () {
-      current.innerHTML += '<div class="shift">' + this.worker + '</div>'
+      if (!this.worker) {
+        eventBus.$emit('first', true)
+      } else {
+        current.innerHTML += '<div class="shift">' + this.worker + '</div>'
+        eventBus.$emit('showDialog', false)
+      }
     }
   }
 }
