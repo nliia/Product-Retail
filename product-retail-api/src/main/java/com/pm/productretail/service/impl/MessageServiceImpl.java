@@ -39,7 +39,7 @@ public class MessageServiceImpl implements MessageService {
 			Message message = new Message();
 			message.setText(messageDto.getText());
 			message.setSender(sender);
-
+			message.setRecipient(recipient);
 			messageRepository.save(message);
 		} else {
 			throw new Exception(Errors.INCORRECT_RECIPIENT);
