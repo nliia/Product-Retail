@@ -14,6 +14,7 @@ Vue.config.productionTip = false
 Vue.use(BootstrapVue)
 Vue.use(VueMaterial)
 Vue.use(VeeValidate)
+Vue.use(require('vue-moment'))
 
 export const eventBus = new Vue()
 
