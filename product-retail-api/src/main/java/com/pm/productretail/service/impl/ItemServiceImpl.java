@@ -43,8 +43,10 @@ public class ItemServiceImpl implements ItemService {
         Item item = new Item();
         item.setName(itemDto.getName());
         item.setPrice(itemDto.getPrice());
-        Image image = imageService.getOneById(itemDto.getItemImageId());
-        item.setImage(image);
+        if(itemDto.getItemImageId()!=null) {
+            Image image = imageService.getOneById(itemDto.getItemImageId());
+            item.setImage(image);
+        }
         itemRepository.save(item);
         DepartmentLinkItem departmentLinkItem = new DepartmentLinkItem();
         Department department = departmentService.getDepartment(1L);
@@ -88,5 +90,19 @@ public class ItemServiceImpl implements ItemService {
                 .stream()
                 .map(ItemResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void shipItem(Long itemId, Long itemCount, Long departmentId, Long destinationDepartmentId) {
+
+    }
+
+    @Override
+    public void sellItem(Long itemId, Long itemCount, Long departmentId) {
+        Item item = itemRepository.getOne(itemId);
+        Department department = departmentService.getDepartment(departmentId);
+        DepartmentLinkItem departmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item, department);
+        departmentLinkItem.setCount(departmentLinkItem.getCount()-itemCount);
+        departmentLinkItemRepository.save(departmentLinkItem);
     }
 }
