@@ -16,14 +16,18 @@
             <label>Цена</label>
             <md-input v-model="item.price" type="number"></md-input>
         </md-field>
-        <md-avatar class="image">
-            <img :src="item.image" v-if="item.image.length > 0">
+         <md-field>
+            <label>Количество</label>
+            <md-input v-model="item.count" type="number"></md-input>
+        </md-field>
+        <!-- <md-avatar class="image">
+            <img :src="item.imagePreview" v-if="item.imagePreview.length > 0">
             <img src="../assets/images/no-image.svg" v-else>
         </md-avatar>
         <div class="upload">
             <button class="upload__button">ЗАГРУЗИТЬ ФОТО</button>
             <input type="file" @change="imagePreview"/>
-        </div>
+        </div> -->
       </div>
       <md-dialog-actions>
         <md-button class="md-raised md-green" @click="addItem">Сохранить</md-button>
@@ -42,7 +46,10 @@ export default {
     item: {
       name: '',
       price: '',
-      image: ''
+      count: ''
+      // imagePreview: '',
+      // image: '',
+      // itemImageId: ''
     }
   }),
   created () {
@@ -51,27 +58,43 @@ export default {
     })
   },
   methods: {
-    imagePreview (event) {
-      let input = event.target
-      if (input.files && input.files[0]) {
-        let reader = new FileReader()
-        reader.onload = (e) => {
-          this.item.image = e.target.result
-        }
-        reader.readAsDataURL(input.files[0])
-      }
-    },
-    // @todo: доделать, когда бд заработает
+    // ЗАГРУЗКА ФОТО
+    // imagePreview (event) {
+    //   let input = event.target
+    //   if (input.files && input.files[0]) {
+    //     let reader = new FileReader()
+    //     reader.onload = (e) => {
+    //       this.item.imagePreview = e.target.result
+    //     }
+    //     reader.readAsDataURL(input.files[0])
+    //     let formData = new FormData()
+    //     formData.append('image', input.files[0])
+    //     this.item.image = formData
+    //     this.addImage()
+    //   }
+    // },
+    // async addImage () {
+    //   try {
+    //     let image = this.item.image
+    //     const response = await itemsService.addItemImage(image)
+    //     this.item.itemImageId = response.data.responseData.id
+    //   } catch (error) {
+    //     console.log(error.response.data.message)
+    //   }
+    // },
     async addItem () {
       try {
         var credentials = {
           name: this.item.name,
-          price: this.item.price
+          price: this.item.price,
+          count: this.item.count
         }
         const response = await itemsService.addItem(credentials)
-        console.log(response)
+        if (response.status === 200) {
+          this.showDialog = false
+          // GoodsVue.methods.fetchData()
+        }
       } catch (error) {
-        // @todo: alert
         console.log(error.response.data.message)
       }
     }

@@ -20,7 +20,8 @@
           <md-card v-for="item in items" :key="item.id" class="card">
             <md-card-header>
               <md-card-media>
-                <img src="../assets/images/item.svg" class="card__photo">
+                <!-- <img src="../assets/images/item.svg" class="card__photo" v-if="item.itemImageId"> -->
+                <img src="../assets/images/no-image.svg" class="card__photo">
               </md-card-media>
               <md-card-header-text class="card__header">
                 <div class="md-body-2">{{ item.name }}</div>
@@ -51,6 +52,7 @@ import store from '../store/store'
 import { eventBus } from '../main'
 
 export default {
+  name: 'Goods',
   components: {
     addItemDialog,
     orderItemDialog
@@ -76,11 +78,20 @@ export default {
       const response = await departmentsService.getItemsByDepartment(this.$route.params.id)
       this.loading = false
       this.items = response.data.responseData
+      // for (let item of this.items) {
+      //   if (item.itemImageId) {
+      //     this.getItemImage(item.itemImageId)
+      //   }
+      // }
     },
-    // @todo: доделать, когда бд заработает
+    // async getItemImage (id) {
+    //   const response = await itemsService.getItemImage(id)
+    // },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
-      console.log(response)
+      if (response.status === 200) {
+        this.fetchData()
+      }
     },
     openDialog () {
       eventBus.$emit('showDialog', true)

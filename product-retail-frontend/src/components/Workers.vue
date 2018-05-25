@@ -20,7 +20,7 @@
           <md-card v-for="worker in workers" :key="worker.id" class="card">
             <md-card-header>
               <md-card-media>
-                <img src="../assets/images/person.svg" class="card__photo">
+                <img src="../assets/images/no_avatar.svg" class="card__photo">
               </md-card-media>
               <md-card-header-text class="card__header">
                 <div class="md-body-2">{{ worker.name }} {{ worker.surname }}</div>
@@ -70,3 +70,11 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card {
+  &__photo {
+    border-radius: 50%;
+  }
+}
+</style>
