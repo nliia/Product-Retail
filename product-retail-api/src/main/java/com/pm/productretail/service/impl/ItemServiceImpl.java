@@ -50,7 +50,7 @@ public class ItemServiceImpl implements ItemService {
         itemRepository.save(item);
         DepartmentLinkItem departmentLinkItem = new DepartmentLinkItem();
         Department department = departmentService.getDepartment(1L);
-        departmentLinkItem.setCount(0L);
+        departmentLinkItem.setCount(itemDto.getCount());
         departmentLinkItem.setItem(item);
         departmentLinkItem.setDepartment(department);
         departmentLinkItemRepository.save(departmentLinkItem);

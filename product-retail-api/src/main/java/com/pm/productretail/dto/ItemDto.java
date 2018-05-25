@@ -5,7 +5,17 @@ public class ItemDto {
 
     private Double price;
 
+    private Long count;
+
     private Long itemImageId;
+
+    public Long getCount() {
+        return count;
+    }
+
+    public void setCount(Long count) {
+        this.count = count;
+    }
 
     public Long getItemImageId() {
         return itemImageId;
