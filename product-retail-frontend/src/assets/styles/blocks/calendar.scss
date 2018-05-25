@@ -31,11 +31,29 @@
 
     .weeks {
       height: 600px;
+      .day {
+        cursor: pointer;
+      }
     }
 
     .day {
       color: #676A6C;
       font-size: 16px;
+      .content {
+        .empty {
+          height: 35px;
+          opacity: 0;
+        }
+        .shift {
+          text-align: center;
+          background: $primaryColor;
+          color: #ffffff;
+          margin: 5px 10px;
+          border-radius: 3px;
+          padding: 5px;
+          font-size: 11px;
+        }
+      }
     }
 
     .date {
@@ -45,4 +63,21 @@
       padding: 0.4em;
     }
   }    
+}
+
+.md-dialog-container {
+  .md-field {
+    margin-left: 10px;
+    width: 260px;
+  }
+  .md-button {
+    background: $primaryColor;
+    color: white;
+  }
+}
+
+.md-dialog-actions {
+  .md-button-content {
+    color: #ffffff;
+  }
 }

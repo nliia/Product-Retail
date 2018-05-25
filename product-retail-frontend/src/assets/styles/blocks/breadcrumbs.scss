@@ -37,6 +37,8 @@
     .button {
         background-color: $primaryColor !important;
         color: white !important;
-        padding: 0 24px;
+        .md-button-content {
+            margin: 0 24px;
+        }
     }
 }
