@@ -13,105 +13,106 @@
                     <div class="dialogs-container__search">
                         <input type="search" placeholder="Поиск">
                     </div>
-                    <div class="dialogs-container__dialog">
+                    <div class="dialogs-container__dialog" v-on:click="fetchMessages(dialog.id)" v-for="dialog in dialogs" :key="dialog.id" >
                         <div class="dialog__avatar">
                             <img src="../assets/images/person.svg" alt="avatar">
                         </div>
-                        <div class="dialog__name">Мария Ивановна</div>
+                        <div class="dialog__name">{{ dialog.name }} {{ dialog.surname }}</div>
                         <div class="dialog__role">
-                            <div>Продавец</div>
-                        </div>
-                    </div>
-                    <div class="dialogs-container__dialog">
-                        <div class="dialog__avatar">
-                            <img src="../assets/images/person.svg" alt="avatar">
-                        </div>
-                        <div class="dialog__name">Мария Ивановна</div>
-                        <div class="dialog__role">
-                            <div>Менеджер</div>
-                        </div>
-                    </div>
-                    <div class="dialogs-container__dialog">
-                        <div class="dialog__avatar">
-                            <img src="../assets/images/person.svg" alt="avatar">
-                        </div>
-                        <div class="dialog__name">Мария Ивановна</div>
-                        <div class="dialog__role">
-                            <div>Продавец</div>
+                            <div>{{ dialog.role }}</div>
                         </div>
                     </div>
                 </section>
                 <section class="dialog">
                     <div class="dialog__window">
-                        <div class="message">
+                        <div v-bind:class="{'reverse': !isCurrentUser(message.sender.id)}" v-for="message in messages" :key="message.id" class="message">
                             <div class="message__avatar">
                                 <img src="../assets/images/person.svg">
                             </div>
                             <div class="message__container">
                                 <div class="message__data">
-                                    <div class="message__name">Мария Ивановна</div>
-                                    <div class="message__date">30 ноября 2018</div>
+                                    <div class="message__name">{{ message.sender.name }} {{ message.sender.surname }}</div>
+                                    <div class="message__date"></div>
                                 </div>
-                                <div class="message__text">php уже стал зрелым языком, легким в изучении и работающим на многих платформах. Однако за его гибкость и легкость использования приходится платить системными ресурсами. php, как все интерпретируемые языки, должен перед выполнением компилироваться в код, понятный платформе, на которой работает. Интерпретируемый код может сильно ухудшить производительность, особенно на слабой или перегруженной машине, потому что затрачивается много времени на обработку кода. php скрипт работает достаточно быстро, но не так быстро как заранее скомпилированная программа.</div>
-                            </div>
-                        </div>
-                        <div class="message reverse">
-                            <div class="message__avatar">
-                                <img src="../assets/images/person.svg">
-                            </div>
-                            <div class="message__container">
-                                <div class="message__data reverse">
-                                    <div class="message__name">Мария Ивановна</div>
-                                    <div class="message__date">30 ноября 2018</div>
-                                </div>
-                                <div class="message__text">php уже стал зрелым языком, легким в изучении и работающим на многих платформах. Однако за его гибкость и легкость использования приходится платить системными ресурсами. php, как все интерпретируемые языки, должен перед выполнением компилироваться в код, понятный платформе, на которой работает. Интерпретируемый код может сильно ухудшить производительность, особенно на слабой или перегруженной машине, потому что затрачивается много времени на обработку кода. php скрипт работает достаточно быстро, но не так быстро как заранее скомпилированная программа.</div>
-                            </div>
-                        </div>
-                        <div class="message">
-                            <div class="message__avatar">
-                                <img src="../assets/images/person.svg">
-                            </div>
-                            <div class="message__container">
-                                <div class="message__data">
-                                    <div class="message__name">Мария Ивановна</div>
-                                    <div class="message__date">30 ноября 2018</div>
-                                </div>
-                                <div class="message__text">php уже стал зрелым языком, легким в изучении и работающим на многих платформах. Однако за его гибкость и легкость использования приходится платить системными ресурсами. php, как все интерпретируемые языки, должен перед выполнением компилироваться в код, понятный платформе, на которой работает. Интерпретируемый код может сильно ухудшить производительность, особенно на слабой или перегруженной машине, потому что затрачивается много времени на обработку кода. php скрипт работает достаточно быстро, но не так быстро как заранее скомпилированная программа.</div>
-                            </div>
-                        </div>
-                        <div class="message reverse">
-                            <div class="message__avatar">
-                                <img src="../assets/images/person.svg">
-                            </div>
-                            <div class="message__container">
-                                <div class="message__data reverse">
-                                    <div class="message__name">Мария Ивановна</div>
-                                    <div class="message__date">30 ноября 2018</div>
-                                </div>
-                                <div class="message__text">php уже стал зрелым языком, легким в изучении и работающим на многих платформах. Однако за его гибкость и легкость использования приходится платить системными ресурсами. php, как все интерпретируемые языки, должен перед выполнением компилироваться в код, понятный платформе, на которой работает. Интерпретируемый код может сильно ухудшить производительность, особенно на слабой или перегруженной машине, потому что затрачивается много времени на обработку кода. php скрипт работает достаточно быстро, но не так быстро как заранее скомпилированная программа.</div>
-                            </div>
-                        </div>
-                        <div class="message reverse">
-                            <div class="message__avatar">
-                                <img src="../assets/images/person.svg">
-                            </div>
-                            <div class="message__container">
-                                <div class="message__data reverse">
-                                    <div class="message__name">Мария Ивановна</div>
-                                    <div class="message__date">30 ноября 2018</div>
-                                </div>
-                                <div class="message__text">php уже стал зрелым языком, легким в изучении и работающим на многих платформах. Однако за его гибкость и легкость использования приходится платить системными ресурсами. php, как все интерпретируемые языки, должен перед выполнением компилироваться в код, понятный платформе, на которой работает. Интерпретируемый код может сильно ухудшить производительность, особенно на слабой или перегруженной машине, потому что затрачивается много времени на обработку кода. php скрипт работает достаточно быстро, но не так быстро как заранее скомпилированная программа.</div>
+                                <div class="message__text">{{ message.text }}</div>
                             </div>
                         </div>
                     </div>
-                    <div class="dialog__textarea">
-                        <input type="text" placeholder="Напишите сообщение...">
-                        <md-button>
-                            <md-icon class="fa fa-chevron-right"></md-icon>
-                        </md-button>
-                    </div>
+                    <form v-on:submit="sendMessage">
+                      <div class="dialog__textarea">
+                            <input v-model="messageText" type="text" placeholder="Напишите сообщение...">
+                            <button>
+                              <md-icon class="fa fa-chevron-right"></md-icon>
+                            </button>
+                      </div>
+                    </form>
                 </section>
             </md-card-content>
         </md-card>
     </div>
 </template>
+
+<script>
+import store from '../store/store'
+import messageService from '../services/messagesService'
+
+export default {
+  data: () => ({
+    dialogs: {},
+    messages: {},
+    collocutor: {},
+    loading: false
+  }),
+  created () {
+    this.fetchUsers()
+  },
+  watch: {
+    '$route': 'fetchUsers'
+  },
+  methods: {
+    async fetchUsers () {
+      this.loading = true
+      const response = await messageService.getUsersToSend()
+      this.loading = false
+      this.dialogs = response.data.responseData
+    },
+    async fetchMessages (userId) {
+      this.loading = true
+      const response = await messageService.getMessages(userId)
+      this.loading = false
+      this.messages = response.data.responseData
+      this.collocutor.id = userId
+    },
+    isCurrentUser: function (id) {
+      if (store.getters.user.id === id) {
+        return true
+      } else {
+        return false
+      }
+    },
+    async sendMessage (e) {
+      var credentials = {
+        recipient_id: this.collocutor.id,
+        text: this.messageText
+      }
+
+      var newMessage = {
+        text: this.messageText,
+        sender: {
+          id: store.getters.user.id,
+          name: store.getters.user.name,
+          surname: store.getters.user.name
+        }
+      }
+
+      this.messages.push(newMessage)
+
+      this.messageText = ''
+      this.loading = true
+      await messageService.sendMessage(credentials)
+      this.loading = false
+      e.preventDefault()
+    }
+  }
+}
+</script>
