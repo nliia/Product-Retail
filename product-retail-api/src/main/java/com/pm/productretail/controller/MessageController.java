@@ -30,7 +30,7 @@ public class MessageController extends ResponseCreator {
 	}
 
 	@ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
-	@RequestMapping(value = "/messages/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/messages/{userId}", method = RequestMethod.GET)
 	public ResponseEntity<ApiResponse<List<MessageResponseDto>>> getMessages(@PathVariable Long userId) {
 		return createGoodResponse(messageService.findMessagesForCurrentUser(userId));
 	}
