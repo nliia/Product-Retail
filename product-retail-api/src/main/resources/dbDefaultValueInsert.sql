@@ -96,3 +96,15 @@ VALUES (9, 65, 5, 1);
 
 INSERT INTO department_link_item (id, count, department_id, item_id)
 VALUES (10, 46, 6, 2);
+
+INSERT INTO task (id, description, status, department_id, task_creator_id, task_maker_id)
+VALUES (1, "to do job", 2, 2, 33, 4)
+
+INSERT INTO task (id, description, status, department_id, task_creator_id, task_maker_id)
+VALUES (2, "to do job", 0, 1, 33, 2)
+
+INSERT INTO task (id, description, status, department_id, task_creator_id, task_maker_id)
+VALUES (3, "to do job", 0, 1, 33, 1)
+
+INSERT INTO task (id, description, status, department_id, task_creator_id, task_maker_id)
+VALUES (4, "to do job", 0, 1, 33, 3)

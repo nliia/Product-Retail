@@ -4,12 +4,20 @@ package com.pm.productretail.entity;
 import com.pm.productretail.util.TaskStatus;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
-public class Task extends AbstractEntity {
+@SequenceGenerator(name = "taskSeq", sequenceName = "taskSeq", initialValue = 10)
+public class Task {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "itemSeq")
+    private Long id;
     @ManyToOne
     @JoinColumn
     private AppUser taskCreator;
@@ -60,5 +68,13 @@ public class Task extends AbstractEntity {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -1,5 +1,6 @@
 package com.pm.productretail.dto.response;
 
+import com.pm.productretail.entity.Task;
 import com.pm.productretail.util.TaskStatus;
 
 /**
@@ -12,6 +13,15 @@ public class TaskResponseDto {
     private String maker_surname;
     private String description;
     private TaskStatus task_status;
+
+    public TaskResponseDto(Task task) {
+        this.creator_name = task.getTaskCreator().getName();
+        this.creator_surname = task.getTaskCreator().getSurname();
+        this.description = task.getDescription();
+        this.maker_name = task.getTaskMaker().getName();
+        this.maker_surname = task.getTaskMaker().getSurname();
+        this.task_status = task.getStatus();
+    }
 
     public String getCreatorName() {
         return creator_name;
