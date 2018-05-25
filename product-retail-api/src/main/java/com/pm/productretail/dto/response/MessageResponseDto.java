@@ -6,14 +6,14 @@ import java.util.Date;
 
 public class MessageResponseDto {
 	private String text;
-	private AppUser sender;
-	private AppUser recipient;
+	private AppUserResponseDto sender;
+	private AppUserResponseDto recipient;
 	private Date date;
 
 	public MessageResponseDto(String text, AppUser sender, AppUser recipient, Date date) {
 		this.text = text;
-		this.sender = sender;
-		this.recipient = recipient;
+		this.sender = new AppUserResponseDto(sender);
+		this.recipient = new AppUserResponseDto(recipient);
 		this.date = date;
 	}
 
@@ -25,19 +25,19 @@ public class MessageResponseDto {
 		this.text = text;
 	}
 
-	public AppUser getSender() {
+	public AppUserResponseDto getSender() {
 		return sender;
 	}
 
-	public void setSender(AppUser sender) {
+	public void setSender(AppUserResponseDto sender) {
 		this.sender = sender;
 	}
 
-	public AppUser getRecipient() {
+	public AppUserResponseDto getRecipient() {
 		return recipient;
 	}
 
-	public void setRecipient(AppUser recipient) {
+	public void setRecipient(AppUserResponseDto recipient) {
 		this.recipient = recipient;
 	}
 }
