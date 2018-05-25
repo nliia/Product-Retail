@@ -15,7 +15,9 @@ public class ItemInfoResponseDto {
         setId(item.getId());
         setName(item.getName());
         setPrice(item.getPrice());
-        this.itemImageId = item.getImage().getId();
+        if(item.getImage()!=null) {
+            this.itemImageId = item.getImage().getId();
+        }
     }
 
     public Long getItemImageId() {

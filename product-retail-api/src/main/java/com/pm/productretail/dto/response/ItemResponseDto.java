@@ -27,7 +27,9 @@ public class ItemResponseDto {
         this.name = item.getName();
         this.count = departmentLinkItem.getCount();
         this.price = item.getPrice();
-        this.itemImageId = item.getImage().getId();
+        if(item.getImage()!=null) {
+            this.itemImageId = item.getImage().getId();
+        }
     }
 
     public Long getItemImageId() {
