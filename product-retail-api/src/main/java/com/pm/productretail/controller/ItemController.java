@@ -61,7 +61,7 @@ public class ItemController extends ResponseCreator {
     }
 
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
-    @RequestMapping(value = "/items/ship", method = RequestMethod.GET)
+    @RequestMapping(value = "/items/ship", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> shipItem(@RequestBody ShipItemDto shipItemDto) {
         AppUser currentUser = securityService.getCurrentUser();
         itemService.shipItem(shipItemDto.getItemId(), shipItemDto.getItemCount(), currentUser.getDepartment().getId(), shipItemDto.getDestinationDepartmentId());
@@ -69,7 +69,7 @@ public class ItemController extends ResponseCreator {
     }
 
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
-    @RequestMapping(value = "/items/sell", method = RequestMethod.GET)
+    @RequestMapping(value = "/items/sell", method = RequestMethod.POST)
     public ResponseEntity<ApiResponse<String>> sellItem(@RequestBody SellItemDto sellItemDto) {
         AppUser currentUser = securityService.getCurrentUser();
         itemService.sellItem(sellItemDto.getItemId(), sellItemDto.getItemCount(), currentUser.getDepartment().getId());
