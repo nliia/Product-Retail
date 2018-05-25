@@ -94,7 +94,22 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void shipItem(Long itemId, Long itemCount, Long departmentId, Long destinationDepartmentId) {
-
+        Item item = itemRepository.getOne(itemId);
+        Department department = departmentService.getDepartment(departmentId);
+        Department destinationDepartment = departmentService.getDepartment(destinationDepartmentId);
+        DepartmentLinkItem departmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item,department);
+        departmentLinkItem.setCount(departmentLinkItem.getCount()-itemCount);
+        DepartmentLinkItem destinationDepartmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item,destinationDepartment);
+        if(destinationDepartmentLinkItem!=null){
+            destinationDepartmentLinkItem.setCount(destinationDepartmentLinkItem.getCount()+itemCount);
+        }else{
+            destinationDepartmentLinkItem = new DepartmentLinkItem();
+            destinationDepartmentLinkItem.setDepartment(destinationDepartment);
+            destinationDepartmentLinkItem.setItem(item);
+            destinationDepartmentLinkItem.setCount(itemCount);
+        }
+        departmentLinkItemRepository.save(destinationDepartmentLinkItem);
+        departmentLinkItemRepository.save(departmentLinkItem);
     }
 
     @Override

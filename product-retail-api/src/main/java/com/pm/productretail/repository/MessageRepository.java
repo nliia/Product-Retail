@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
-	List<Message> findAllByRecipient(AppUser recipient);
+	List<Message> findAllByRecipientAndSender(AppUser recipient, AppUser sender);
 
-	List<Message> findAllBySender(AppUser sender);
+	List<Message> findAllBySenderAndRecipient(AppUser sender, AppUser recipient);
 }

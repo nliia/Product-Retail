@@ -13,6 +13,8 @@ import com.pm.productretail.util.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,13 +47,21 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public List<MessageResponseDto> findMessagesForCurrentUser() {
+	public List<MessageResponseDto> findMessagesForCurrentUser(Long userId) {
 		AppUser currentUser = securityService.getCurrentUser();
-		List<Message> messages = messageRepository.findAllByRecipient(currentUser);
-		messages.addAll(messageRepository.findAllBySender(currentUser));
+		AppUser user = appUserRepository.getOne(userId);
+		List<Message> messages = messageRepository.findAllByRecipientAndSender(currentUser, user);
+		messages.addAll(messageRepository.findAllByRecipientAndSender(user, currentUser));
+		messages.sort((o1, o2) -> {
+            if(o1.getMessageDate().getTime()<o2.getMessageDate().getTime())
+                return -1;
+            if(o1.getMessageDate().getTime()>o2.getMessageDate().getTime())
+                return 0;
+            return 1;
+        });
 		return  messages
 				.stream()
-				.map(message -> new MessageResponseDto(message.getText(), message.getSender(), message.getRecipient()))
+				.map(message -> new MessageResponseDto(message.getText(), message.getSender(), message.getRecipient(), message.getMessageDate()))
 				.collect(Collectors.toList());
 	}
 

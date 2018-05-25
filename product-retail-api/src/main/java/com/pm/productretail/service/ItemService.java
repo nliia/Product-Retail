@@ -17,4 +17,8 @@ public interface ItemService {
     ItemInfoResponseDto getItemInfo(Long id, Department department);
 
     List<ItemResponseDto> getPage(int page);
+
+    void shipItem(Long itemId, Long itemCount, Long departmentId, Long destinationDepartmentId);
+
+    void sellItem(Long itemId, Long itemCount, Long departmentId);
 }

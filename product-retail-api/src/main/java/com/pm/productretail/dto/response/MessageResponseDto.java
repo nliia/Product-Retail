@@ -2,15 +2,19 @@ package com.pm.productretail.dto.response;
 
 import com.pm.productretail.entity.AppUser;
 
+import java.util.Date;
+
 public class MessageResponseDto {
 	private String text;
 	private AppUser sender;
 	private AppUser recipient;
+	private Date date;
 
-	public MessageResponseDto(String text, AppUser sender, AppUser recipient) {
+	public MessageResponseDto(String text, AppUser sender, AppUser recipient, Date date) {
 		this.text = text;
 		this.sender = sender;
 		this.recipient = recipient;
+		this.date = date;
 	}
 
 	public String getText() {

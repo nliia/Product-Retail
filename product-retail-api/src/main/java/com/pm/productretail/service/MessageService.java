@@ -8,5 +8,5 @@ import java.util.List;
 public interface MessageService {
 	void save(MessageDto messageDto) throws Exception;
 
-	List<MessageResponseDto> findMessagesForCurrentUser();
+	List<MessageResponseDto> findMessagesForCurrentUser(Long userId);
 }

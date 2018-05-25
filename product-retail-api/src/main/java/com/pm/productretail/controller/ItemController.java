@@ -1,6 +1,8 @@
 package com.pm.productretail.controller;
 
 import com.pm.productretail.dto.ItemDto;
+import com.pm.productretail.dto.SellItemDto;
+import com.pm.productretail.dto.ShipItemDto;
 import com.pm.productretail.dto.response.ItemInfoResponseDto;
 import com.pm.productretail.dto.response.ItemResponseDto;
 import com.pm.productretail.entity.AppUser;
@@ -58,4 +60,19 @@ public class ItemController extends ResponseCreator {
         return createGoodResponse(itemService.getPage(page));
     }
 
+    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+    @RequestMapping(value = "/items/ship", method = RequestMethod.GET)
+    public ResponseEntity<ApiResponse<String>> shipItem(@RequestBody ShipItemDto shipItemDto) {
+        AppUser currentUser = securityService.getCurrentUser();
+        itemService.shipItem(shipItemDto.getItemId(), shipItemDto.getItemCount(), currentUser.getDepartment().getId(), shipItemDto.getDestinationDepartmentId());
+        return createGoodResponse();
+    }
+
+    @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
+    @RequestMapping(value = "/items/sell", method = RequestMethod.GET)
+    public ResponseEntity<ApiResponse<String>> sellItem(@RequestBody SellItemDto sellItemDto) {
+        AppUser currentUser = securityService.getCurrentUser();
+        itemService.sellItem(sellItemDto.getItemId(), sellItemDto.getItemCount(), currentUser.getDepartment().getId());
+        return createGoodResponse();
+    }
 }

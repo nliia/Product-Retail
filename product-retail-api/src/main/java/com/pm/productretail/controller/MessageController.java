@@ -8,10 +8,7 @@ import com.pm.productretail.util.ResponseCreator;
 import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,8 +30,8 @@ public class MessageController extends ResponseCreator {
 	}
 
 	@ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
-	@RequestMapping(value = "/messages", method = RequestMethod.GET)
-	public ResponseEntity<ApiResponse<List<MessageResponseDto>>> getMessages() {
-		return createGoodResponse(messageService.findMessagesForCurrentUser());
+	@RequestMapping(value = "/messages/{id}", method = RequestMethod.GET)
+	public ResponseEntity<ApiResponse<List<MessageResponseDto>>> getMessages(@PathVariable Long userId) {
+		return createGoodResponse(messageService.findMessagesForCurrentUser(userId));
 	}
 }
