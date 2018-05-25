@@ -6,7 +6,7 @@
           <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">
             <div class="md-headline">ВХОД</div>
               <md-field :class="{'md-invalid': errors.has('email')}">
-                <label>Email</label>
+                <label>Логин</label>
                 <md-input name="email" v-model="user.email" v-validate="'required'" data-vv-name="email"></md-input>
               </md-field>
               <md-field :class="{'md-invalid': errors.has('password')}">

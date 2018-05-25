@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Товары</span>
           </div>
         </div>
-        <md-button class="md-raised button" @click="openDialog">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="openDialog" v-show="role === 'Менеджер магазина'">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -30,8 +30,7 @@
                 <div class="md-body-1">Цена: {{ item.price }} руб.</div>
               </md-card-header-text>
             </md-card-header>
-            <md-divider></md-divider>
-            <md-card-actions>
+            <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
             </md-card-actions>
           </md-card>
@@ -67,6 +66,9 @@ export default {
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
+    },
+    role: () => {
+      return store.getters.role
     }
   },
   watch: {

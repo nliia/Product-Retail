@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Сотрудники</span>
           </div>
         </div>
-        <md-button class="md-raised button" @click="goToAddWorkerPage">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="goToAddWorkerPage" v-show="role === 'Менеджер магазина'">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -29,8 +29,7 @@
                 <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
               </md-card-header-text>
             </md-card-header>
-            <md-divider></md-divider>
-            <md-card-actions>
+            <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button">Удалить</md-button>
             </md-card-actions>
           </md-card>
@@ -55,6 +54,9 @@ export default {
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
+    },
+    role: () => {
+      return store.getters.role
     }
   },
   watch: {
