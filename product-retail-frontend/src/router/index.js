@@ -99,8 +99,8 @@ export default new Router({
       }
     },
     {
-      path: '/addworker',
-      name: 'addworker',
+      path: '/:id/worker',
+      name: 'worker',
       component: AddWorker,
       beforeEnter (to, from, next) {
         if (store.getters.token === undefined) {

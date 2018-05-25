@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-app-content>
-        <div class="breadcrumbs">
+      <div class="breadcrumbs">
         <div class="breadcrumbs__item">
           <p class="breadcrumbs__item-large">Сотрудники</p>
           <div>
@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Сотрудники</span>
           </div>
         </div>
-        <md-button class="md-raised button">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="goToAddWorkerPage">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -66,6 +66,9 @@ export default {
       const response = await departmentsService.getDepartmentWorkers(this.$route.params.id)
       this.loading = false
       this.workers = response.data.responseData
+    },
+    goToAddWorkerPage () {
+      this.$router.push({name: 'worker', params: { id: +this.$route.params.id }})
     }
   }
 }
