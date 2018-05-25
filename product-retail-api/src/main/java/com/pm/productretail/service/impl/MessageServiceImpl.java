@@ -40,6 +40,7 @@ public class MessageServiceImpl implements MessageService {
 			message.setText(messageDto.getText());
 			message.setSender(sender);
 			message.setRecipient(recipient);
+			message.setMessageDate(new Date());
 			messageRepository.save(message);
 		} else {
 			throw new Exception(Errors.INCORRECT_RECIPIENT);
