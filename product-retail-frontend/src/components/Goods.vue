@@ -30,6 +30,12 @@
                 <div class="md-body-1">Цена: {{ item.price }} руб.</div>
               </md-card-header-text>
             </md-card-header>
+            <md-card-actions v-show="role === 'Продавец'">
+              <md-field>
+                <md-input class="sell_input" v-model="quantity" type="number" placeholder="количество"></md-input>
+              </md-field>
+              <md-button class="card__button" @click="sellItem(item.id)">Продать</md-button>
+            </md-card-actions>
             <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
             </md-card-actions>
@@ -91,6 +97,16 @@ export default {
     // },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
+      if (response.status === 200) {
+        this.fetchData()
+      }
+    },
+    async sellItem (itemId) {
+      var credentials = {
+        // itemCount: quantity,
+        itemId: itemId
+      }
+      const response = await itemsService.sellItem(credentials)
       if (response.status === 200) {
         this.fetchData()
       }

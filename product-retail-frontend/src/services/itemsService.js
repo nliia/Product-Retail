@@ -12,5 +12,8 @@ export default {
   },
   getItemImage (id) {
     return api().get(`image/${id}`)
+  },
+  sellItem (credentials) {
+    return api().post('items/sell', credentials)
   }
 }
