@@ -36,6 +36,15 @@
               </md-field>
               <md-button class="card__button" @click="sellItem(item.id, item.quantity)">Продать</md-button>
             </md-card-actions>
+            <md-card-actions class="ship__actions" v-show="role === 'Работник склада'">
+              <select class="ship__select" v-model="item.depId">
+                <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
+              </select>
+              <md-field>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
+              </md-field>
+              <md-button class="card__button" @click="shipItem(item.id, item.quantity, item.depId)">Отгрузить</md-button>
+            </md-card-actions>
             <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
             </md-card-actions>
@@ -64,6 +73,7 @@ export default {
   },
   data: () => ({
     items: {},
+    departments: {},
     loading: false
   }),
   created () {
@@ -98,7 +108,7 @@ export default {
     // },
     async getAllDepartments () {
       const response = await departmentsService.getAllDepartments()
-      console.log(response)
+      this.departments = response.data.responseData
     },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
@@ -116,9 +126,32 @@ export default {
         this.fetchData()
       }
     },
+    async shipItem (itemId, quantity, depId) {
+      var credentials = {
+        destinationDepartmentId: depId,
+        itemCount: quantity,
+        itemId: itemId
+      }
+      const response = await itemsService.shipItem(credentials)
+      if (response.status === 200) {
+        this.fetchData()
+      }
+    },
     openDialog () {
       eventBus.$emit('showDialog', true)
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.ship {
+  &__actions {
+    flex-wrap: wrap;
+  }
+
+  &__select {
+    width: 100%;
+  }
+}
+</style>
