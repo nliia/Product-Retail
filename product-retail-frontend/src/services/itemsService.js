@@ -13,7 +13,13 @@ export default {
   getItemImage (id) {
     return api().get(`image/${id}`)
   },
+  orderItem (credentials) {
+    return api().post('order', credentials)
+  },
   sellItem (credentials) {
     return api().post('items/sell', credentials)
+  },
+  shipItem (credentials) {
+    return api().post('items/ship', credentials)
   }
 }

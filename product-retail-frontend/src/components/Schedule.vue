@@ -40,6 +40,7 @@
 import CalendarView from 'vue-simple-calendar'
 import store from '../store/store'
 import { eventBus } from '../main'
+import scheduleService from '../services/scheduleService'
 
 var current = null
 
@@ -65,6 +66,7 @@ export default {
     showDate: new Date(),
     showDialog: false,
     worker: '',
+    events: {},
     first: false
   }),
   components: {
@@ -77,6 +79,7 @@ export default {
     eventBus.$on('first', (first) => {
       this.first = first
     })
+    this.fetchEvents()
   },
   computed: {
     currentDepartment: () => {
@@ -97,6 +100,16 @@ export default {
         current.innerHTML += '<div class="shift">' + this.worker + '</div>'
         eventBus.$emit('showDialog', false)
       }
+    },
+    async fetchEvents () {
+      this.loading = true
+      const response = await scheduleService.fetchEvents()
+      this.loading = false
+      // var event = {
+      //   startDate: "yyyy-mm-dd HH:MM:SS",
+      //   endDate: "yyyy-mm-dd HH:MM:SS"
+      // }
+      this.events = response.data.responseData
     }
   }
 }

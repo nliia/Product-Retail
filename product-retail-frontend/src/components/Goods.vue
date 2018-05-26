@@ -32,9 +32,18 @@
             </md-card-header>
             <md-card-actions v-show="role === 'Продавец'">
               <md-field>
-                <md-input class="sell_input" v-model="quantity" type="number" placeholder="количество"></md-input>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
               </md-field>
-              <md-button class="card__button" @click="sellItem(item.id)">Продать</md-button>
+              <md-button class="card__button" @click="sellItem(item.id, item.quantity)">Продать</md-button>
+            </md-card-actions>
+            <md-card-actions class="ship__actions" v-show="role === 'Работник склада'">
+              <select class="ship__select" v-model="item.depId">
+                <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
+              </select>
+              <md-field>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
+              </md-field>
+              <md-button class="card__button" @click="shipItem(item.id, item.quantity, item.depId)">Отгрузить</md-button>
             </md-card-actions>
             <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
@@ -64,10 +73,12 @@ export default {
   },
   data: () => ({
     items: {},
+    departments: {},
     loading: false
   }),
   created () {
     this.fetchData()
+    this.getAllDepartments()
   },
   computed: {
     currentDepartment: () => {
@@ -95,18 +106,33 @@ export default {
     // async getItemImage (id) {
     //   const response = await itemsService.getItemImage(id)
     // },
+    async getAllDepartments () {
+      const response = await departmentsService.getAllDepartments()
+      this.departments = response.data.responseData
+    },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
       if (response.status === 200) {
         this.fetchData()
       }
     },
-    async sellItem (itemId) {
+    async sellItem (itemId, quantity) {
       var credentials = {
-        // itemCount: quantity,
+        itemCount: quantity,
         itemId: itemId
       }
       const response = await itemsService.sellItem(credentials)
+      if (response.status === 200) {
+        this.fetchData()
+      }
+    },
+    async shipItem (itemId, quantity, depId) {
+      var credentials = {
+        destinationDepartmentId: depId,
+        itemCount: quantity,
+        itemId: itemId
+      }
+      const response = await itemsService.shipItem(credentials)
       if (response.status === 200) {
         this.fetchData()
       }
@@ -117,3 +143,15 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.ship {
+  &__actions {
+    flex-wrap: wrap;
+  }
+
+  &__select {
+    width: 100%;
+  }
+}
+</style>
