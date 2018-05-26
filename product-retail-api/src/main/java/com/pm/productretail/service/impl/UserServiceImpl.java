@@ -55,6 +55,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             user.setUsername(appUserDto.getUsername());
             user.setPassword(bCryptPasswordEncoder.encode(appUserDto.getPassword()));
             user.setRole(appUserDto.getRole());
+            user.setName(appUserDto.getName());
+            user.setSurname(appUserDto.getSurname());
+            user.setPhoneNumber(appUserDto.getPhoneNumber());
+            user.setStatus(appUserDto.getStatus());
+            user.setSuperuser(appUserDto.getSuperuser());
+            user.setDepartment(departmentService.getDepartment(appUserDto.getDepartment_id()));
             appUserRepository.save(user);
         }
     }

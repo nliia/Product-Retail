@@ -13,6 +13,24 @@ public class AppUserDto {
     private Role role;
     private Boolean is_superuser;
 
+    private String status;
+
+    public Boolean getIs_superuser() {
+        return is_superuser;
+    }
+
+    public void setIs_superuser(Boolean is_superuser) {
+        this.is_superuser = is_superuser;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     public String getUsername() {
         return username;
     }
