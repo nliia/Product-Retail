@@ -45,8 +45,7 @@ export default {
         this.$store.dispatch('setUser', { type: 'user', item: response.data })
         this.$router.push({ name: 'departments' })
       } catch (error) {
-        // @todo: alert
-        console.log(error.response.data.message)
+        console.log(error)
       }
     }
   }

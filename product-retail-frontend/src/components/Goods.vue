@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Товары</span>
           </div>
         </div>
-        <md-button class="md-raised button" @click="openDialog" v-show="role === 'Менеджер магазина'">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="openDialog" v-show="(role === 'Менеджер магазина') || (role === 'Директор склада')">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
