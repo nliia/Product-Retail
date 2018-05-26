@@ -12,6 +12,7 @@
             <span class="breadcrumbs__item-bold">Задачи</span>
           </div>
         </div>
+        <md-button class="md-raised button" @click="showDialog = true">ДОБАВИТЬ</md-button>
       </div>
       <div class="card-scene">
         <Container orientation="horizontal"
@@ -43,6 +44,24 @@
           </Draggable>
         </Container>
       </div>
+      <md-dialog :md-active.sync="showDialog">
+        <md-dialog-title>Добавление таска</md-dialog-title>
+        <md-field>
+          <label>Описание</label>
+          <md-input v-model="description"></md-input>
+        </md-field>
+        <md-field>
+          <label>Сотрудник</label>
+          <md-select v-model="worker">
+            <md-option v-for="worker in workers" :key="worker.id" value="worker.id">{{ worker.name }} {{ worker.surname }}</md-option>
+          </md-select>
+        </md-field>
+        <md-button @click="addTask">Добавить</md-button>
+      </md-dialog>
+      <md-dialog-alert
+              :md-active.sync="first"
+              md-content="Заполните пустые поля!"
+              md-confirm-text="ОК"></md-dialog-alert>
     </md-app-content>
   </div>
 </template>
@@ -51,6 +70,7 @@
 import { Container, Draggable } from 'vue-smooth-dnd'
 import { applyDrag, generateItems } from '../services/tasksService'
 import store from '../store/store'
+import departmentsService from '../services/departmentsService'
 
 const columnNames = [
   'To Do',
@@ -105,15 +125,23 @@ const scene = {
 export default {
   name: 'Cards',
   components: { Container, Draggable },
-  data: function () {
-    return {
-      scene
-    }
-  },
+  data: () => ({
+    scene: scene,
+    showDialog: false,
+    description: '',
+    worker: '',
+    g: 'helo',
+    first: false,
+    workers: {},
+    loading: false
+  }),
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
     }
+  },
+  created () {
+    this.fetchData()
   },
   methods: {
     onColumnDrop (dropResult) {
@@ -140,6 +168,26 @@ export default {
       }
     },
     dragStart () {
+    },
+    addTask () {
+      if (!this.description || !this.worker) {
+        this.first = true
+      } else {
+        var column = document.getElementsByClassName('vertical')[0]
+        column.innerHTML = '<div data-v-0acc1ee4="" class="smooth-dnd-draggable-wrapper" style="">' +
+                '<div data-v-0acc1ee4="" class="card" style="background-color: rgb(243, 243, 244); border-top: none; border-right: 5px solid rgb(188, 192, 195); border-bottom: none; border-left: 5px solid rgb(188, 192, 195); border-image: initial; padding: 15px 0px 0px 10px; display: flex; width: 100%; height: auto;">' +
+                '<div data-v-0acc1ee4="" class="task-data">' + this.description + '</div> ' +
+                '<div data-v-0acc1ee4="" class="md-avatar md-theme-default" id="avatar">' +
+                '<img data-v-0acc1ee4="" src="../assets/images/person.svg" alt="Avatar"> ' +
+                '</div></div></div>' + column.innerHTML
+        this.showDialog = false
+      }
+    },
+    async fetchData () {
+      this.loading = true
+      const response = await departmentsService.getDepartmentWorkers(this.$route.params.id)
+      this.loading = false
+      this.workers = response.data.responseData
     }
   }
 }
