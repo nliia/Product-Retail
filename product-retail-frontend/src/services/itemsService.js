@@ -15,5 +15,8 @@ export default {
   },
   orderItem (credentials) {
     return api().post('order', credentials)
+  },
+  sellItem (credentials) {
+    return api().post('items/sell', credentials)
   }
 }
