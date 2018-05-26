@@ -8,16 +8,16 @@
         </span>
       </md-dialog-title>
       <div class="dialog__content">
-        <md-autocomplete v-model="item.name" :md-options="items">
-            <label>Название</label>
-        </md-autocomplete>
+        <select v-model="item.id">
+          <option v-for="i in items" :key="i.d" :value="i.id">{{ i.name }}</option>
+        </select>
         <md-field>
             <label>Количество</label>
             <md-input v-model="item.count" type="number"></md-input>
         </md-field>
       </div>
       <md-dialog-actions>
-        <md-button class="md-raised md-green" @click="showDialog=false">Сохранить</md-button>
+        <md-button class="md-raised md-green" @click="orderItem">Сохранить</md-button>
       </md-dialog-actions>
     </md-dialog>
   </div>
@@ -25,23 +25,43 @@
 
 <script>
 import { eventBus } from '../main'
+import departmentsService from '../services/departmentsService'
+import itemsService from '../services/itemsService'
 
 export default {
   data: () => ({
     showDialog: false,
     item: {
-      name: '',
+      id: '',
       count: ''
     },
-    items: [
-      'Огурец',
-      'Помидор'
-    ]
+    items: []
   }),
   created () {
     eventBus.$on('showDialog', (showDialog) => {
       this.showDialog = showDialog
     })
+    this.fetchData()
+  },
+  methods: {
+    async fetchData () {
+      const response = await departmentsService.getItemsByDepartment(this.$route.params.id)
+      this.items = response.data.responseData
+    },
+    async orderItem () {
+      try {
+        var credentials = [{
+          item_id: this.item.id,
+          count: this.item.count
+        }]
+        const response = await itemsService.orderItem(credentials)
+        if (response.status === 200) {
+          this.showDialog = false
+        }
+      } catch (error) {
+        console.log(error)
+      }
+    }
   }
 }
 </script>
