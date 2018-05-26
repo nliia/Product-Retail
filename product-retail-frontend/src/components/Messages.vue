@@ -61,11 +61,19 @@ export default {
     dialogs: {},
     messages: {},
     collocutor: {},
+    // search: '',
     loading: false
   }),
   created () {
     this.fetchUsers()
   },
+//   computed: {
+//     filteredDialogs: function () {
+//       return this.dialogs.filter((dialog) => {
+//         return dialog.name.match(this.search)
+//       })
+//     }
+//   },
   watch: {
     '$route': 'fetchUsers'
   },
