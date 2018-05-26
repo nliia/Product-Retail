@@ -75,18 +75,18 @@ public class UserServiceImpl implements UserService, UserDetailsService {
             usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD));
             usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD));
         } else if (user.getRole() == Role.SHOP_HEAD) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.STUFF_MANAGER, user.getDepartment()));
             usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER));
         } else if (user.getRole() == Role.WAREHOUSE_HEAD) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_WORKER));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.WAREHOUSE_WORKER, user.getDepartment()));
             usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SUPERUSER));
         } else if (user.getRole() == Role.STUFF_MANAGER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SHOP_HEAD));
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.SELLER));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.SHOP_HEAD, user.getDepartment()));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.SELLER, user.getDepartment()));
         } else if (user.getRole() == Role.SELLER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.STUFF_MANAGER));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.STUFF_MANAGER, user.getDepartment()));
         } else if (user.getRole() == Role.WAREHOUSE_WORKER) {
-            usersCanWrite.addAll(appUserRepository.findAllByRole(Role.WAREHOUSE_HEAD));
+            usersCanWrite.addAll(appUserRepository.findAllByRoleAndDepartment(Role.WAREHOUSE_HEAD, user.getDepartment()));
         }
 
         return usersCanWrite.stream()
