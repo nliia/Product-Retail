@@ -43,7 +43,7 @@ public class ItemServiceImpl implements ItemService {
         Item item = new Item();
         item.setName(itemDto.getName());
         item.setPrice(itemDto.getPrice());
-        if(itemDto.getItemImageId()!=null) {
+        if (itemDto.getItemImageId() != null) {
             Image image = imageService.getOneById(itemDto.getItemImageId());
             item.setImage(image);
         }
@@ -51,7 +51,7 @@ public class ItemServiceImpl implements ItemService {
         DepartmentLinkItem departmentLinkItem = new DepartmentLinkItem();
         Department department = departmentService.getDepartment(1L);
         departmentLinkItem.setCount(itemDto.getCount());
-        departmentLinkItem.setItem(item);
+        departmentLinkItem.setItem(itemRepository.getByName(item.getName()));
         departmentLinkItem.setDepartment(department);
         departmentLinkItemRepository.save(departmentLinkItem);
     }
@@ -97,12 +97,12 @@ public class ItemServiceImpl implements ItemService {
         Item item = itemRepository.getOne(itemId);
         Department department = departmentService.getDepartment(departmentId);
         Department destinationDepartment = departmentService.getDepartment(destinationDepartmentId);
-        DepartmentLinkItem departmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item,department);
-        departmentLinkItem.setCount(departmentLinkItem.getCount()-itemCount);
-        DepartmentLinkItem destinationDepartmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item,destinationDepartment);
-        if(destinationDepartmentLinkItem!=null){
-            destinationDepartmentLinkItem.setCount(destinationDepartmentLinkItem.getCount()+itemCount);
-        }else{
+        DepartmentLinkItem departmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item, department);
+        departmentLinkItem.setCount(departmentLinkItem.getCount() - itemCount);
+        DepartmentLinkItem destinationDepartmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item, destinationDepartment);
+        if (destinationDepartmentLinkItem != null) {
+            destinationDepartmentLinkItem.setCount(destinationDepartmentLinkItem.getCount() + itemCount);
+        } else {
             destinationDepartmentLinkItem = new DepartmentLinkItem();
             destinationDepartmentLinkItem.setDepartment(destinationDepartment);
             destinationDepartmentLinkItem.setItem(item);
@@ -117,7 +117,7 @@ public class ItemServiceImpl implements ItemService {
         Item item = itemRepository.getOne(itemId);
         Department department = departmentService.getDepartment(departmentId);
         DepartmentLinkItem departmentLinkItem = departmentLinkItemRepository.findOneByItemAndDepartment(item, department);
-        departmentLinkItem.setCount(departmentLinkItem.getCount()-itemCount);
+        departmentLinkItem.setCount(departmentLinkItem.getCount() - itemCount);
         departmentLinkItemRepository.save(departmentLinkItem);
     }
 }

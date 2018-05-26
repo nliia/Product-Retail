@@ -15,4 +15,6 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Override
     Page<Item> findAll(Pageable pageable);
+
+    Item getByName(String name);
 }
