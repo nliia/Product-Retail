@@ -18,5 +18,8 @@ export default {
   },
   sellItem (credentials) {
     return api().post('items/sell', credentials)
+  },
+  shipItem (credentials) {
+    return api().post('items/ship', credentials)
   }
 }
