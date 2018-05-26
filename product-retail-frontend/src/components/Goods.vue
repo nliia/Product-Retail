@@ -12,7 +12,8 @@
             <span class="breadcrumbs__item-bold">Товары</span>
           </div>
         </div>
-        <md-button class="md-raised button" @click="openDialog" v-show="(role === 'Менеджер магазина') || (role === 'Директор склада')">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="openDialog" v-show="role === 'Менеджер магазина'">ЗАКАЗАТЬ</md-button>
+        <md-button class="md-raised button" @click="openDialog" v-show="role === 'Директор склада'">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -32,7 +33,7 @@
             </md-card-header>
             <md-card-actions v-show="role === 'Продавец'">
               <md-field>
-                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество" min="1"></md-input>
               </md-field>
               <md-button class="card__button" @click="sellItem(item.id, item.quantity)">Продать</md-button>
             </md-card-actions>
@@ -41,7 +42,7 @@
                 <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
               </select>
               <md-field>
-                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество" min="1"></md-input>
               </md-field>
               <md-button class="card__button" @click="shipItem(item.id, item.quantity, item.depId)">Отгрузить</md-button>
             </md-card-actions>

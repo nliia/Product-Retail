@@ -34,21 +34,18 @@
               <md-field>
                 <label>Должность</label>
                 <md-select v-model="user.role">
-                  <md-option value="SUPERUSER">Владелец</md-option>
-                  <md-option value="WAREHOUSE_HEAD">Директор склада</md-option>
-                  <md-option value="WAREHOUSE_WORKER">Работник склада</md-option>
-                  <md-option value="SHOP_HEAD">Директор магазина</md-option>
-                  <md-option value="STUFF_MANAGER">Менеджер магазина</md-option>
-                  <md-option value="SELLER">Продавец</md-option>
+                  <md-option value="STUFF_MANAGER" v-show="!currentDepartment.warehouse">Менеджер магазина</md-option>
+                  <md-option value="SELLER" v-show="!currentDepartment.warehouse">Продавец</md-option>
+                  <md-option value="WAREHOUSE_WORKER" v-show="currentDepartment.warehouse">Работник склада</md-option>
                 </md-select>
               </md-field>
               <md-field>
                 <label>Логин</label>
                 <md-input v-model="user.username" ></md-input>
               </md-field>
-              <md-field>
+               <md-field :class="{'md-invalid': errors.has('password')}">
                 <label>Пароль</label>
-                <md-input type="password" v-model="user.password" ></md-input>
+                <md-input name="password" type="password" v-model="user.password" v-validate="'required|min:6'"></md-input>
               </md-field>
               <md-field>
                 <label>Номер телефона</label>

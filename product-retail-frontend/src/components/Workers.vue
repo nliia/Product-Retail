@@ -29,9 +29,6 @@
                 <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
               </md-card-header-text>
             </md-card-header>
-            <md-card-actions v-show="role === 'Менеджер магазина'">
-              <md-button class="card__button">Удалить</md-button>
-            </md-card-actions>
           </md-card>
         </section>
       </div>
