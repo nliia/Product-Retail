@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Товары</span>
           </div>
         </div>
-        <md-button class="md-raised button" @click="openDialog">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="openDialog" v-show="role === 'Менеджер магазина'">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -20,7 +20,8 @@
           <md-card v-for="item in items" :key="item.id" class="card">
             <md-card-header>
               <md-card-media>
-                <img src="../assets/images/item.svg" class="card__photo">
+                <!-- <img src="../assets/images/item.svg" class="card__photo" v-if="item.itemImageId"> -->
+                <img src="../assets/images/no-image.svg" class="card__photo">
               </md-card-media>
               <md-card-header-text class="card__header">
                 <div class="md-body-2">{{ item.name }}</div>
@@ -29,8 +30,7 @@
                 <div class="md-body-1">Цена: {{ item.price }} руб.</div>
               </md-card-header-text>
             </md-card-header>
-            <md-divider></md-divider>
-            <md-card-actions>
+            <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
             </md-card-actions>
           </md-card>
@@ -51,6 +51,7 @@ import store from '../store/store'
 import { eventBus } from '../main'
 
 export default {
+  name: 'Goods',
   components: {
     addItemDialog,
     orderItemDialog
@@ -65,6 +66,9 @@ export default {
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
+    },
+    role: () => {
+      return store.getters.role
     }
   },
   watch: {
@@ -76,11 +80,20 @@ export default {
       const response = await departmentsService.getItemsByDepartment(this.$route.params.id)
       this.loading = false
       this.items = response.data.responseData
+      // for (let item of this.items) {
+      //   if (item.itemImageId) {
+      //     this.getItemImage(item.itemImageId)
+      //   }
+      // }
     },
-    // @todo: доделать, когда бд заработает
+    // async getItemImage (id) {
+    //   const response = await itemsService.getItemImage(id)
+    // },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
-      console.log(response)
+      if (response.status === 200) {
+        this.fetchData()
+      }
     },
     openDialog () {
       eventBus.$emit('showDialog', true)

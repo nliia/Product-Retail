@@ -12,173 +12,92 @@
                         <span class="breadcrumbs__item-bold">Добавление сотрудника</span>
                     </div>
                 </div>
+                <md-button class="md-raised button" @click="addUser">СОХРАНИТЬ</md-button>
             </div>
             <div class="form-container">
-                <div class="photo-download">
+                <!-- <div class="photo-download">
                     <img src="../assets/images/person.svg"><br>
                     <div class="upload">
                         <button class="upload__button md-raised button download-button md-theme-default">ЗАГРУЗИТЬ ФОТО</button>
                         <input type="file" @change="imagePreview"/>
                     </div>
                     <md-button class="button delete-button">УДАЛИТЬ ФОТО</md-button>
-                </div>
-                <div class="form-worker">
-                    <div>
-                        <form novalidate class="md-layout" @submit.prevent="validateUser">
-                            <md-field>
-                                <label>Имя</label>
-                                <md-input/>
-                           </md-field>
-
-                            <md-field>
-                                <label>Фамилия</label>
-                                <md-input/>
-                            </md-field>
-
-                            <md-field>
-                                <label>Должность</label>
-                                <md-input/>
-                            </md-field>
-
-                            <md-field>
-                                <label>Email</label>
-                                <md-input type="email"/>
-                            </md-field>
-
-                            <md-field>
-                                <label>Номер телефона</label>
-                                <md-input/>
-                            </md-field>
-                        </form>
-                    </div>
-                    <md-button class="md-raised button" @click="openDialog">СОХРАНИТЬ</md-button>
-                </div>
+                </div> -->
+              <md-field>
+                <label>Имя</label>
+                <md-input v-model="user.name" ></md-input>
+              </md-field>
+              <md-field>
+                <label>Фамилия</label>
+                <md-input v-model="user.surname" ></md-input>
+              </md-field>
+              <md-field>
+                <label>Должность</label>
+                <md-select v-model="user.role">
+                  <md-option value="SUPERUSER">Владелец</md-option>
+                  <md-option value="WAREHOUSE_HEAD">Директор склада</md-option>
+                  <md-option value="WAREHOUSE_WORKER">Работник склада</md-option>
+                  <md-option value="SHOP_HEAD">Директор магазина</md-option>
+                  <md-option value="STUFF_MANAGER">Менеджер магазина</md-option>
+                  <md-option value="SELLER">Продавец</md-option>
+                </md-select>
+              </md-field>
+              <md-field>
+                <label>Логин</label>
+                <md-input v-model="user.username" ></md-input>
+              </md-field>
+              <md-field>
+                <label>Пароль</label>
+                <md-input type="password" v-model="user.password" ></md-input>
+              </md-field>
+              <md-field>
+                <label>Номер телефона</label>
+                <md-input v-model="user.phone" ></md-input>
+              </md-field>
             </div>
         </md-app-content>
     </div>
 </template>
 
 <script>
-import addItemDialog from '../components/AddItem'
-import orderItemDialog from '../components/Order'
 import store from '../store/store'
-import {required, email, minLength, maxLength} from 'vuelidate/lib/validators'
-import itemsService from '../services/itemsService'
+import usersService from '../services/usersService'
 
 export default {
-  components: {
-    addItemDialog,
-    orderItemDialog
-  },
   data: () => ({
-    items: {},
-    loading: false,
-    form: {
-      firstName: null,
-      lastName: null,
-      gender: null,
-      age: null,
-      email: null
-    },
-    userSaved: false,
-    sending: false,
-    lastUser: null,
-    showDialog: false,
-    item: {
+    user: {
       name: '',
-      price: '',
-      image: ''
+      password: '',
+      phone: '',
+      role: '',
+      surname: '',
+      username: ''
     }
   }),
-  created () {
-    this.fetchData()
-  },
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
     }
   },
-  validations: {
-    form: {
-      firstName: {
-        required,
-        minLength: minLength(3)
-      },
-      lastName: {
-        required,
-        minLength: minLength(3)
-      },
-      age: {
-        required,
-        maxLength: maxLength(3)
-      },
-      gender: {
-        required
-      },
-      email: {
-        required,
-        email
-      }
-    }
-  },
   methods: {
-    getValidationClass (fieldName) {
-      const field = this.$v.form[fieldName]
-
-      if (field) {
-        return {
-          'md-invalid': field.$invalid && field.$dirty
-        }
-      }
-    },
-    clearForm () {
-      this.$v.$reset()
-      this.form.firstName = null
-      this.form.lastName = null
-      this.form.age = null
-      this.form.gender = null
-      this.form.email = null
-    },
-    saveUser () {
-      this.sending = true
-
-      // Instead of this timeout, here you can call your API
-      window.setTimeout(() => {
-        this.lastUser = `${this.form.firstName} ${this.form.lastName}`
-        this.userSaved = true
-        this.sending = false
-        this.clearForm()
-      }, 1500)
-    },
-    validateUser () {
-      this.$v.$touch()
-
-      if (!this.$v.$invalid) {
-        this.saveUser()
-      }
-    },
-    imagePreview (event) {
-      let input = event.target
-      if (input.files && input.files[0]) {
-        let reader = new FileReader()
-        reader.onload = (e) => {
-          this.item.image = e.target.result
-        }
-        reader.readAsDataURL(input.files[0])
-      }
-    },
-    // @todo: доделать, когда бд заработает
-    async addItem () {
+    async addUser () {
       try {
-        var credentials = {
-          name: this.item.name,
-          price: this.item.price
+        let credentials = {
+          department_id: +this.$route.params.id,
+          name: this.user.name,
+          password: this.user.password,
+          phoneNumber: this.user.phone,
+          role: this.user.role,
+          superuser: true,
+          surname: this.user.surname,
+          username: this.user.username
         }
-        const response = await itemsService.addItem(credentials)
-        console.log(response)
+        const response = await usersService.addUser(credentials)
+        if (response.status === 201) {
+          this.$router.push({name: 'workers', params: { id: +this.$route.params.id }})
+        }
       } catch (error) {
-        // @todo: alert
-        console.log(error.response.data.message)
+        console.log(error)
       }
     }
   }

@@ -6,5 +6,11 @@ export default {
   },
   addItem (credentials) {
     return api().post('item', credentials)
+  },
+  addItemImage (image) {
+    return api().post('image', image)
+  },
+  getItemImage (id) {
+    return api().get(`image/${id}`)
   }
 }

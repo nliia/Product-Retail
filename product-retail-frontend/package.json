@@ -27,7 +27,7 @@
     "vue-router": "^3.0.1",
     "vue-simple-calendar": "^2.2.0",
     "vue-smooth-dnd": "^0.1.5",
-    "vuelidate": "^0.7.1",
+    "vuelidate": "^0.7.4",
     "vuex": "^3.0.1",
     "vuex-persistedstate": "^2.5.2",
     "vuex-router-sync": "^5.0.0"

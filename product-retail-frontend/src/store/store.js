@@ -35,6 +35,9 @@ export default new Vuex.Store({
     },
     currentDepartment: state => {
       return state.department
+    },
+    role: state => {
+      return state.user.role
     }
   }
 })

@@ -1,7 +1,7 @@
 <template>
   <div>
     <md-app-content>
-        <div class="breadcrumbs">
+      <div class="breadcrumbs">
         <div class="breadcrumbs__item">
           <p class="breadcrumbs__item-large">Сотрудники</p>
           <div>
@@ -12,7 +12,7 @@
             <span class="breadcrumbs__item-bold">Сотрудники</span>
           </div>
         </div>
-        <md-button class="md-raised button">ДОБАВИТЬ</md-button>
+        <md-button class="md-raised button" @click="goToAddWorkerPage" v-show="role === 'Менеджер магазина'">ДОБАВИТЬ</md-button>
       </div>
       <md-progress-spinner md-mode="indeterminate" v-if="loading" class="spinner"></md-progress-spinner>
       <div v-else>
@@ -20,7 +20,7 @@
           <md-card v-for="worker in workers" :key="worker.id" class="card">
             <md-card-header>
               <md-card-media>
-                <img src="../assets/images/person.svg" class="card__photo">
+                <img src="../assets/images/no_avatar.svg" class="card__photo">
               </md-card-media>
               <md-card-header-text class="card__header">
                 <div class="md-body-2">{{ worker.name }} {{ worker.surname }}</div>
@@ -29,8 +29,7 @@
                 <div class="md-body-1">Тел.: {{ worker.phoneNumber }}</div>
               </md-card-header-text>
             </md-card-header>
-            <md-divider></md-divider>
-            <md-card-actions>
+            <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button">Удалить</md-button>
             </md-card-actions>
           </md-card>
@@ -55,6 +54,9 @@ export default {
   computed: {
     currentDepartment: () => {
       return store.getters.currentDepartment
+    },
+    role: () => {
+      return store.getters.role
     }
   },
   watch: {
@@ -66,7 +68,18 @@ export default {
       const response = await departmentsService.getDepartmentWorkers(this.$route.params.id)
       this.loading = false
       this.workers = response.data.responseData
+    },
+    goToAddWorkerPage () {
+      this.$router.push({name: 'worker', params: { id: +this.$route.params.id }})
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.card {
+  &__photo {
+    border-radius: 50%;
+  }
+}
+</style>
