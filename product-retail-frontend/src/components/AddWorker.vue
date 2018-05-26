@@ -95,7 +95,9 @@ export default {
           status: 'working'
         }
         const response = await usersService.addUser(credentials)
-        this.$router.push({name: 'workers', params: { id: +this.$route.params.id }})
+        if (response.status === 200) {
+          this.$router.push({name: 'workers', params: { id: +this.$route.params.id }})
+        }
       } catch (error) {
         console.log(error)
       }

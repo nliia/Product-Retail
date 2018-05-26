@@ -32,9 +32,9 @@
             </md-card-header>
             <md-card-actions v-show="role === 'Продавец'">
               <md-field>
-                <md-input class="sell_input" v-model="quantity" type="number" placeholder="количество"></md-input>
+                <md-input v-model="item.quantity" type="number" placeholder="Количество"></md-input>
               </md-field>
-              <md-button class="card__button" @click="sellItem(item.id)">Продать</md-button>
+              <md-button class="card__button" @click="sellItem(item.id, item.quantity)">Продать</md-button>
             </md-card-actions>
             <md-card-actions v-show="role === 'Менеджер магазина'">
               <md-button class="card__button" @click="removeItem(item.id)">Удалить</md-button>
@@ -101,9 +101,9 @@ export default {
         this.fetchData()
       }
     },
-    async sellItem (itemId) {
+    async sellItem (itemId, quantity) {
       var credentials = {
-        // itemCount: quantity,
+        itemCount: quantity,
         itemId: itemId
       }
       const response = await itemsService.sellItem(credentials)

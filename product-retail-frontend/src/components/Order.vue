@@ -55,7 +55,9 @@ export default {
           count: this.item.count
         }]
         const response = await itemsService.orderItem(credentials)
-        this.showDialog = false
+        if (response.status === 200) {
+          this.showDialog = false
+        }
       } catch (error) {
         console.log(error)
       }
