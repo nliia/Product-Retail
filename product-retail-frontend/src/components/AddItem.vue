@@ -14,11 +14,11 @@
         </md-field>
         <md-field>
             <label>Цена</label>
-            <md-input v-model="item.price" type="number"></md-input>
+            <md-input v-model="item.price" type="number" min="0"></md-input>
         </md-field>
          <md-field>
             <label>Количество</label>
-            <md-input v-model="item.count" type="number"></md-input>
+            <md-input v-model="item.count" type="number" min="1"></md-input>
         </md-field>
         <!-- <md-avatar class="image">
             <img :src="item.imagePreview" v-if="item.imagePreview.length > 0">

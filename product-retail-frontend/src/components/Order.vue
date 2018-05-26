@@ -8,12 +8,15 @@
         </span>
       </md-dialog-title>
       <div class="dialog__content">
-        <select v-model="item.id">
-          <option v-for="i in items" :key="i.d" :value="i.id">{{ i.name }}</option>
-        </select>
+        <md-field>
+          <label>Название</label>
+          <md-select v-model="item.id">
+            <md-option  v-for="i in items" :key="i.d" :value="i.id">{{ i.name }}</md-option>
+          </md-select>
+        </md-field>
         <md-field>
             <label>Количество</label>
-            <md-input v-model="item.count" type="number"></md-input>
+            <md-input v-model="item.count" type="number" min="1"></md-input>
         </md-field>
       </div>
       <md-dialog-actions>

@@ -118,4 +118,24 @@ export default {
 <style lang='scss' scoped>
     @import url('vue-simple-calendar/dist/static/css/default.css');
     @import url('vue-simple-calendar/dist/static/css/holidays-us.css');
+
+    .md-dialog-container {
+
+      .md-field {
+        margin-left: 10px;
+        width: 260px;
+      }
+
+      .md-button {
+        background: #009688;
+        color: white;
+      }
+    }
+
+    .md-dialog-actions {
+
+      .md-button-content {
+        color: #ffffff;
+      }
+    }
 </style>

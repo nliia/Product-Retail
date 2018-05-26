@@ -38,9 +38,12 @@
               <md-button class="card__button" @click="sellItem(item.id, item.quantity)">Продать</md-button>
             </md-card-actions>
             <md-card-actions class="ship__actions" v-show="role === 'Работник склада'">
-              <select class="ship__select" v-model="item.depId">
-                <option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</option>
-              </select>
+              <md-field>
+                <label>Отдел</label>
+                <md-select v-model="item.depId">
+                  <md-option v-for="department in departments" :key="department.id" :value="department.id">{{ department.name }}</md-option>
+                </md-select>
+              </md-field>
               <md-field>
                 <md-input v-model="item.quantity" type="number" placeholder="Количество" min="1"></md-input>
               </md-field>

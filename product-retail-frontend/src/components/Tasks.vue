@@ -53,7 +53,7 @@
         <md-field>
           <label>Сотрудник</label>
           <md-select v-model="worker">
-            <md-option v-for="worker in workers" :key="worker.id" value="worker.id">{{ worker.name }} {{ worker.surname }}</md-option>
+            <md-option v-for="worker in workers" :key="worker.id" :value="worker.id">{{ worker.name }} {{ worker.surname }}</md-option>
           </md-select>
         </md-field>
         <md-button @click="addTask">Добавить</md-button>
