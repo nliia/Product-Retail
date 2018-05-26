@@ -1,7 +1,7 @@
 <template>
   <div class="tree">
     <li>
-      <span @click="toggleLink" class="tree__leaf">
+      <span @click="toggleLink" class="tree__leaf" v-show="model.visible">
         {{ model.name }}
         <span v-if="isDepartment" :class="[open ? 'tree__department-open' : 'tree__department']"></span>
       </span>

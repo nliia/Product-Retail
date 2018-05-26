@@ -68,6 +68,7 @@ export default {
   }),
   created () {
     this.fetchData()
+    this.getAllDepartments()
   },
   computed: {
     currentDepartment: () => {
@@ -95,6 +96,10 @@ export default {
     // async getItemImage (id) {
     //   const response = await itemsService.getItemImage(id)
     // },
+    async getAllDepartments () {
+      const response = await departmentsService.getAllDepartments()
+      console.log(response)
+    },
     async removeItem (id) {
       const response = await itemsService.removeItem(id)
       if (response.status === 200) {
