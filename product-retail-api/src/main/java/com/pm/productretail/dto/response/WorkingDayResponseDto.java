@@ -3,11 +3,6 @@ package com.pm.productretail.dto.response;
 import com.pm.productretail.entity.AppUser;
 import com.pm.productretail.entity.Shift;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,7 +14,7 @@ public class WorkingDayResponseDto {
     List<AppUser> workers;
 
     public WorkingDayResponseDto(Shift shift) {
-        this.date = shift.getShiftDate().toString().substring(0, 10);
+        this.date = String.valueOf(shift.getShiftDate()).substring(8, 10);
         this.workers = shift.getUsers();
     }
 

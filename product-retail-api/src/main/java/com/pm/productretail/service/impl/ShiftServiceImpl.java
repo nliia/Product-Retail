@@ -16,6 +16,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -76,7 +77,8 @@ public class ShiftServiceImpl implements ShiftService {
             }
             monthSchedule = shiftRepository.findAllByShiftDateGreaterThanEqual(today);
         }
-        return monthSchedule.stream().map(WorkingDayResponseDto::new).collect(Collectors.toList());
-
+        monthSchedule.sort(Comparator.comparing(o -> o.getShiftDate()));
+        List<WorkingDayResponseDto> result = monthSchedule.stream().map(WorkingDayResponseDto::new).collect(Collectors.toList());
+        return result;
     }
 }
