@@ -88,14 +88,14 @@ export default {
           password: this.user.password,
           phoneNumber: this.user.phone,
           role: this.user.role,
-          superuser: true,
+          is_superuser: false,
+          superuser: false,
           surname: this.user.surname,
-          username: this.user.username
+          username: this.user.username,
+          status: 'working'
         }
         const response = await usersService.addUser(credentials)
-        if (response.status === 201) {
-          this.$router.push({name: 'workers', params: { id: +this.$route.params.id }})
-        }
+        this.$router.push({name: 'workers', params: { id: +this.$route.params.id }})
       } catch (error) {
         console.log(error)
       }
