@@ -25,11 +25,13 @@ export default {
     tree: [{
       name: 'Магазины',
       root: true,
-      children: []
+      children: [],
+      visible: false
     }, {
       name: 'Склады',
       root: true,
-      children: []
+      children: [],
+      visible: false
     }]
   }),
   computed: {
@@ -38,23 +40,29 @@ export default {
     },
     departments () {
       let departments = store.getters.departments
-      let links = { children:
+      let links = {
+        visible: true,
+        children:
       [
         {
           name: 'Сотрудники',
-          path: 'workers'
+          path: 'workers',
+          visible: true
         },
         {
           name: 'График работы',
-          path: 'schedule'
+          path: 'schedule',
+          visible: true
         },
         {
           name: 'Товары',
-          path: 'goods'
+          path: 'goods',
+          visible: true
         },
         {
           name: 'Задачи',
-          path: 'tasks'
+          path: 'tasks',
+          visible: true
         }
       ]
       }
@@ -68,6 +76,11 @@ export default {
     renderTree (dep, links, tree) {
       Object.assign(dep, links)
       dep.warehouse ? tree[1].children.push(dep) : tree[0].children.push(dep)
+      for (let leaf of tree) {
+        if (leaf.children.length) {
+          leaf.visible = true
+        }
+      }
     }
   }
 }

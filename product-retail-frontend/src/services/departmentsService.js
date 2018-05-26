@@ -12,5 +12,8 @@ export default {
   },
   getDepartmentWorkers (id) {
     return api().get(`department/${id}/workers`)
+  },
+  getAllDepartments () {
+    return api().get('')
   }
 }
