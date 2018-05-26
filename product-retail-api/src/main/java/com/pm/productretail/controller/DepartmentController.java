@@ -73,7 +73,6 @@ public class DepartmentController extends ResponseCreator {
     @ApiImplicitParam(name = "Authorization", paramType = "header", required = true, dataType = "string")
     @RequestMapping(value = "/department/all", method = RequestMethod.GET)
     public ResponseEntity<ApiResponse<List<DepartmentDto>>> showAllDeps() {
-        departmentService.findAllDepartments();
-        return createGoodResponse();
+        return createGoodResponse(departmentService.findAllDepartments());
     }
 }
